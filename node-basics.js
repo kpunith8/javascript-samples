@@ -212,3 +212,11 @@ async function countOddAsync() {
 }
 
 countOddAsync();
+
+// Event emitters
+const WithLog = require('./event-emitter.js');
+
+const withLog = new WithLog();
+
+withLog.emit('begin');
+withLog.emit('end');
