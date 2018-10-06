@@ -1,0 +1,24 @@
+{
+  "name": "javascript-samples",
+  "version": "1.0.0",
+  "description": "Consists of javascript samples, basic to advanced concepts",
+  "main": "composible-javascript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kpunith8/javascript-samples.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kpunith8/javascript-samples/issues"
+  },
+  "homepage": "https://github.com/kpunith8/javascript-samples#readme",
+  "dependencies": {
+    "async": "^2.6.1",
+    "lodash": "^4.17.11"
+  }
+}

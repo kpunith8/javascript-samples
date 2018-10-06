@@ -213,10 +213,16 @@ async function countOddAsync() {
 
 countOddAsync();
 
-// Event emitters
-const WithLog = require('./event-emitter.js');
+/* Event emitters */
+// const WithLog = require('./event-emitter.js');
 
-const withLog = new WithLog();
+// const withLog = new WithLog();
 
-withLog.emit('begin');
-withLog.emit('end');
+// withLog.emit('begin');
+// withLog.emit('end');
+
+// Higher order functions
+const add = (x, y) => x + y;
+const createAdder = a => b => add(a, b);
+const add1 = createAdder(2);
+console.log('Higher order function:', add1(8)); // returns 10
