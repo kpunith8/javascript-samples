@@ -19,6 +19,7 @@
   "homepage": "https://github.com/kpunith8/javascript-samples#readme",
   "dependencies": {
     "async": "^2.6.1",
+    "bluebird": "^3.5.2",
     "lodash": "^4.17.11"
   }
 }
