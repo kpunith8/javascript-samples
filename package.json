@@ -4,7 +4,7 @@
   "description": "Consists of javascript samples, basic to advanced concepts",
   "main": "composible-javascript.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./express-server/app.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,12 @@
   "dependencies": {
     "async": "^2.6.1",
     "bluebird": "^3.5.2",
-    "lodash": "^4.17.11"
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "lodash": "^4.17.11",
+    "morgan": "^1.9.1",
+    "response-time": "^2.3.2"
   }
 }
