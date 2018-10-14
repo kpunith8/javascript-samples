@@ -76,3 +76,47 @@ check this out
 
 console.log("about" + "\n" +
   "me");
+
+
+// // first and second elements are not needed
+// let [, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+// console.log(title); // Consul
+
+// // we can use it with any iterable, not only arrays:
+
+// let [a, b, c] = "abc"; // ["a", "b", "c"]
+// let [one, two, three] = new Set([1, 2, 3]);
+
+// console.log(one, two, three);
+
+// let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+// console.log(name1); // Julius
+// console.log(name2); // Caesar
+
+// console.log(rest[0]); // Consul
+// console.log(rest[1]); // of the Roman Republic
+// console.log(rest.length); // 2
+
+// // Object destructuring
+// const options = {
+//   title: "Menu",
+//   width: 100,
+//   height: 200
+// };
+
+// let {ta, width, height} = options;
+
+// //console.log(ta);  // Menu
+// console.log(width);  // 100
+// console.log(height); // 200
+// console.log('REGULAR-EXPRESSIONS');
+// regexp(/punith/g, punith);
+
+// function f1(a) {}
+// function f2(a, b) {}
+// function many(a, b, ...more) {}
+// console.log(f1.length); // 1
+// console.log(f2.length); // 2
+// console.log(many.length); // 2

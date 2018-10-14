@@ -19,7 +19,7 @@ function load_file_contents(filename, callback) {
             return read(fileHandle, buffer, 0, stats.size, null)
               .then(close(fileHandle))
               .then(() => {
-                callback(null, buffer.toString('utf8', 0, buffer.size));
+                callback(null, buffer.toString('utf8', 0, buffer.length));
               }).catch(errorHandler);
           } else {
             callback(null, null);

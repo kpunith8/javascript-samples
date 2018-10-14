@@ -2,7 +2,6 @@ const fs = require('fs');
 
 // Samer Buna : Plural sight
 
-/*
 // Creating function to return a callback accepting a filename
 const readFileAsArray = (file, cb) => {
   fs.readFile(file, (err, data) => {
@@ -23,7 +22,7 @@ readFileAsArray('./numbers', (err, lines) => {
 
   console.log('Odd numbers count:', oddNumbers);
 });
-*/
+
 
 // Converting the above function to return Promise, it helps avoiding the callbacks
 // Keep both Promise and callbacks for the consumption, user can use either of them,
