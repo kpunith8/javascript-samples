@@ -1,20 +1,19 @@
-console.log('Numbers are addeded then concatenated: ', 5 + 3 + " Some text");
-console.log('Numbers are concatenated to string: ', "" + 5 + 3 + " Some text");
+// console.log('Numbers are addeded then concatenated: ', 5 + 3 + " Some text");
+// console.log('Numbers are concatenated to string: ', "" + 5 + 3 + " Some text");
 
-console.log("aaoo".search(/[aA]{2,}/));
+// console.log("aaoo".search(/[aA]{2,}/));
 
 let arr = ['cat', 'mat', 'bat'];
 arr[10] = 'rat';
 
 // Though it has empty elements from index 3 to 10 it prints as empty elements with 7 empty items
-console.log('Length of array,', arr.length, ' and has,',
-  arr);
+//console.log('Length of array,', arr.length, ' and has,', arr);
 
 // It deletes the item in the array and leave the index undefined
-console.log('Remove mat from array,', delete arr[1], ', After deleting,', arr);
+// console.log('Remove mat from array,', delete arr[1], ', After deleting,', arr);
 
 // use splice() to deletes the item and re-arrange the index
-console.log('Remove 2 items from the array,', arr.splice(1, 2)); // starting from index 1 and removes 2 items
+// console.log('Remove 2 items from the array,', arr.splice(1, 2)); // starting from index 1 and removes 2 items
 
 // unshift() adds items at the begining and shift() removes from the begining
 // pop() - pops from the end of an array and push() - pushes items at the end
@@ -78,8 +77,8 @@ Square.prototype.area = function () {
 let square = new Square();
 square.move(15, 15);
 square.width = 15;
-console.log('Calling Shape\'s function using square', square.moveFromOriginalPosition())
-console.log('ares of sqaure', square.area());
+//console.log('Calling Shape\'s function using square', square.moveFromOriginalPosition())
+//console.log('ares of sqaure', square.area());
 
 // Async programming
 // setTimeout(() => {
@@ -133,7 +132,23 @@ fileObject.fileExists((err, exists) => {
 });
 
 // Higher order functions
+
 const add = (x, y) => x + y;
 const createAdder = a => b => add(a, b);
 const add1 = createAdder(2);
 console.log('Higher order function:', add1(8)); // returns 10
+
+const multiplier = factor => number => factor * number;
+
+// can also be written as
+function multiplierFunction(factor) {
+  return function (number) {
+    return factor * number;
+  }
+}
+
+const doubleTheValue = multiplier(2);
+const trippleThevaule = multiplier(3);
+
+console.log('105 double is:', doubleTheValue(105));
+console.log('105 tripple is:', trippleThevaule(105));

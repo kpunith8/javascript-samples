@@ -20,7 +20,7 @@ console.log('copyWithin() between:', arr1.copyWithin(0, 3, 4));
 console.log('copyWithin() after:', arr1.copyWithin(1, 3));
 
 // Returns key/value pair
-var iterator1 = array1.entries();
+let iterator1 = array1.entries();
 
 console.log('entries() iterator:', iterator1.next().value);
 
@@ -64,12 +64,70 @@ console.log(filterItems('an')); // ['banana', 'mango', 'orange']
 
 // The find() method returns the value of the first element in the array that satisfies the provided testing function. Otherwise undefined is returned.
 // find does not mutate the array on which it is called.
-var found = array1.find(element => element < 10);
+let found = array1.find(element => element < 10);
 
 console.log('.find(), item:', found);
 
 // findIndex() method, which returns the index of a found element in the array instead of its value. 0 based index
 
-var foundIndex = array1.findIndex(element => element === 3);
+let foundIndex = array1.findIndex(element => element === 3);
 
 console.log('findIndex(), index of the element:', foundIndex);
+
+// Finding all the occurrences of an element
+let indices = [];
+let array = ['a', 'b', 'a', 'c', 'a', 'd'];
+let element = 'a';
+let idx = array.indexOf(element);
+while (idx != -1) {
+  indices.push(idx);
+  idx = array.indexOf(element, idx + 1);
+}
+
+console.log('a found in', indices);
+
+// Finding if an element exists in the array or not and updating the array
+function updateVegetablesCollection(veggies, veggie) {
+  if (veggies.indexOf(veggie) === -1) {
+    veggies.push(veggie);
+    console.log('New veggies collection is : ' + veggies);
+  } else if (veggies.indexOf(veggie) > -1) {
+    console.log(veggie + ' already exists in the veggies collection.');
+  }
+}
+
+let veggies = ['potato', 'tomato', 'chillies', 'green-pepper'];
+
+updateVegetablesCollection(veggies, 'spinach');
+// New veggies collection is : potato,tomato,chillies,green-pepper,spinach
+updateVegetablesCollection(veggies, 'spinach');
+// spinach already exists in the veggies collection.
+
+var items = [
+  { name: 'Edward', value: 21 },
+  { name: 'Sharpe', value: 37 },
+  { name: 'And', value: 45 },
+  { name: 'The', value: -12 },
+  { name: 'Magnetic', value: 13 },
+  { name: 'Zeros', value: 37 }
+];
+
+// sort by value
+console.log('Sort By value\n', items.sort((a, b) => a.value - b.value));
+
+// sort by name
+console.log('Sort By name\n', items.sort((a, b) => {
+  var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+  var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+
+  if (nameA < nameB) {
+    return -1;
+  }
+
+  if (nameA > nameB) {
+    return 1;
+  }
+
+  // names must be equal
+  return 0;
+}));
