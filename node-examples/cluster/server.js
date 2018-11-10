@@ -17,3 +17,8 @@ server.on('request', (req, res) => {
 server.listen(8000, () => {
   console.log(`Started process, ${pid}`)
 });
+
+// Random timeout to kill a process, to test cluster to create new workers to handle the process efficiently
+// setTimeout(() => {
+//   process.exit(1);
+// }, Math.random() * 10000);

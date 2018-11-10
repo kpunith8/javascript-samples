@@ -8,3 +8,4 @@
   var fs = Promise.promisifyAll(require('fs'));
   // Check the example in promise-sample.js
   ```
+- consider `pm2` module for process or cluster related solutions
