@@ -1,4 +1,5 @@
 // Script to clean files older than 7 days in a directory
+// NOTE: Create files using create-files.js script or you can change dirname to delete files in any folder
 const fs = require('fs');
 const path = require('path');
 
