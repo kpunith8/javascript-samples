@@ -2,6 +2,21 @@ let array1 = [1, 2, 3, 4, 5];
 let arr1 = [[1], 2, 3, 4, 5];
 let arr2 = [2, 3, 4, [4, 5, 6]];
 
+let arr = ['cat', 'mat', 'bat'];
+arr[10] = 'rat';
+
+// Though it has empty elements from index 3 to 10 it prints as empty elements with 7 empty items
+//console.log('Length of array,', arr.length, ' and has,', arr);
+
+// It deletes the item in the array and leave the index undefined
+// console.log('Remove mat from array,', delete arr[1], ', After deleting,', arr);
+
+// use splice() to deletes the item and re-arrange the index
+// console.log('Remove 2 items from the array,', arr.splice(1, 2)); // starting from index 1 and removes 2 items
+
+// unshift() adds items at the begining and shift() removes from the begining
+// pop() - pops from the end of an array and push() - pushes items at the end
+
 // concat doesn't mutate the array
 let arr3 = arr1.concat(arr2);
 let arr4 = arr1.concat(4);

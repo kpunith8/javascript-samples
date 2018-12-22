@@ -28,6 +28,6 @@ function load_file_contents(filename, callback) {
     }).catch(errorHandler);
 }
 
-load_file_contents('./promise-sample.js', (err, contents) => {
+load_file_contents('async-samples.js', (err, contents) => {
   console.log('content:', contents);
 });

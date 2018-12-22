@@ -11,7 +11,7 @@ const app = express();
 // Order of middleware is important
 // Middlewares are used across the all the requests in the app
 
-// morgan middleware is used to log after the each request
+// morgan middleware is used to log requests (GET, POST, and etc) after the each request
 app.use(require('morgan')('dev'));
 
 // it adds the respone time info to the response headers as X-Response-Time, check it under network tab in chrome tools

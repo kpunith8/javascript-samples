@@ -100,13 +100,3 @@ const streetNameComposible = user =>
 
 console.log('Composible: ', streetNameComposible(user));
 console.log('Imperative:', streetName(user));
-
-// Create Types with semigroups - semigroup: is a type with a concat method
-const Sum = x => ({
-  x,
-  concat: o => Sum(x, o.x),
-});
-
-const res = Sum(1).concat(Sum(2));
-
-console.log(res);

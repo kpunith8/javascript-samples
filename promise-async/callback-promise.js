@@ -1,9 +1,11 @@
 const fs = require('fs');
+const fetch = require('node-fetch'); // to simulate window.fetch() in node apps, or consider axios
+const util = require('util'); // used for promisify
 
-// Samer Buna : Plural sight
+/* Samer Buna : Plural sight */
 
-// Creating function to return a callback accepting a filename
-const readFileAsArray = (file, cb) => {
+/* Creating function to return a callback accepting a filename */
+const readFileAsArray1 = (file, cb) => {
   fs.readFile(file, (err, data) => {
     if (err) {
       return cb(err);
@@ -14,13 +16,13 @@ const readFileAsArray = (file, cb) => {
 };
 
 // Example call
-readFileAsArray('./numbers', (err, lines) => {
+readFileAsArray1('./numbers', (err, lines) => {
   if (err) throw err;
 
   const numbers = lines.map(Number);
   const oddNumbers = numbers.filter(number => number % 2 === 1);
 
-  console.log('Odd numbers count:', oddNumbers);
+  //console.log('Odd numbers count:', oddNumbers);
 });
 
 
@@ -53,7 +55,7 @@ const oddCountCallBacks = () => readFileAsArray('../numbers', (err, lines) => {
   console.log('Odd numbers count, using callbacks:', oddNumbers.length);
 });
 
-oddCountCallBacks();
+// oddCountCallBacks();
 
 const oddCountPromise = () => readFileAsArray('../numbers').then(lines => {
   const numbers = lines.map(Number);
@@ -62,9 +64,9 @@ const oddCountPromise = () => readFileAsArray('../numbers').then(lines => {
   console.log('Odd numbers count, using Promise:', oddNumbers.length);
 }).catch(console.error);
 
-oddCountPromise();
+// oddCountPromise();
 
-// Handling it asnyc way, using async feature
+/* Handling it asnyc way, using async, await feature */
 async function countOddAsync() {
   try {
     const lines = await readFileAsArray('../numbers');
@@ -77,4 +79,55 @@ async function countOddAsync() {
   }
 }
 
-countOddAsync();
+// countOddAsync();
+
+/* egghead.io course on Promises */
+
+const API_URL = 'https://starwars.egghead.training/';
+
+// fetch(API_URL + 'films')
+//   .then(response => response.json()
+//     .then(films => getFilmTitles(films)),
+//     error => console.log(error.message)); // error handling
+
+/* error handling using catch on json response or bad path */
+// fetch(API_URL + 'films') // change this to movies to throw an error if response is not OK
+//   .then(response => {
+//     if (!response.ok) {
+//       throw Error('Unsuccessful response');
+//     }
+//     return response.json().then(films => getFilmTitles(films)) // Promise.reject('Invalid JSON')
+//   })
+//   .catch(error => console.warn(error));
+
+// const getFilmTitles = films =>
+//   films.sort((a, b) => a.episode_id - b.episode_id)
+//     .map(film => console.log(`${film.episode_id}. ${film.title}`));
+
+console.log('Loading...');
+
+/* promisify node's readFile */
+// const readFile = util.promisify(fs.readFile);
+
+// readFile(__filename, 'utf-8')
+//   .then(contents => console.log(contents))
+//   .catch(error => console.log(error));
+
+const queryAPI = endPoint => {
+  return fetch(API_URL + endPoint).then(response => {
+    return response.ok ? response.json() : Promise.reject(Error('Unsuccessful response'));
+  });
+}
+
+/* Promise.all() resolves the promise in the  same as order in which the promises are passed to the query.
+This helps in running promises in parallel,
+attach error handling to the promise to handle failure of any one of the promise
+*/
+
+Promise
+  .all([
+    queryAPI('films'), // change it to movies to produce the error
+    queryAPI('planets')
+  ])
+  .then(([films, planets]) => console.log(`Films: ${films.length}, Planets: ${planets.length}`))
+  .catch(err => console.log(':(', err.message));

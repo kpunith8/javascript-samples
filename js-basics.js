@@ -3,21 +3,6 @@
 
 // console.log("aaoo".search(/[aA]{2,}/));
 
-let arr = ['cat', 'mat', 'bat'];
-arr[10] = 'rat';
-
-// Though it has empty elements from index 3 to 10 it prints as empty elements with 7 empty items
-//console.log('Length of array,', arr.length, ' and has,', arr);
-
-// It deletes the item in the array and leave the index undefined
-// console.log('Remove mat from array,', delete arr[1], ', After deleting,', arr);
-
-// use splice() to deletes the item and re-arrange the index
-// console.log('Remove 2 items from the array,', arr.splice(1, 2)); // starting from index 1 and removes 2 items
-
-// unshift() adds items at the begining and shift() removes from the begining
-// pop() - pops from the end of an array and push() - pushes items at the end
-
 /**
  * This can be called in three ways
  * init_cache(); - without params, default value used
@@ -91,12 +76,12 @@ square.width = 15;
 var fs = require('fs');
 var buf = new Buffer.alloc(100000);
 
-fs.open('test.txt', 'r', (err, handle) => {
-  fs.read(handle, buf, 0, 100000, null, (err, length) => {
-    console.log(buf.toString('utf-8', 0, length));
-    fs.close(handle, () => { });
-  });
-});
+// fs.open('test.txt', 'r', (err, handle) => {
+//   fs.read(handle, buf, 0, 100000, null, (err, length) => {
+//     console.log(buf.toString('utf-8', 0, length));
+//     fs.close(handle, () => { });
+//   });
+// });
 
 // understanding this, returning call backs from a function
 function FileObject() {
@@ -121,15 +106,15 @@ function FileObject() {
   }
 }
 
-let fileObject = new FileObject();
-fileObject.fileName = 'test.txt';
-fileObject.fileExists((err, exists) => {
-  if (err) {
-    console.log('Error openening file:', JSON.stringify(err));
-  } else {
-    console.log('File exists:', exists);
-  }
-});
+// let fileObject = new FileObject();
+// fileObject.fileName = 'test.txt';
+// fileObject.fileExists((err, exists) => {
+//   if (err) {
+//     console.log('Error openening file:', JSON.stringify(err));
+//   } else {
+//     console.log('File exists:', exists);
+//   }
+// });
 
 // Higher order functions
 
@@ -152,3 +137,64 @@ const trippleThevaule = multiplier(3);
 
 console.log('105 double is:', doubleTheValue(105));
 console.log('105 tripple is:', trippleThevaule(105));
+
+// Currying
+const g = n => n + 1;
+const f = n => n * 2;
+
+const h = x => f(g(x));
+
+console.log('Currying:', h(20));
+
+// Compose
+
+// takes any number of functions and returns a function which takes the initial value,
+// and then uses reduceRight() to iterate right-to-left over each function, f, in fns,
+// and apply it in turn to the accumulated value, y.
+// What we're accumulating with the accumulator, y in this function is the return value for the function returned by compose()
+const compose = (...fns) => x => fns.reduceRight((y, f) => f(y), x);
+const hh = compose(f, g);
+
+console.log('Currying using compose:', hh(40));
+
+const trace = label => value => {
+  console.log(`${label}: ${value}`);
+  return value;
+};
+
+const h1 = compose(
+  trace('after f'),
+  f,
+  trace('after g'),
+  g
+);
+
+console.log('With tracer:', h1(20));
+
+// It composes in reverse order, you can pass any number of funtions to pipe() or compose utilitiess
+const pipe = (...fns) => x => fns.reduce((y, f) => f(y), x);
+
+const hh1 = pipe(
+  g,
+  trace('after g'),
+  f,
+  trace('after f'),
+);
+
+console.log('Currying with pipe using tracer, (in reverse order):', hh1(20));
+
+// Scopes using let and const
+
+const foo = function () {
+  let local1 = 2;
+
+  // block scope,
+  {
+    // declaring it using var, hoists the variable to the top of the function declation and can be accessible outside this scope
+    let local2 = 3;
+  }
+
+  console.log(local1);
+}
+
+foo();
