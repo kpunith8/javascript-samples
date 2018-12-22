@@ -285,8 +285,129 @@ const car = new Car();
 
 // it ends up in car is not a iterable error, to make it a iterable use [Symbol.iterator] to implement it
 for (const wheel of car) {
-  console.log(wheel);
+  // console.log(wheel);
 }
 
+/**
+ * Lexical scoping: An unbounded variable is bound to a definition in the defining scope
+ * Dynamic scoping: An undbounded varable is bound to a varible passed in by the caller of the function
+ */
+
+const stuff = 4;
+this.something = 12;
+
+/**
+ * In a regular function, all variables are lexically scoped, except 'this' and 'arguments' which are dynamically scoped.
+ * In an arrow functions, all variables (including this and arguments) are lexically scoped.
+ */
+const foo1 = function (n) {
+  console.log('n:', n);
+  console.log('stuff:', stuff); // lexical scoping
+  console.log('this.something:', this.something); // prints 'undefined', dynamically scoped
+}
+
+// foo1(10);
+// Bind 'this.something' to foo1 so that it gets the value
+// foo1.call({ something: 42 }, 10);
+
+const foo2 = n => {
+  console.log('n:', n);
+  console.log('stuff:', stuff); // lexical scoping
+  console.log('this.something:', this.something); // prints 12, and lexically scoped
+}
+
+// foo2(10);
+
+/* Avoid writing class methods as arrow functions, because they need global scoping. */
+
+const Draw = function () {
+  console.log(new.target); // it prints Function: Draw if it was invoked through new variable or else it is undefined
+  console.log('called...!');
+}
+
+// new Draw();
+// Draw();
+
+/**
+ * ES6: Classes
+ *
+ * Overloading of constructor is not supported
+ */
+class Vehicle {
+  constructor(type) {
+    this.type = type;
+    this.km = 0;
+    this._color = 'Orange';
+  }
+
+  drive(distance) {
+    this.km += distance;
+    console.log(`Travelled ${this.km} Kms`);
+  }
+
+  /**
+   * Defining color as property, looks like a function and can be accessed using 'instance.color'
+   * it won't accept any parameters to a property function
+   */
+  get color() {
+    return this._color;
+  }
+
+  /**
+   * Properties to be set, should have _ before the field to be set,
+   * but can be accessed without using _, _ will make it a private field
+   * Oo else it end ups with a, 'RangeError: Maximum call stack size exceeded', because of setter being
+   * called recurssively
+   */
+  set color(color) {
+    this._color = color;
+  }
+
+  static info() {
+    console.log(`This is a static method in a class`);
+  }
+
+  /**
+   * Static getter can also be created and accessed as static fields are accessed
+   */
+  static get getInfo() {
+    console.log('Static getter method');
+  }
+}
+
+const vehicle = new Vehicle('car');
+// vehicle.drive(10);
+
+// console.log(vehicle);
+// console.log(`Color of the vehicle is: ${vehicle.color}`);
+
+// setting a property using a setter
+vehicle.color = 'Red';
+// console.log(`Color of the vehicle after changing is: ${vehicle.color}`);
+
+// Vehicle.info();
+// Vehicle.getInfo;
+
+/**
+ * Class expressions, used as expression and can be assigned to a variable.
+ * Useful when we want to dynamically create a fields based on exteral configurations
+ */
+const classExp = class ClassExp { };
+
+const ClassFactory = function (...Properties) {
+  return class {
+    constructor(...values) {
+      for (const [index, property] of Properties.entries()) {
+        this[property] = values[index];
+      }
+    }
+  }
+};
+
+const Book = ClassFactory('title', 'pages');
+console.log(new Book('title1', 100));
+
+const Music = ClassFactory('title', 'volume');
+console.log(new Music('title2', 'volume1'));
 
 
