@@ -405,9 +405,56 @@ const ClassFactory = function (...Properties) {
 };
 
 const Book = ClassFactory('title', 'pages');
-console.log(new Book('title1', 100));
+// console.log(new Book('title1', 100));
 
 const Music = ClassFactory('title', 'volume');
-console.log(new Music('title2', 'volume1'));
+// console.log(new Music('title2', 'volume1'));
 
+// Prototypal inheritance
+const obj1 = { name: 'Punith' };
 
+const use = function (person) {
+  try {
+    person.work();
+  } catch (ex) {
+    console.log('not found!');
+  }
+}
+
+// since the method is not present, throws exception
+use(obj1);
+
+const employment = {
+  work: function () {
+    console.log('working...!');
+  }
+}
+
+const management = {
+  work: function () {
+    console.log('play golf...!');
+  }
+}
+
+// sets the property to the obj1, using prototypal inheritance
+Object.setPrototypeOf(obj1, employment);
+use(obj1);
+
+// looks for nearest property in prototypal chain, if found executes it
+Object.setPrototypeOf(obj1, management);
+use(obj1);
+
+const Animal = function () {
+  this.walk = function (dist) {
+    this.km += dist;
+  }
+}
+
+Animal.prototype.km = 0;
+
+const animal1 = new Animal();
+const animal2 = new Animal();
+
+animal1.walk(10);
+console.log(`Animal-1's distance ${animal1.km} km`);
+console.log(`Animal-2's distance ${animal2.km} km`);

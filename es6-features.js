@@ -151,4 +151,4 @@ const numbers = [1, 2, 3, 4, 5];
 // console.log(f2.length); // 2
 // console.log(many.length); // 2
 
-console.log('Sum of numbers', numbers.filter(num => num % 2 === 0).reduce((acc, value) => acc + value));
+console.log('Sum of even numbers', numbers.filter(num => num % 2 === 0).reduce((acc, value) => acc + value));
