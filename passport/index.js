@@ -18,6 +18,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false } // development only
 }));
+
 app.use(cookieParser('cat_on_keyboard'));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -72,6 +73,13 @@ app.post('/login', passport.authenticate('local', {
   failureRedirect: '/error'
 }));
 
+// post can also be written as follows,
+/*
+app.post('/login', passport.authenticate('local'), (req, res) => {
+  res.redirect('/members');
+});
+*/
+
 app.get('/error', (req, res) => {
   res.sendFile(path.join(__dirname, 'error.html'));
 });
@@ -80,6 +88,7 @@ app.get('/members', authenticatedOrNot, (req, res) => {
   res.send('Secret members area only!!');
 });
 
+// Middleware function to validate
 function authenticatedOrNot(req, res, next) {
   if (req.isAuthenticated()) {
     next();
