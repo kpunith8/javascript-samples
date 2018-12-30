@@ -4,7 +4,7 @@
   "description": "Consists of javascript samples, basic to advanced concepts",
   "main": "composible-javascript.js",
   "scripts": {
-    "start": "nodemon ./express-server/app.js"
+    "start": "nodemon ./passport/index.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,9 @@
     "morgan": "^1.9.1",
     "multer": "^1.4.1",
     "node-fetch": "^2.3.0",
-    "response-time": "^2.3.2"
+    "response-time": "^2.3.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "express-flash": "0.0.2"
   }
 }

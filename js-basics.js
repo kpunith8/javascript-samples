@@ -307,6 +307,7 @@ const foo1 = function (n) {
 }
 
 // foo1(10);
+
 // Bind 'this.something' to foo1 so that it gets the value
 // foo1.call({ something: 42 }, 10);
 
