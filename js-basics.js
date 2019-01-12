@@ -423,7 +423,7 @@ const use = function (person) {
 }
 
 // since the method is not present, throws exception
-use(obj1);
+// use(obj1);
 
 const employment = {
   work: function () {
@@ -439,11 +439,11 @@ const management = {
 
 // sets the property to the obj1, using prototypal inheritance
 Object.setPrototypeOf(obj1, employment);
-use(obj1);
+// use(obj1);
 
 // looks for nearest property in prototypal chain, if found executes it
 Object.setPrototypeOf(obj1, management);
-use(obj1);
+// use(obj1);
 
 const Animal = function () {
   this.walk = function (dist) {
@@ -457,5 +457,216 @@ const animal1 = new Animal();
 const animal2 = new Animal();
 
 animal1.walk(10);
-console.log(`Animal-1's distance ${animal1.km} km`);
-console.log(`Animal-2's distance ${animal2.km} km`);
+// console.log(`Animal-1's distance ${animal1.km} km`);
+// console.log(`Animal-2's distance ${animal2.km} km`);
+
+/**
+ * You Don't Know JS: Kyle Simpson; this & Object prototypes
+ */
+
+// Assumption- 'this' refers to the function itself
+function thisTest(num) {
+  console.log('foo1:', num);
+  this.count++;
+}
+
+thisTest.count = 0;
+for (let i = 0; i <= 10; i++) {
+  if (i > 5) {
+    //thisTest(i);
+  }
+}
+
+// 'this' doesnot refers to function's lexical scope
+/**
+ * 'this' is not an author-time binding but a runtime binding.
+ * It is contextual based on the conditions of the function's invocation.
+ * 'this' binding has nothing to do with where a function is declared,
+ * but has instead everything to do with the manner in which the function is called.
+ */
+// it prints 0, since 'this' is not pointing to thisTest
+// console.log(`thisTest was called ${thisTest.count} times`);
+
+// above can be fixed using referring to foo.count++ inside the thisTest(num)
+// another way to fix the above issue is calling call() method as follows
+for (let i = 0; i <= 10; i++) {
+  if (i > 5) {
+    //thisTest.call(thisTest, i);
+  }
+}
+
+// console.log(`thisTest was called ${thisTest.count} times`);
+
+// call site of function execution decides the context of this
+// there are 4 rules
+// 1. Default binding
+
+defaultValue = 10;
+
+function defaultBinding() {
+  // 'use strict'; // throws type error
+  console.log(`default binding ${this.defaultValue}`);
+}
+
+// defaultBinding();
+
+// 2. Implicit binding
+// call-site have a context object, also referred to as an owning or containing object
+function implicitBinding() {
+  console.log(`implicit binding ${this.a}`);
+}
+
+let obj_2 = {
+  a: 42,
+  foo: implicitBinding
+};
+
+let obj_1 = {
+  a: 2,
+  obj_2: obj_2
+};
+
+// obj_1.obj_2.foo(); // it refers to obj_2's 'this', while referring to 'this.a' in implicitBinding()
+
+/**
+ * the call-site uses the 'obj' context to reference the function,
+ * so you could say that the 'obj' object "owns" or "contains" the function reference at the time the function is called.
+ */
+
+// Implicitly lost
+/**
+ * One of the most common frustrations that 'this' binding creates is when an implicitly
+ * bound function loses that binding, which usually means it falls back to the 'default binding',
+ * of either the 'global object' or 'undefined', depending on 'strict mode'
+ */
+function implicitlyLost() {
+  console.log(this.a);
+}
+
+var objImpl = {
+  a: 2,
+  foo: implicitlyLost
+};
+
+var bar = objImpl.foo; // function reference/alias!
+a = "oops, global"; // `a` also property on global object
+
+// bar();
+
+/**
+ * The more subtle, more common, and more unexpected way this occurs is when we consider passing a 'callback' function
+ */
+function runImplicitlyLost(fn) {
+  // `fn` is just another reference to `foo`
+  fn(); // call-site
+}
+
+// runImplicitlyLost(objImpl.foo);
+
+/**
+ * Parameter passing is just an implicit assignment, and since we're passing a function,
+ * it's an implicit reference assignment.
+ */
+
+// 3. Explicit binding
+/**
+ * Force a function call to use a particular 'object' for the 'this' binding,
+ *  without putting a property function reference on the object
+ */
+function explicitBinding() {
+  console.log(`Explicit binding ${this.a}`);
+}
+
+// use call() or apply() method bind an function to a object,
+// explicitBinding.call(objImpl);
+
+// explicit-hard-binding
+let hardBinding = function () {
+  explicitBinding.call(objImpl);
+}
+
+// hardBinding();
+// setTimeout(hardBinding, 100);
+
+// it cannot be overriden
+// hardBinding.call(global);
+
+/**
+ *The most typical way to wrap a function with a hard binding
+ * creates a pass-thru of any arguments passed and any return value received
+ */
+
+function explicitBinding1(something) {
+  console.log(`Explicit binding ${this.a}, ${something}`);
+  return this.a + something;
+}
+
+let hardBinding1 = function () {
+  return explicitBinding1.apply(objImpl, arguments);
+};
+
+let sum = hardBinding1(3);
+console.log(`sum is ${sum}`);
+
+
+// simple `bind` helper
+function bindHelper(fn, obj) {
+  return function () {
+    return fn.apply(obj, arguments);
+  };
+}
+
+var sumHelper = bindHelper(hardBinding1, objImpl);
+
+let sum1 = sumHelper(5);
+console.log(`sum is ${sum1}`);
+
+/**
+ * Since hard binding is such a common pattern,
+ * it's provided with a built-in utility as of ES5: 'Function.prototype.bind'
+ */
+let protoBinding = hardBinding1.bind(objImpl);
+let sum2 = protoBinding(4);
+console.log(`sum is ${sum2}`);
+
+// API Call contexts
+/**
+ * many new built-in functions in the JavaScript language and host environment,
+ * provide an optional parameter, usually called "context",
+ * which is designed as a work-around for you not having to use 'bind(..)'
+ * to ensure your callback function uses a particular 'this'.
+ */
+function apiCallContext(element) {
+  console.log(element, this.id);
+}
+
+var obj_api = {
+  id: "awesome"
+};
+
+// [1, 2, 3].forEach(apiCallContext, obj_api);
+
+// 4. 'new' Binding
+/**
+ * n JS, constructors are just functions that happen to be called with the new operator in front of them.
+ * They are not attached to classes, nor are they instantiating a class.
+ * They are not even special types of functions.
+ * They're just regular functions that are, in essence, hijacked by the use of new in their invocation
+ */
+
+/**
+ * When a function is invoked with new in front of it, otherwise known as a 'constructor' call,
+ * the following things are done automatically:
+ * 1. A brand new object is created (aka, constructed) out of thin air
+ * 2. The newly constructed object is [[Prototype]]-linked
+ * 3. The newly constructed object is set as the 'this' binding for that function call
+ * 4. unless the function returns its own alternate object, the
+ *    new-invoked function call will automatically return the newly constructed object.
+ */
+
+function newFoo(a) {
+  this.a = a;
+}
+
+var newBind = new newFoo(4);
+console.log(`new bind ${newBind.a}`);
