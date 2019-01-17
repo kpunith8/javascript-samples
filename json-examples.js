@@ -18,7 +18,7 @@ let jsonObject = {
   'age': "function() {return 28;}"
 };
 
-const javaSCriptObject = {
+const javaScriptObject = {
   name: 'abc',
   age: 20,
   sample: function () {
@@ -26,28 +26,40 @@ const javaSCriptObject = {
   }
 };
 
-
-
-
-// console.log('\nConverting JSON to string:', JSON.stringify(javaSCriptObject));
-
-// console.log('\nConverting date string to JS date object:', new Date(jsonObject.dob));
-
-// console.log('Functions as String in JSON object:', eval('(' + jsonObject.age + ')')());
-
-// console.log('Accessing nested object:', jsonObject.name.firstName, jsonObject.name.lastName, 'has scored', 'in', jsonObject.grades[1].subject, jsonObject.grades[0].grade);
-
 let jsonString = '{"name": "Punith", "hasGraduated": true}';
 
-//console.log('Parse JSON object to JS object:', JSON.parse(jsonString));
+// console.log(`\nConverting JSON to string: ${JSON.stringify(javaScriptObject)}`);
 
-// var objWithFunction = { name: "JjsonObject.grades[1].gradeohn", age: function () { return Date.now() - person.age; }, city: "New York", dob: new Date() };
+// console.log("\nConverting JSON to javascript object:", JSON.parse(jsonString));
+
+// console.log(`\nConverting date string to JS date object: ${new Date(jsonObject.dob)}`);
+
+// console.log(`\nEvaluate functions as String in JSON object: ${eval('(' + jsonObject.age + ')')()}`);
+
+// // Using ES6 array destructuring
+const { firstName, lastName } = jsonObject.name;
+const { grade, subject } = jsonObject.grades[0];
+
+console.log(`\nAccessing nested objects:`);
+console.log(`${firstName} ${lastName}, has scored, ${grade}, in ${subject}`);
+
+// var objWithFunction = {
+//   name: "John",
+//   age: function () {
+//     return Date.now() - person.age;
+//   },
+//   city: "New York",
+//   dob: new Date()
+// };
+
 // var jsonStringWithoutFunction = JSON.stringify(objWithFunction);
 
-// console.log('Functions in JS are removed in the JS objects:', jsonStringWithoutFunction);
+// console.log(`\nFunctions in JS are removed in the JS objects: ${jsonStringWithoutFunction}`);
 
-//use delete propertyName to delete from a JSON object
-console.log('\nConverting JSON to javascript object:', JSON.parse(jsonString));
+// // Use 'delete' <propertyName> to delete a property from a JSON object
 
-// Use array map function on json array
-//jsonObject.grades.map(grade => console.log(grade.subject));
+
+// // Use array map function on json array
+// console.log(`\nLoop through array using ES6 map function`)
+jsonObject.grades.map((grade, index) => console.log(`index: ${index}, subject: ${grade.subject}`));
+
