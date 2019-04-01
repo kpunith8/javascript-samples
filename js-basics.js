@@ -548,7 +548,7 @@ var objImpl = {
   foo: implicitlyLost
 };
 
-var bar = objImpl.foo; // function reference/alias!
+var bar = objImpl.foo; // function reference/alias
 a = "oops, global"; // `a` also property on global object
 
 // bar();
@@ -580,19 +580,23 @@ function explicitBinding() {
 // use call() or apply() method bind an function to a object,
 // explicitBinding.call(objImpl);
 
-// explicit-hard-binding
-let hardBinding = function () {
-  explicitBinding.call(objImpl);
+function explicitHardBinding() {
+  console.log(`Explicit hard binding: ${this.a}`);
 }
 
-// hardBinding();
+// explicit-hard-binding
+let hardBinding = function () {
+  explicitHardBinding.call(objImpl);
+}
+
+hardBinding();
 // setTimeout(hardBinding, 100);
 
 // it cannot be overriden
-// hardBinding.call(global);
+hardBinding.call(obj_2);
 
 /**
- *The most typical way to wrap a function with a hard binding
+ * The most typical way to wrap a function with a hard binding
  * creates a pass-thru of any arguments passed and any return value received
  */
 
@@ -606,7 +610,7 @@ let hardBinding1 = function () {
 };
 
 let sum = hardBinding1(3);
-console.log(`sum is ${sum}`);
+console.log(`sum is: ${sum}`);
 
 
 // simple `bind` helper
@@ -648,7 +652,7 @@ var obj_api = {
 
 // 4. 'new' Binding
 /**
- * n JS, constructors are just functions that happen to be called with the new operator in front of them.
+ * In JS, constructors are just functions that happen to be called with the new operator in front of them.
  * They are not attached to classes, nor are they instantiating a class.
  * They are not even special types of functions.
  * They're just regular functions that are, in essence, hijacked by the use of new in their invocation
@@ -670,3 +674,12 @@ function newFoo(a) {
 
 var newBind = new newFoo(4);
 console.log(`new bind ${newBind.a}`);
+
+function newBinding() {
+  this.baz = 'baz';
+  console.log(`${this.bar} ${baz}`)
+}
+
+var bar = 'bar';
+var baz = new newBinding();
+console.log(`After new, value is ${baz.baz}`);
