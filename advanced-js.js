@@ -103,7 +103,7 @@ or declare let instead of var inside for loop in the above example*/
 // }
 
 // Classic module pattern:
-// 1. there hould be outer enclosing function
+// 1. there would be outer enclosing function
 // 2. one or more functions get retunned from the function call,
 // one or more innner functions have closure over inner private scope
 var closure2 = (function () {
@@ -154,8 +154,8 @@ var a1 = new OOPExample('Punith');
 a1.speak();
 
 // property has same name as in prototype needs explicit referernce to this
-// a1.identity = function () { // called shadowing
-//   console.log(`Hello, ${OOPExample.prototype.identity.call(this)}`);
-// }
+a1.identity = function () { // called shadowing
+  console.log(`Hello, ${OOPExample.prototype.identity.call(this)}`);
+}
 
-// a1.identity();
+a1.identity();

@@ -37,11 +37,11 @@ let jsonString = '{"name": "Punith", "hasGraduated": true}';
 // console.log(`\nEvaluate functions as String in JSON object: ${eval('(' + jsonObject.age + ')')()}`);
 
 // // Using ES6 array destructuring
-const { firstName, lastName } = jsonObject.name;
-const { grade, subject } = jsonObject.grades[0];
+// const { firstName, lastName } = jsonObject.name;
+// const { grade, subject } = jsonObject.grades[0];
 
-console.log(`\nAccessing nested objects:`);
-console.log(`${firstName} ${lastName}, has scored, ${grade}, in ${subject}`);
+// console.log(`\nAccessing nested objects:`);
+// console.log(`${firstName} ${lastName}, has scored, ${grade}, in ${subject}`);
 
 // var objWithFunction = {
 //   name: "John",
@@ -56,10 +56,12 @@ console.log(`${firstName} ${lastName}, has scored, ${grade}, in ${subject}`);
 
 // console.log(`\nFunctions in JS are removed in the JS objects: ${jsonStringWithoutFunction}`);
 
-// // Use 'delete' <propertyName> to delete a property from a JSON object
+//Use 'delete' <propertyName> to delete a property from a JSON object
+// delete jsonObject.dob;
 
+console.log(jsonObject);
 
 // // Use array map function on json array
 // console.log(`\nLoop through array using ES6 map function`)
-jsonObject.grades.map((grade, index) => console.log(`index: ${index}, subject: ${grade.subject}`));
+// jsonObject.grades.map((grade, index) => console.log(`index: ${index}, subject: ${grade.subject}`));
 

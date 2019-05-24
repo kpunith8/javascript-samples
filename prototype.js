@@ -1,4 +1,4 @@
-// Prototype is a property on a function that represents an object
+// Prototype is a 'property on a function' that represents an object
 
 // Constructor function
 // function Animal(name, energy) {
