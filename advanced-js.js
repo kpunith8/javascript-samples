@@ -1,3 +1,4 @@
+// Advanced JS: Kyle Simpson
 // Scope: Where to look for variables
 // smallest atomic unit of scope is function
 
@@ -12,7 +13,7 @@ function_1();
 // foo();
 
 // Cheating the lexical scope using eval()
-var bar = 'bar';
+var bar = "bar";
 function function_2(str) {
   eval(str); // adds the 'bar' to function scope, passed as str to function_2
   console.log(bar); // prints 43, str is evaluated and 'bar' gets assinged with 42
@@ -25,12 +26,11 @@ function function_2(str) {
 // don't consider using with() -> it creates new variable scopes for new declartions
 // with 'strict' mode, with() cannot be used.
 
-
 // IIFE Pattern - Immediately Invoked function expression
 // anything within IIFE will be private, and is not exposed
-var foo = 'foo';
+var foo = "foo";
 (function IIFE() {
-  var foo = 'foo2';
+  var foo = "foo2";
   console.log(`IIFE, value is: ${foo}`);
 })(); // '()' can be enclosed within parantheses as well (fn(){...}())
 
@@ -54,7 +54,7 @@ let block1 = 10;
 
 /* Closures: when a function remembers the lexical scope when the function is executed outside that lexical scope */
 function closureFoo() {
-  var bar = 'bar';
+  var bar = "bar";
   function baz() {
     console.log(`closure, remembers the lexical scope: ${bar}`);
   }
@@ -62,7 +62,6 @@ function closureFoo() {
   // baz is passed as reference to outside function, and still remembers the its scope
   // and accesses bar variable outside the invokiing scope
   outsideFunction(baz);
-
 }
 
 function outsideFunction(baz) {
@@ -73,8 +72,8 @@ closureFoo();
 
 /* functions can be returned from a function */
 function closure1() {
-  var bar = 'bar';
-  return function () {
+  var bar = "bar";
+  return function() {
     console.log(`Returning function within closure: ${bar}`);
   };
 }
@@ -106,8 +105,8 @@ or declare let instead of var inside for loop in the above example*/
 // 1. there would be outer enclosing function
 // 2. one or more functions get retunned from the function call,
 // one or more innner functions have closure over inner private scope
-var closure2 = (function () {
-  var o = { bar: 'bar' };
+var closure2 = (function() {
+  var o = { bar: "bar" };
 
   // return {
   //   bar: function () {
@@ -116,10 +115,10 @@ var closure2 = (function () {
   // };
   // it can also be written by assigning to a variable to modify things later
   const publicAPI = {
-    bar: function () {
+    bar: function() {
       publicAPI.baz();
     },
-    baz: function () {
+    baz: function() {
       console.log(`Module pattern ${o.bar}`);
     }
   };
@@ -133,7 +132,7 @@ var closure2 = (function () {
 // parameters can also be passed to the module pattern
 closure2.bar();
 
-// OOP - in JS
+/* OOP - in JS */
 // Every single object is built by a constructor function
 // each time a constructor is called, a new object is created
 // A constructor makes an object "linked to" its own "prototype"
@@ -142,20 +141,71 @@ function OOPExample(who) {
   this.me = who;
 }
 
-OOPExample.prototype.identity = function () {
+OOPExample.prototype.identity = function() {
   return `I'm ${this.me}`;
-}
+};
 
-OOPExample.prototype.speak = function () {
+var a1 = new OOPExample("Punith");
+var a2 = new OOPExample("Sahana");
+
+a2.speak = function() {
   console.log(`Hello ${this.identity()}`); // this referes to OOPExample
-}
+};
 
-var a1 = new OOPExample('Punith');
-a1.speak();
+a2.speak();
 
 // property has same name as in prototype needs explicit referernce to this
-a1.identity = function () { // called shadowing
-  console.log(`Hello, ${OOPExample.prototype.identity.call(this)}`);
+// a1.identity = function() {
+//   // called shadowing
+//   console.log(`Hello, ${OOPExample.prototype.identity.call(this)}`);
+// };
+
+// a1.identity();
+
+function OOPExample1(who) {
+ OOPExample.call(this, who); // Inherits from OOPExample calling this on it
 }
 
-a1.identity();
+// OOPExample1 can be initialized as follows
+// OOPExample1.prototype = new OOPExample(); // or
+OOPExample1.prototype = Object.create(OOPExample.prototype);
+
+OOPExample1.prototype.speak1 = function() {
+  console.log('Called with in OOPExample1:', this.identity());
+}
+
+var  b1 = new OOPExample1("Punith K");
+b1.speak1();
+
+console.log("Get the prototype of an object:", Object.getPrototypeOf(a1));
+
+console.log(
+  "a1.constructor === OOPExample",
+  ":",
+  a1.constructor === OOPExample
+);
+console.log(
+  "a1.constructor === a2.constructor",
+  ":",
+  a1.constructor === a2.constructor
+);
+console.log(
+  "a1.__proto__ === OOPExample.prototype",
+  ":",
+  a1.__proto__ === OOPExample.prototype
+);
+console.log(
+  "a1.__proto__ === a2.__proto__",
+  ":",
+  a1.__proto__ === a2.__proto__
+);
+console.log(
+  "a1.__proto__ === Object.getPrototypeOf(a1)",
+  ":",
+  a1.__proto__ === Object.getPrototypeOf(a1)
+);
+console.log(
+  "a2.__proto__ === a2.constructor.prototype",
+  ":",
+  a2.__proto__ === a2.constructor.prototype
+);

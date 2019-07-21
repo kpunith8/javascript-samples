@@ -68,7 +68,7 @@ square.width = 15;
 /*  Async programming */
 /* setTimeout(() => {
   console.log('Running after 2 seconds');
-}, 2000); // can be changed to any number, in milliseconds, 1000 - for 1 second
+}, 2000); // can be changed to any number, in milliseconds, 1000ms - for 1 second
  */
 // console.log('waiting for job to complete');
 
@@ -306,7 +306,7 @@ const foo1 = function (n) {
   console.log('this.something:', this.something); // prints 'undefined', dynamically scoped
 }
 
-// foo1(10);
+// foo1('foo1', 10);
 
 // Bind 'this.something' to foo1 so that it gets the value
 // foo1.call({ something: 42 }, 10);
@@ -511,7 +511,7 @@ function defaultBinding() {
 // defaultBinding();
 
 // 2. Implicit binding
-// call-site have a context object, also referred to as an owning or containing object
+// call-site has a context object, also referred to as an owning or containing object
 function implicitBinding() {
   console.log(`implicit binding ${this.a}`);
 }
@@ -677,9 +677,34 @@ console.log(`new bind ${newBind.a}`);
 
 function newBinding() {
   this.baz = 'baz';
-  console.log(`${this.bar} ${baz}`)
+  // console.log(`${this.bar} ${baz}`)
 }
 
 var bar = 'bar';
 var baz = new newBinding();
-console.log(`After new, value is ${baz.baz}`);
+// console.log(`After new, value is ${baz.baz}`);
+
+
+function test(x) {
+  let s = x;
+
+  if(s) {
+    const s = 10;
+    var a = 11;
+    var b = 30;
+    let c = 30;
+  }
+
+  console.log('Values in test()', x, s, a, b);
+}
+
+test(1);
+
+// Funtion declartions can be called earlier than it is defined
+printName();
+
+function printName() {
+  console.log('Hello Punith');
+}
+
+// A Function Expression is created when the execution reaches it and is usable only from that moment.

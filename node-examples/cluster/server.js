@@ -1,7 +1,7 @@
 const server = require('http').createServer();
 const pid = process.pid;
 
-// If the clusters are not created, it both request and creating an server is handled by same pid
+// If the clusters are not created, both request and creating an server is handled by same pid
 server.on('request', (req, res) => {
   switch (req.url) {
     case '/home':

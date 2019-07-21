@@ -1,8 +1,8 @@
 // Arrow funtions
 
 const arrowFunction = (price, tax) => {
-  return (price * tax) + price;
-}
+  return price * tax + price;
+};
 
 // console.log('Interest', arrowFunction(12, 10));
 
@@ -17,7 +17,7 @@ const arrowFunction = (price, tax) => {
 
 // Rest operator - rest operators always goes to end after the params are declared
 
-// const restParams = (name, ...params,jsjsjs) => {
+// const restParams = (name, ...params, jsjsjs) => {
 //   console.log(params);
 //   return name + " " + params.map(value => {
 //     return value + "name"
@@ -37,23 +37,28 @@ const arrowFunction = (price, tax) => {
 
 //Object Destructuring
 const name = {
-  fName: "Punith", lName: "P", age1: 30,
+  fName: "Punith",
+  lName: "P",
+  age1: 30,
   education: {
-    degree: 'Masters',
+    degree: "Masters",
     specification: "CSE"
   }
 };
 
 // Object destructuring can help remove the positional parameters for eg,
-function fetchRepos({ language = 'all', minStars = 0, maxStarts = 100, createdTime = '' }) {
-
-}
+function fetchRepos({
+  language = "all",
+  minStars = 0,
+  maxStarts = 100,
+  createdTime = ""
+}) {}
 
 const date = {
   h: 12,
   m: 12,
-  s: 44,
-}
+  s: 44
+};
 
 // const { h: hour, m: minutes, s: seconds } = date;
 // console.log(hour, minutes, seconds);
@@ -107,7 +112,6 @@ const numbers = [1, 2, 3, 4, 5];
 // console.log("about" + "\n" +
 //   "me");
 
-
 // // first and second elements are not needed
 // let [, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 
@@ -151,4 +155,137 @@ const numbers = [1, 2, 3, 4, 5];
 // console.log(f2.length); // 2
 // console.log(many.length); // 2
 
-console.log('Sum of even numbers', numbers.filter(num => num % 2 === 0).reduce((acc, value) => acc + value));
+console.log(
+  "Sum of even numbers",
+  numbers.filter(num => num % 2 === 0).reduce((acc, value) => acc + value)
+);
+
+// Generators
+
+function* generateNumbers() {
+  yield 1;
+  yield 2;
+  yield 3;
+  return 4;
+}
+const gen = generateNumbers();
+
+// console.log(gen.next());
+// console.log(gen.next());
+
+for (let value of gen) {
+  console.log(value);
+}
+
+// Naturally, as generators are iterable, we can call all related functionality, e.g. the spread operator ...
+let sequence = [0, ...generateNumbers()];
+console.log(sequence);
+
+// The special yield* directive is responsible for the composition.
+// It delegates the execution to another generator. Or, to say it simple,
+// it runs generators and transparently forwards their yields outside, as if they were done by the calling generator itself.
+function* generateSequence(start, end) {
+  for (let i = start; i <= end; i++) yield i;
+}
+
+function* generatePasswordCodes() {
+  // 0..9
+  yield* generateSequence(48, 57);
+  // or (let i = 48; i <= 57; i++) yield i; /* Or inline the generators*/
+
+  // A..Z
+  yield* generateSequence(65, 90);
+  //  for (let i = 65; i <= 90; i++) yield i;
+
+  // a..z
+  yield* generateSequence(97, 122);
+  // for (let i = 97; i <= 122; i++) yield i;
+}
+
+let str = "";
+
+for (let code of generatePasswordCodes()) {
+  str += String.fromCharCode(code);
+}
+
+console.log(`Password codes ${str}`);
+
+function* gen1() {
+  // Pass a question to the outer code and wait for an answer
+  let result = yield "2 + 2?"; // (*)
+
+  console.log(result);
+}
+
+let generator = gen1();
+
+let question = generator.next().value; // <-- yield returns the value
+
+generator.next(5); // --> pass the result into the generator
+
+let range = {
+  from: 1,
+  to: 5,
+
+  // for..of calls this method once in the very beginning
+  [Symbol.iterator]() {
+    // ...it returns the iterator object:
+    // onward, for..of works only with that object, asking it for next values
+    return {
+      current: this.from,
+      last: this.to,
+
+      // next() is called on each iteration by the for..of loop
+      next() {
+        // it should return the value as an object {done:.., value :...}
+        if (this.current <= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      }
+    };
+  }
+};
+
+for (let value of range) {
+  console.log(`using Symbol.iterators: ${value}`);
+}
+
+let asyncRange = {
+  from: 1,
+  to: 5,
+
+  // for await..of calls this method once in the very beginning
+  [Symbol.asyncIterator]() {
+    // ...it returns the iterator object:
+    // onward, for await..of works only with that object, asking it for next values
+    return {
+      current: this.from,
+      last: this.to,
+
+      // next() is called on each iteration by the for..of loop
+      async next() {
+        // it should return the value as an object {done:.., value :...}
+        // (automatically wrapped into a promise by async)
+
+        // can use await inside, do async stuff:
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        if (this.current <= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      }
+    };
+  }
+};
+
+(async () => {
+  for await (let value of asyncRange) {
+    console.log(`Using Async Generators: ${value}`); 
+  }
+})();
+
+

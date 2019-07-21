@@ -68,7 +68,7 @@ const fruits = ['apple', 'banana', 'grapes', 'mango', 'orange'];
 /**
  * Array filters items based on search criteria (query)
  */
-const filterItems = (query) => {
+const filterItems = query => {
   return fruits.filter(el =>
     el.toLowerCase().indexOf(query.toLowerCase()) > -1
   );
