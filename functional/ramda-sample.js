@@ -60,7 +60,7 @@ console.log("Using pipe():", operatePipe(3, 4));
 // Composing
 // const operate = (x, y) => square(addOne(multiply(x, y)))
 
-// 'compose()' works exactly the same way as `pipe()`, 
+// 'compose()' works exactly the same way as `pipe()`,
 // except that it applies the functions in `right-to-left` order instead of left-to-right
 const operateCompose = R.compose(
   square,
@@ -124,21 +124,97 @@ we supply are the left-most or right-most arguments needed by the original funct
 
 // Above example can be written using `partialRight()` as follows
 const publishedInYear = (book, year) => book.year === year;
- 
+
 const titlesForYear = (books, year) => {
   // Would have used partial if the param to publichedInYear() are reversed
   const selected = R.filter(R.partialRight(publishedInYear, [year]), books);
- 
+
   return R.map(book => book.title, selected);
-}
+};
 
 // Note that the arguments we supply to partial and partialRight must always be in an array, even if there’s only one of them
 
 console.log("Books filtered for year 2001:", titlesForYear(books, 2000));
 
 // CURRYING
+// A curried function is always a series of single-argument functions.
+// In Ramda, a curried function can be called with only a subset of its arguments,
+// and it will return a new function that accepts the remaining arguments.
+// If you call a curried function with all of its arguments, it will call just call the function.
 
+// Notice that to make `curry()` work, reverse the argument order
+/*
+const publishedInYear = R.curry((year, book) => book.year === year)
+ 
+const titlesForYear = (books, year) => {
+  const selected = R.filter(publishedInYear(year), books)
+ 
+  return R.map(book => book.title, selected)
+}
+*/
 
+/*
+placeholder: (__)
 
+What if we have a curried function of three arguments, 
+and we want to supply the first and last arguments, leaving the middle one for later? 
+We can use the placeholder for the middle argument:
+*/
+/*
+const publishedInYear = R.curry((book, year) => book.year === year)
+ 
+const titlesForYear = (books, year) => {
+  const selected = R.filter(publishedInYear(__, year), books)
+ 
+  return R.map(book => book.title, selected)
+}
+*/
 
+// using `pipe()` to filter the books
 
+/*
+const publishedInYear = R.curry((year, book) => book.year === year);
+
+const titlesForYear = (books, year) =>
+  R.pipe(
+    R.filter(publishedInYear(year)),
+    R.map(book => book.title)
+  )(books);
+ */
+
+// const forever21 = age => age >= 21 ? 21 : age + 1
+// same can be written using Ramda built-in functions
+
+const forever21 = age => R.ifElse(R.gte(R.__, 21), R.always(21), R.inc)(age);
+
+console.log("Usage of always(), inc():", forever21(18));
+
+// const alwaysDrivingAge = age => R.ifElse(lt(R.__, 16), R.always(16), a => a)(age);
+
+// Instead of returning a => a make use of `identity()` function.
+// const alwaysDrivingAge = age => R.ifElse(R.lt(R.__, 16), R.always(16), R.identity)(age);
+const alwaysDrivingAge = age => R.when(R.lt(R.__, 16), R.always(16))(age);
+
+// Use `unless()` when you change it to, `gte()`
+const alwaysDrivingAgeUnless = age =>
+  R.unless(R.gte(R.__, 16), R.always(16))(age);
+
+// Ramda also provides `T` and `F` as further shortcuts for `always(true)` and `always(false)`
+
+console.log("using when():", alwaysDrivingAge(12));
+console.log("using unless():", alwaysDrivingAgeUnless(11));
+
+const settings = {};
+// const lineWidth = settings.lineWidth || 80;
+const lineWidth = R.defaultTo(80, settings.lineWidth);
+console.log("Usage of defaultTo():", lineWidth);
+
+// `equals()`, `lte()`, `inc()` `sum()` other built-in methods for calculation
+const water = temperature =>
+  R.cond([
+    [R.equals(0), R.always("water freezes at 0°C")],
+    [R.equals(100), R.always("water boils at 100°C")],
+    [R.T, temp => `nothing special happens at ${temp}°C`]
+  ])(temperature);
+
+console.log("Using cond(), acts like switch:", water(0));

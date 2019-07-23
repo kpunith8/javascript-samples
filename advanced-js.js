@@ -163,7 +163,7 @@ a2.speak();
 // a1.identity();
 
 function OOPExample1(who) {
- OOPExample.call(this, who); // Inherits from OOPExample calling this on it
+  OOPExample.call(this, who); // Inherits from OOPExample calling this on it
 }
 
 // OOPExample1 can be initialized as follows
@@ -171,13 +171,37 @@ function OOPExample1(who) {
 OOPExample1.prototype = Object.create(OOPExample.prototype);
 
 OOPExample1.prototype.speak1 = function() {
-  console.log('Called with in OOPExample1:', this.identity());
-}
+  console.log("Called with in OOPExample1:", this.identity());
+};
 
-var  b1 = new OOPExample1("Punith K");
+var b1 = new OOPExample1("Punith K");
 b1.speak1();
 
 console.log("Get the prototype of an object:", Object.getPrototypeOf(a1));
+
+// Other way of creating child classes using delegation inheriting the parent prototype
+// OLOO: Object Linked to Other Objects
+let OOPFoo = {
+  init: function(who) {
+    this.me = who;
+  },
+  identify: function() {
+    return `I'm ${this.me}`;
+  }
+};
+
+let OOPBar = Object.create(OOPFoo);
+OOPBar.speak = function() {
+  console.log(`Hello ${this.identify()}`);
+};
+
+let b11 = Object.create(OOPBar);
+b11.init("b11");
+let b12 = Object.create(OOPBar);
+b12.init("b12");
+
+b11.speak();
+b12.speak();
 
 console.log(
   "a1.constructor === OOPExample",
@@ -209,3 +233,74 @@ console.log(
   ":",
   a2.__proto__ === a2.constructor.prototype
 );
+
+// ASYNC PATTERNS
+
+// Nested callback tasks
+function callbacksGetData(data, callback) {
+  setTimeout(() => {
+    callback(data);
+  }, 200);
+}
+
+callbacksGetData(10, function(num1) {
+  let x = num1 + 1;
+  callbacksGetData(30, function(num2) {
+    let y = num2 + 1;
+    callbacksGetData(`Nested callbacks, Total: ${x + y}`, function(answer) {
+      console.log(answer);
+    });
+  });
+});
+
+// Generators - async
+function coroutine(g) {
+  let it = g();
+  return function() {
+    return it.next.apply(it, arguments);
+  };
+}
+
+let generatorsGetDataSync = coroutine(function*() {
+  let x = 1 + (yield null);
+  let y = 1 + (yield null);
+  yield x + y;
+});
+
+generatorsGetDataSync();
+generatorsGetDataSync(10);
+console.log(`Total using sync generators: ${generatorsGetDataSync(30).value}`);
+
+function getDataAsync(data) {
+  setTimeout(() => generatorsGetDataASync(data), 400);
+}
+
+let generatorsGetDataASync = coroutine(function*() {
+  let x = 1 + (yield getDataAsync(10));
+  let y = 1 + (yield getDataAsync(30));
+  let answer = yield getDataAsync(`Total using async generators: ${x + y}`);
+
+  console.log(answer);
+});
+
+generatorsGetDataASync();
+
+// Promise
+const promiseGetData = data => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(data), 500);
+  });
+};
+
+let x;
+
+promiseGetData(10)
+  .then(num1 => {
+    x = 1 + num1;
+    return promiseGetData(30);
+  })
+  .then(num2 => {
+    let y = 1 + num2;
+    return promiseGetData(`Total using Promise: ${x + y}`);
+  })
+  .then(answer => console.log(answer));
