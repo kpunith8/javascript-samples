@@ -1,4 +1,4 @@
-// Advanced JS: Kyle Simpson
+// ADVANCED JS: KYLE SIMPSON
 // Scope: Where to look for variables
 // smallest atomic unit of scope is function
 

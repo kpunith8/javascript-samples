@@ -384,7 +384,15 @@ testDefaultValue1();
 
 /* REST/SPREAD OPERATOR (...) */
 function spreadExample(x, y, ...rest) {
-  console.log("Array spread operator:", 'x:', x, 'y:', y, 'rest params:', ...rest);
+  console.log(
+    "Array spread operator:",
+    "x:",
+    x,
+    "y:",
+    y,
+    "rest params:",
+    ...rest
+  );
 }
 
 const a1 = [1, 2, 3];
@@ -395,8 +403,14 @@ spreadExample(...a3, ...a2);
 
 //PROG: Remove duplicate from a string
 const str1 = "Hello World!"; // String is an iterable
-console.log('String as an iterable, use ..., remove spaces using filter:', [...str1].filter(x => x !== ' '));
-console.log('Remove duplicates in a string:', new Set([...str1].filter(x => x !== ' ')));
+console.log(
+  "String as an iterable, use ..., remove spaces using filter:",
+  [...str1].filter(x => x !== " ")
+);
+console.log(
+  "Remove duplicates in a string:",
+  new Set([...str1].filter(x => x !== " "))
+);
 
 // Destructuring and default params can be used together
 const b1 = [1, 2];
@@ -404,4 +418,192 @@ const [b11, b12, b13 = 3] = b1;
 
 console.log("Destructuring and default params example:", b11, b12, b13);
 
+const b2 = [1, 2, [3, 4, 5]];
+const [b14, b15, ...args] = b2;
 
+console.log("Nested array destructuring:", b14, b15, args);
+
+let x, y, z, z11, x11, y11;
+let obj12 = { a: 1, b: 2, c: 3, d: { e: 4 } };
+// assign default value if the property doesn't exist
+// surround with (), if vaiables declared in the top and destructured somewhere else
+// in array destructuring we don't need (),since { } indicates that as a block of code.
+({ a: x, b: y, c: z, d: { e: z11 } = {}, d: x11, b: y11 } = obj12 || {});
+
+console.log(
+  "In object destructuring property:assignment:",
+  x,
+  y,
+  z,
+  x11,
+  y11,
+  z11
+);
+
+// If an object doesn't have the property that is being referenced while destructuring it goes up the prototype chain and
+// reads it from there
+
+// concise properies and methods
+// if the property name of a object to be same as assignment don't assign one; var obj = {a: a};
+var x13 = 1;
+var c = "hello";
+var obj13 = { x13, b() {}, [c]: 42 }; // computed properties can be put within [] and can be any valid JS expressions
+
+// here concise methods are lexically annoymous, not able to access them
+
+/* TEMPLATE LITERALS */
+// Tag functions
+function tagFunctions(strings, ...values) {
+  console.log("Tag functins accepting values:", strings, values);
+}
+
+let total = 200.0;
+let fName = "Punith";
+tagFunctions`Hello ${fName}, your bill is ${total}`;
+
+/* SYMBOLS */
+// new datatype added to JS - Globally unguessable unique value in the context
+const symbol1 = Symbol("one"); // optional value, helpful for debugging, name to a symbol, doesn't signify anything
+console.log(symbol1.valueOf());
+
+const object1 = { id: 22 };
+object1[symbol1] = "Secret data";
+
+console.log("Symbol as property in an object:", object1);
+console.log(
+  "Symbol not listed when asked for keys:",
+  Object.keys(object1),
+  "own property names",
+  Object.getOwnPropertyNames(object1)
+);
+// can be accesed using getOwnPropertySymbols mehtod
+console.log(
+  "Get the symbol properties using:",
+  Object.getOwnPropertySymbols(object1)
+);
+
+// well known symbols
+// Symbol.iterator, Symbol.toStringTag, Symbol.toPrimitive, Symbol.isConcatSpreadable and many more.
+var arr1 = [3, 4, 5];
+var arrItr = arr1[Symbol.iterator]();
+console.log("Using iterator on array:", arrItr.next()); // {value: 3, done: false}
+
+// instead of using iterator manually use, for..of loop
+for (let item of arr1) {
+  console.log("Usage of for..of:", item);
+}
+
+// Plain objects by default are not iterables
+
+// Custom iterables for an object using Symbol.iterator
+const object2 = {
+  [Symbol.iterator]() {
+    let index = this.start;
+    let end = this.end;
+
+    let itr = {
+      next: () => {
+        if (index <= end) {
+          let value = this.values[index];
+          index++;
+
+          return { value: value, done: false };
+        } else {
+          return { done: true };
+        }
+      }
+    };
+
+    return itr;
+  },
+  values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+  start: 4,
+  end: 13
+};
+
+console.log("Custom object iterator using Symbol.iterator:", [...object2]);
+
+/* GENERATORS */
+// Generators doesn't run when executed, it returns an iterator and runs in a paused state
+function* main() {
+  yield "Hey there";
+  yield "Hello";
+  yield "Continue after yield";
+
+  return "Last statement";
+}
+// yield keyword says to pause the generator
+
+let generatorMain = main();
+// Call next() method to execute the next available value
+console.log(
+  "Generator function:",
+  generatorMain.next(),
+  generatorMain.next(),
+  generatorMain.next(),
+  generatorMain.next()
+);
+
+for (let v of main()) {
+  // console.log(v); // it won't consider return values from generators
+}
+
+// Random value generator
+function* uniqueId() {
+  while (true) {
+    yield Math.ceil(Math.random() * 100000);
+  }
+}
+
+const uniqueIdentifier = uniqueId();
+console.log(
+  "Random id-1:",
+  uniqueIdentifier.next().value,
+  "\nRandom id-2:",
+  uniqueIdentifier.next().value
+);
+
+// Custom iterables for an object using Symbol.iterator and generators
+const objectGenerator = {
+  *[Symbol.iterator]() {
+    for (let index = this.start; index <= this.end; index++) {
+      yield this.values[index];
+    }
+  },
+  values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+  start: 4,
+  end: 10
+};
+
+console.log("Custom object iterator using Symbol.iterator and generators:", [
+  ...objectGenerator
+]);
+
+const numberIteratorBySteps = {
+  *[Symbol.iterator]({ start = 0, step = 1, end = 100 } = {}) {
+    for (let index = start; index <= end; index = index + step) {
+      yield index;
+    }
+  }
+};
+
+for (let v of numberIteratorBySteps) {
+  // console.log(v); // Passing nothing prints 1 to 100
+}
+
+for (let v of numberIteratorBySteps[Symbol.iterator]({
+  start: 40,
+  step: 5,
+  end: 60
+})) {
+  console.log(v); // Starts from 40 with a step 5 till 100
+}
+
+// Create a custom generator that gerates range of numbers on top of Number prototype
+Number.prototype[Symbol.iterator] = function* numberGenerator() {
+  for (let index = 0; index <= this; index++) {
+    yield index;
+  }
+};
+
+console.log("Number generator using Generator:", [...5]);
