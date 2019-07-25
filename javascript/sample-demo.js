@@ -1,6 +1,6 @@
 const Greeter = require('./greeter');
-const mySet = require('./data-structure/set-user-defined');
-const Queue = require('./data-structure/queue-user-defined');
+const mySet = require('../data-structure/set-user-defined');
+const Queue = require('../data-structure/queue-user-defined');
 
 const g = new Greeter('oo');
 
