@@ -258,8 +258,20 @@ const obj2 = {
   }
 };
 
+const obj3 = {
+  model: 'Fiesta',
+  manufacturer: 'Ford',
+  fullName: function() {
+    return `Car Model, ${this.model} ${this.manufacturer}`;
+  },
+  fullModelName: () => {
+    return `Car Model, arrow function, this refernce, ${this.model} ${this.manufacturer}`;
+  }
+}
+
 obj1.timer();
 obj2.timer();
+console.log(obj3.fullName(), obj3.fullModelName());
 
 /* Understanding var scope */
 function varScope(x, y) {

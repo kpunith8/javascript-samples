@@ -78,13 +78,33 @@ console.log(
 );
 
 function destroyer(arr) {
-  
   const toBeRemoved = Array.from(arguments);
-  // Remove all the values in both the arrays  
+  // Remove all the values in both the arrays
   return arr.filter(item => !toBeRemoved.includes(item));
 }
 
 console.log(
   "Remove the items passed from an array:",
   destroyer(destroyer(["tree", "hamburger", 53], "tree", 53))
+);
+
+function whatIsInAName(collection, source) {
+  var srcKeys = Object.keys(source);
+
+  return collection.filter(function(obj) {
+    return srcKeys.every(function(key) {
+      return obj.hasOwnProperty(key) && obj[key] === source[key];
+    });
+  });
+}
+
+console.log(
+  whatIsInAName(
+    [
+      { first: "Romeo", last: "Montague" },
+      { first: "Mercutio", last: null },
+      { first: "Tybalt", last: "Capulet" }
+    ],
+    [{ last: "Capulet" }]
+  )
 );
