@@ -241,6 +241,7 @@ const obj1 = {
   timer: function timer() {
     // To solve the this binding do the following, or bind the function to `this`, function() {}.bind(this);
     let self = this;
+    console.log("inside a obj1, ", this.id);
     setTimeout(function() {
       console.log("this reference inside setTimeout:", self.id); // here `this` refers to global window object
     }, 10);
@@ -259,15 +260,18 @@ const obj2 = {
 };
 
 const obj3 = {
-  model: 'Fiesta',
-  manufacturer: 'Ford',
+  model: "Fiesta",
+  manufacturer: "Ford",
   fullName: function() {
     return `Car Model, ${this.model} ${this.manufacturer}`;
   },
   fullModelName: () => {
-    return `Car Model, arrow function, this refernce, ${this.model} ${this.manufacturer}`;
+    // returns undefined
+    return `\nInside a arrow, Car Model, this refernce, ${this.model} ${
+      this.manufacturer
+    }`;
   }
-}
+};
 
 obj1.timer();
 obj2.timer();
@@ -535,6 +539,36 @@ const object2 = {
 
 console.log("Custom object iterator using Symbol.iterator:", [...object2]);
 
+// Custom iterator for an object
+class Users {
+  constructor(users) {
+    this.users = users;
+  }
+
+  [Symbol.iterator]() {
+    let index = 0;
+    let users = this.users;
+
+    return {
+      next() {
+        if (index < users.length) {
+          return {value: users[index++],  done: false}
+        }
+
+        return { done: true };
+      }
+    };
+  }
+}
+
+const allUsers = new Users([{name: 'Punith'}, {name: "Rama"}, {name: "Krishna"}]);
+
+// call the iterator seperately 
+let userIterator = allUsers[Symbol.iterator]();
+console.log('Custom Iterator using Symbol.iterator:', userIterator.next());
+
+// or call with for..of loop or with spread operator [...allUsers]
+
 /* GENERATORS */
 // Generators doesn't run when executed, it returns an iterator and runs in a paused state
 function* main() {
@@ -619,3 +653,33 @@ Number.prototype[Symbol.iterator] = function* numberGenerator() {
 };
 
 console.log("Number generator using Generator:", [...5]);
+
+// Generators with return
+function* generatorWithReturn() {
+  yield "a";
+  yield [10, 20];
+  return "result";
+}
+
+// Most constructs that work with iterables ignore the value inside the done object
+console.log("Using for..of loop to iterate generators");
+for (const x of generatorWithReturn()) {
+  console.log(x);
+}
+
+// Recursively calling generator function using yield*
+function* gen1() {
+  yield "2";
+  yield "3";
+}
+
+function* gen2() {
+  yield "1";
+  yield* gen1(); // just calling gen1() returns object but doesn't yield from that.
+  yield "4";
+}
+
+console.log("Yielding recursively, yield*");
+for (const x of gen2()) {
+  console.log(x);
+}

@@ -108,3 +108,60 @@ console.log(
     [{ last: "Capulet" }]
   )
 );
+
+// Balanced braces
+
+var stack = [];
+
+function checkParentheses(word) {
+  var map = {
+    "(": ")",
+    "[": "]",
+    "{": "}"
+  };
+  for (var i = 0; i < word.length; i++) {
+    if (word[i] === "(" || word[i] === "[" || word[i] === "{") {
+      stack.push(word[i]);
+    } else {
+      var last = stack.pop();
+
+      if (word[i] !== map[last]) {
+        return false;
+      }
+    }
+  }
+
+  if (stack.length !== 0) {
+    return false;
+  }
+
+  return true;
+}
+
+console.log(checkParentheses("([]{}){}[]"));
+
+// Remove duplicates in a string
+
+let repeatedStr = "abcddsaddals";
+
+console.log("Unique strings using Set:", [...new Set(repeatedStr)].join(""));
+
+// First non repeating char in a given string
+
+// search by indexOf and lastIndex if they match that is the first non-repeated char
+
+const nonRepeatedChar = str => {
+  const result = str
+    .split("") // split it into array so that we can apply map and filter higher order functions on them
+    .filter(char => str.indexOf(char) === str.lastIndexOf(char));
+  console.log(`First non-repeated string in '${str}' is: ${result}`);
+  // for (let i = 0; i < str.length; i++) {
+  //   if (str.indexOf(str.charAt(i)) === str.lastIndexOf(str.charAt(i))) {
+  //     return str.charAt(i);
+  //   }
+
+  // }
+};
+
+nonRepeatedChar("abccdefabde");
+nonRepeatedChar("abccadeedbk");
