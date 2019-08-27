@@ -43,6 +43,28 @@ var foo = "foo";
   console.log(`IIFE, value set from param is: ${foo}`);
 })(foo);
 
+let myModule = (function() {
+  const privateVariable = "Data";
+
+  const privateMethod = () => {
+    console.log(`Varibale within IIFE has ${privateVariable}`);
+  };
+
+  return {
+    publicMethod: function() {
+      privateMethod();
+    }
+  };
+})();
+
+// As it is IIFE, the code is immediately executed, and the returned object is
+// assigned to the `myModule` variable.
+// Due to closures, the returned object can still access the functions and
+// variables defined inside the IIFE even after when IIFE has finished.
+
+// Invoke the public method which inturn calls private method inside the myModule
+myModule.publicMethod();
+
 // ES6 block scoping with let, bound to the scope it is declared in
 let block1 = 10;
 

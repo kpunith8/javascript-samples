@@ -552,7 +552,7 @@ class Users {
     return {
       next() {
         if (index < users.length) {
-          return {value: users[index++],  done: false}
+          return { value: users[index++], done: false };
         }
 
         return { done: true };
@@ -561,13 +561,42 @@ class Users {
   }
 }
 
-const allUsers = new Users([{name: 'Punith'}, {name: "Rama"}, {name: "Krishna"}]);
+// calling for..of loop on allUsers won't work because it is not an iterator,
+// Object is not an iterator by default
 
-// call the iterator seperately 
+/* Try this code removing [Symbol.iterator] inside Users class */
+// for(let i of allUsers) {
+//   console.log(i);
+// }
+
+const users = [{ name: "Punith" }, { name: "Rama" }, { name: "Krishna" }];
+const allUsers = new Users(users);
+
+// call the iterator seperately
 let userIterator = allUsers[Symbol.iterator]();
-console.log('Custom Iterator using Symbol.iterator:', userIterator.next());
+console.log("Custom Iterator using [Symbol.iterator]:", userIterator.next());
 
 // or call with for..of loop or with spread operator [...allUsers]
+
+class UsersGenerator {
+  constructor(users) {
+    this.users = users;
+  }
+
+  *[Symbol.iterator]() {
+    for (let index in this.users) {
+      // for..in loop gets the keys of an object
+      // no need to return next() function from Symbol.iterator, yield returns the next()
+      yield this.users[index];
+    }
+  }
+}
+
+const usersGen = new UsersGenerator(users);
+const userSymbolGenerator =  usersGen[Symbol.iterator]();
+
+console.log('User generator with [Symbol.iterator]:', userSymbolGenerator.next());
+console.log('User generator with [Symbol.iterator] spread operator:',[...usersGen]);
 
 /* GENERATORS */
 // Generators doesn't run when executed, it returns an iterator and runs in a paused state
@@ -578,6 +607,7 @@ function* main() {
 
   return "Last statement";
 }
+
 // yield keyword says to pause the generator
 
 let generatorMain = main();
