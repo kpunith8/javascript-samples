@@ -1,3 +1,5 @@
+'use strict';
+
 // ADVANCED JS: KYLE SIMPSON
 // Scope: Where to look for variables
 // smallest atomic unit of scope is function
@@ -262,7 +264,7 @@ console.log(
 function callbacksGetData(data, callback) {
   setTimeout(() => {
     callback(data);
-  }, 200);
+  }, 2);
 }
 
 callbacksGetData(10, function(num1) {
@@ -294,10 +296,10 @@ generatorsGetDataSync(10);
 console.log(`Total using sync generators: ${generatorsGetDataSync(30).value}`);
 
 function getDataAsync(data) {
-  setTimeout(() => generatorsGetDataASync(data), 400);
+  setTimeout(() => generatorsGetDataAsync(data), 4);
 }
 
-let generatorsGetDataASync = coroutine(function*() {
+let generatorsGetDataAsync = coroutine(function*() {
   let x = 1 + (yield getDataAsync(10));
   let y = 1 + (yield getDataAsync(30));
   let answer = yield getDataAsync(`Total using async generators: ${x + y}`);
@@ -305,12 +307,12 @@ let generatorsGetDataASync = coroutine(function*() {
   console.log(answer);
 });
 
-generatorsGetDataASync();
+generatorsGetDataAsync();
 
 // Promise
 const promiseGetData = data => {
   return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(data), 500);
+    setTimeout(() => resolve(data), 5);
   });
 };
 
@@ -330,3 +332,10 @@ promiseGetData(10)
 
 // Udemy course
 // astexplorer.net - to see Abstarct Syntax Tree for JS code
+
+// Each function has its own exection context
+// Each execution context has its own variable environment, this, and arguments
+function testData() {
+  var height = 10; // use strict won't allow this without var, const or let for variable declation
+  console.log(height)
+}

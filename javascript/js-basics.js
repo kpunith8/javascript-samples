@@ -689,22 +689,34 @@ function test(x) {
   let s = x;
 
   if(s) {
+    // allowed to declare s inside the if block,
+    // s is block scoped, but it carries the value 1,
+    // not going to assign s to 10.
     const s = 10;
     var a = 11;
     var b = 30;
     let c = 30;
   }
 
-  console.log('Values in test()', x, s, a, b);
+  console.log('Values in test()', x, s, a, b); // 1, 1, 11, 30
 }
 
 test(1);
 
-// Funtion declartions can be called earlier than it is defined
+// Funtion declartions can be called earlier than it is defined, but function expressions are not
 printName();
 
+// function declaration
 function printName() {
   console.log('Hello Punith');
 }
 
 // A Function Expression is created when the execution reaches it and is usable only from that moment.
+
+// Reference Error
+// printIt('Punith');
+
+// function expression
+const printIt = function(name) {
+  console.log('Function expression:', name);
+}
