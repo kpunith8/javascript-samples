@@ -1,10 +1,11 @@
-'use strict';
+"use strict";
 
 // ADVANCED JS: KYLE SIMPSON
 // Scope: Where to look for variables
 // smallest atomic unit of scope is function
 
-// named function expression
+// Function expression
+// function expressions end witn a semicolon
 var function_1 = function foo() {
   var foo = 1;
   console.log(foo);
@@ -28,7 +29,7 @@ function function_2(str) {
 // don't consider using with() -> it creates new variable scopes for new declartions
 // with 'strict' mode, with() cannot be used.
 
-// IIFE Pattern - Immediately Invoked function expression
+// IIFE - Immediately Invoked function expression
 // anything within IIFE will be private, and is not exposed
 var foo = "foo";
 (function IIFE() {
@@ -329,7 +330,6 @@ promiseGetData(10)
   })
   .then(answer => console.log(answer));
 
-
 // Udemy course
 // astexplorer.net - to see Abstarct Syntax Tree for JS code
 
@@ -337,5 +337,202 @@ promiseGetData(10)
 // Each execution context has its own variable environment, this, and arguments
 function testData() {
   var height = 10; // use strict won't allow this without var, const or let for variable declation
-  console.log(height)
+  console.log(height);
 }
+
+// function expressions can be immediately executed not the function declaration
+// it can be achieved with IIFE
+const getName = (function() {
+  return "Punith";
+})();
+
+console.log("Execute function expresion immediately", getName);
+
+// Objects and this
+const obj2 = {
+  a: {
+    name: "a",
+    logo: "a-logo",
+    // ES6 - new way of writing functions
+    getNameAndLogo() {
+      return `${this.name} ${this.logo}`;
+    },
+    getName: function() {
+      return `${this.name}`;
+    }
+  },
+  b: {
+    name: "b",
+    logo: "b-logo"
+  }
+};
+
+console.log(`access objects with bracket notation, name: ${obj2["a"].getName()}
+name and logo: ${obj2["a"].getNameAndLogo()}`);
+
+var name = "Punith";
+
+function importantPerson() {
+  console.log("Reuse this in objects:", this.name);
+}
+
+const obj3 = {
+  name: "Cassy",
+  importantPerson: importantPerson
+};
+
+const obj4 = {
+  name: "Ryan",
+  importantPerson: importantPerson
+};
+
+obj3.importantPerson();
+obj4.importantPerson();
+
+const obj5 = {
+  name: "Billy",
+  sing() {
+    console.log("sing, this", this);
+
+    // try with anotherFunc = function() {}, this -> undefined
+    // arrow functions are lexically bound to the surrounding object, in this case obj5
+    const anotherFunc = () => {
+      console.log("anotherFunc, arrow function", this);
+    };
+    anotherFunc();
+  }
+};
+
+obj5.sing();
+
+const obj6 = {
+  name: "Billy",
+  sing() {
+    console.log("sing, this", this);
+
+    // or var self = this to access the this inside the function
+    const anotherFunc = function() {
+      console.log("anotherFunc.bind(this)", this);
+    };
+    return anotherFunc.bind(this); // binding this to anotherFunc
+  }
+};
+
+obj6.sing()();
+
+// call(), apply(), and bind()
+const wizard = {
+  name: "Merlin",
+  health: 50,
+  heal(power1, power2) {
+    return (this.health += power1 + power2);
+  }
+};
+
+const archer = {
+  name: "Robin Hood",
+  health: 30
+};
+
+console.log("Archer before call()", archer);
+// Borrow some health from wizard to archer using call()
+// call can take params as its second param
+// wizard.heal.call(archer, 30, 30)
+
+// apply() is similar to the call only the difference is, it accepts second param as array
+wizard.heal.apply(archer, [50, 30]);
+
+console.log("Archer after call/apply", archer);
+
+// bind() can be used same as call(), one difference it returns an function for later execution
+const healArcher = wizard.heal.bind(archer, 110, 30);
+console.log("heal with bind():", healArcher());
+
+// function currying with bind()
+function multiply(a, b) {
+  // arrow function can also be used
+  return a * b;
+}
+
+const multiplyByTwo = multiply.bind(null, 2); // this can be passed as first param
+console.log("multiplyByTwo(11):", multiplyByTwo(11));
+
+// type of a Function () and Array [] is an Object
+
+// Pass by reference v/s pass by value
+// primitive types are pass by value
+// Objects are pass by reference
+let aa = 5;
+let bb = aa; // value is passed not the reference of aa, value is copied to bb
+// they have different memory allocated to them
+
+bb++;
+
+console.log("Pass by value: aa:", aa, "bb:", bb);
+
+let obj7 = {
+  name: "Punith",
+  age: 30,
+  address: { street: "A", city: "Bengaluru" }
+};
+let obj8 = obj7; // Here the reference of obj7 copied to obj8
+// Here it is passed as pass by reference
+// Changing the name property of obj8 will change the obj7's name too
+// obj8 refers to the address of obj7
+obj8.name = "Puni";
+console.log(
+  "Pass by reference, obj7.name:",
+  obj7.name,
+  "obj8.name:",
+  obj8.name
+);
+
+// copy the object without making changes to original object use, Object.assign({}, targetObj)
+// Or can be done with spread(...) operator
+// It clones shallow copy not the deep copy
+let obj9 = Object.assign({}, obj7);
+let obj10 = { ...obj7, name: "Jerry" };
+let obj11 = JSON.parse(JSON.stringify(obj7));
+
+// This change will mutate address property of Object.assign and spread way of copying the objects
+// here obj9, obj7, and obj10 will have same street
+obj10.address.street = "First Cross";
+
+// Deep clone can be achieved with JSON.parse(JSON.stringify(obj))
+obj9.name = "Shiri";
+
+console.log(
+  "Original object:",
+  obj7,
+  "Copy array with Object.assign():",
+  obj9,
+  "Copy with spread operator:",
+  obj10,
+  "Deep copy of an object with JSON.parse(JSON.stringify()):",
+  obj11
+);
+
+// And same applies for the arrays as well
+let arr1 = [1, 2, 3, 4, 5];
+let arr2 = arr1;
+
+// Push an item to arr2, it gets added to arr1 as well, because of pass by reference
+arr2.push(100);
+
+console.log("Pass by reference for an array, arr1:", arr1, "arr2:", arr2);
+
+// To get fresh copy without making changes to original array use, concat() or spread operator
+let arr3 = [].concat(arr1);
+arr3.push(101);
+
+let arr4 = [...arr1];
+arr4.push(102);
+
+console.log(
+  "Copy the array without reference, arr1:",
+  arr1,
+  "arr3 with concat():",
+  arr3,
+  "arr4 with spread operator:",
+  arr4
+);
