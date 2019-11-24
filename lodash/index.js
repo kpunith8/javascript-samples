@@ -31,10 +31,10 @@ console.log(`_.drop([1, 2, 3]):`, _.drop([1, 2, 3]));
 /*
 _.drop([1, 2, 3], 2); // drop 2 elements
 // => [3]
- 
+
 _.drop([1, 2, 3], 5);
 // => []
- 
+
 _.drop([1, 2, 3], 0);
 // => [1, 2, 3]
 */
@@ -44,8 +44,8 @@ _.drop([1, 2, 3], 0);
 /*
 _.dropRightWhile(array, [predicate=_.identity])
 
-Creates a slice of array excluding elements dropped from the end. 
-Elements are dropped until predicate returns falsey. 
+Creates a slice of array excluding elements dropped from the end.
+Elements are dropped until predicate returns falsey.
 The predicate is invoked with three arguments: (value, index, array).
 */
 
@@ -79,3 +79,7 @@ let obj = {data: '123', name: 'Punith'};
 let obj1 = {place: 'Bangalore', pin: 12233};
 
 console.log(`final obj:`, {...{obj, obj1}});
+
+// _thru
+
+console.log('_thru()', _.thru(users[0], user => user.isActive === true))
