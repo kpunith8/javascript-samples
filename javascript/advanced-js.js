@@ -373,7 +373,7 @@ name and logo: ${obj2["a"].getNameAndLogo()}`);
 var name = "Punith";
 
 function importantPerson() {
-  console.log("Reuse this in objects:", this.name);
+  console.log("Reuse 'this' in objects:", this.name);
 }
 
 const obj3 = {
@@ -492,7 +492,7 @@ console.log(
 // It clones shallow copy not the deep copy
 let obj9 = Object.assign({}, obj7);
 let obj10 = { ...obj7, name: "Jerry" };
-let obj11 = JSON.parse(JSON.stringify(obj7));
+let deepClone = JSON.parse(JSON.stringify(obj7));
 
 // This change will mutate address property of Object.assign and spread way of copying the objects
 // here obj9, obj7, and obj10 will have same street
@@ -509,7 +509,7 @@ console.log(
   "Copy with spread operator:",
   obj10,
   "Deep copy of an object with JSON.parse(JSON.stringify()):",
-  obj11
+  deepClone
 );
 
 // And same applies for the arrays as well
@@ -536,3 +536,40 @@ console.log(
   "arr4 with spread operator:",
   arr4
 );
+
+// Closure - Advantages
+// Memory efficient
+// Without closure
+function getArrayItemAt(index) {
+  const bigArray = new Array(7000).fill('*');
+
+  console.log('Array created, normal function');
+  return bigArray[index];
+}
+
+// Creates the array each time function called
+// assume it is needs lot of memory to creat or execute
+console.log(getArrayItemAt(600));
+console.log(getArrayItemAt(700));
+console.log(getArrayItemAt(800));
+
+// with closure
+// It remembers the variables with in th scope and reuses it.
+// Creates the array only once
+function getArrayItemAtWithClosure() {
+  const bigArray = new Array(7000).fill('*');
+
+  console.log('Array created, closure');
+  return function(index) {
+    return bigArray[index];
+  }
+}
+
+const getArrayItem = getArrayItemAtWithClosure();
+console.log(getArrayItem(300));
+console.log(getArrayItem(400));
+console.log(getArrayItem(500));
+
+
+
+

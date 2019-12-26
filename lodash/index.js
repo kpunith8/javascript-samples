@@ -83,3 +83,21 @@ console.log(`final obj:`, {...{obj, obj1}});
 // _thru
 
 console.log('_thru()', _.thru(users[0], user => user.isActive === true))
+
+function isGreeting(value) {
+  console.log('Value:', value)
+  return value.hello === "goodbye";
+}
+function customizer(objValue, othValue) {
+  console.log("1", objValue, "2", othValue);
+  console.log(isGreeting(objValue), isGreeting(othValue));
+  if (isGreeting(objValue) && isGreeting(othValue)) {
+    return true;
+  }
+
+  return false
+}
+var array = { hello: "goodbye" };
+var other = { hello: "goodbye" };
+
+console.log('_isEqualWith():', _.isEqualWith(array, other, customizer));
