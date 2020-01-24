@@ -1,5 +1,3 @@
-const e = require("express");
-
 // Prototype is a 'property on a function' that represents an object
 
 // Constructor function

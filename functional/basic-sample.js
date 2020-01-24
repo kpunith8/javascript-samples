@@ -98,3 +98,133 @@ function reduce(arr, fn, initialValue) {
 }
 
 console.log("Custom reduce():", reduce([1, 2, 3, 4, 5], add, 1));
+
+// HOF - Function that can take function as an argument or return a function
+const hof = fn => x => fn(x);
+function aa(x) {
+  return x;
+}
+
+console.log("HOF:", hof(aa)(4));
+
+// currying - function taking one param at a time, eg: fun(a)(b)(c)
+const multiplyCurry = a => b => a * b;
+
+console.log("Multiply with currying:", multiplyCurry(5)(4));
+
+// Partial application - Pass all the params when invoked second time
+const multiply = (a, b, c) => a * b * c;
+const partialMultiplyBy5 = multiply.bind(null, 5);
+console.log("Multiply with partial application:", partialMultiplyBy5(5, 5));
+
+// Memorization === caching
+function memoizeAddTo80() {
+  let cache = {}; // Use closure to avoid polluting global name space
+  return function(n) {
+    if (n in cache) {
+      console.log(`Value exists, getting from cache`);
+      return cache[n];
+    } else {
+      console.log(`Value doesn't exist, adding to cache`);
+      cache[n] = n + 80;
+      return cache[n];
+    }
+  };
+}
+
+const memoizedFunction = memoizeAddTo80();
+console.log(memoizedFunction(10));
+console.log(memoizedFunction(15));
+console.log(memoizedFunction(10));
+
+// Compose and pipe
+const multiplyBy3 = n => 3 * n;
+
+const makePositive = n => Math.abs(n);
+
+// Right to Left
+const compose1 = (f, g) => data => f(g(data));
+
+const multiplyBy3AndAbsolute = compose1(multiplyBy3, makePositive);
+
+console.log("Compose 2 functions:", multiplyBy3AndAbsolute(-49));
+
+// Pipe - left to right
+const pipe = (f, g) => data => g(f(data));
+
+/**
+ * fn1(fn2(fn3(50)))
+ *
+ * compose(fn1, fn2, fn3)(50)
+ * pipe(fn3, fn2, fn1)(50)
+ */
+
+// arity - Number of arguments that a function takes
+
+// Shoping cart with FP
+const user = {
+  name: "Kim",
+  active: true,
+  cart: [],
+  purchases: []
+};
+
+// 1. Add items to cart
+// 2. Add 5% tax to items in the cart
+// 3. Buy Item: cart -> purchases
+// 4. Empty cart
+
+// Genric compose takes multiple functions
+const composeCart = (f, g) => (...args) => {
+  console.log('f:', f, 'g:', g, ...args)
+  return f(g(...args)) };
+
+console.log(
+  purchaseItem(
+    emptyCart,
+    buyItem,
+    applyTaxToItems,
+    addItemToCart
+  )(user, { name: "laptop", price: 40000 })
+);
+
+// Takes more than 2 functions, one described above in the example is meant only for
+// 2 functions, reduce can be applied to take as many functinos as it wants
+function purchaseItem(...fns) {
+  console.log('fns:', ...fns);
+  return fns.reduce(composeCart);
+}
+
+function addItemToCart(user, item) {
+  const updatedItem = user.cart.concat(item);
+
+  return { ...user, cart: updatedItem };
+}
+
+function applyTaxToItems(user) {
+  const { cart } = user;
+  const taxRate = 0.05;
+  updatedItem = cart.map(item => ({
+    name: item.name,
+    price: item.price + item.price * taxRate
+  }));
+  return { ...user, cart: updatedItem };
+}
+
+function buyItem(user) {
+  return { ...user, purchases: user.cart };
+}
+
+function emptyCart(user) {
+  return { ...user, cart: [] };
+}
+
+/*
+* ---------------------------------------------------------------
+*              FP 						   vs            OOP
+* ---------------------------------------------------------------
+* many operations on fixed data  | few operations on common data
+* stateless 										 | state full
+* pure function(no side effects) | side effects
+* declarative	style							 | imperative style
+*/

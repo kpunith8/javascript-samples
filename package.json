@@ -37,6 +37,9 @@
     "response-time": "^2.3.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.0",
+    "@babel/core": "^7.8.0",
+    "@babel/preset-env": "^7.8.0",
     "chai": "^4.2.0",
     "nodemon": "^1.19.4",
     "sinon": "^7.5.0",
