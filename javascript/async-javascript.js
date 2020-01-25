@@ -71,3 +71,5 @@ const getAllData1 = async () => {
 
 // Promises get into JOB queue (Microtask Queue) (ES-2018) and they have highest priority over setTimeout
 // and will execute first than the one in Callback Queue
+
+// use, race(), all() from promise API to run different way of hadling the async behaviour

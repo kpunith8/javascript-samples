@@ -2,9 +2,9 @@
   "name": "javascript-samples",
   "version": "1.0.0",
   "description": "Consists of javascript samples, basic to advanced concepts",
-  "main": "composible-javascript.js",
+  "main": "",
   "scripts": {
-    "start": "nodemon ./passport/index.js",
+    "start":"func() { nodemon -r esm $1; }; func",
     "test": "mocha --watch"
   },
   "repository": {
@@ -23,6 +23,7 @@
     "bluebird": "^3.5.5",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-flash": "0.0.2",
     "express-session": "^1.16.2",

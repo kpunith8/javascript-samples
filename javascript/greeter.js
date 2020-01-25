@@ -13,8 +13,18 @@ function Greeter(lang) {
   }
 }
 
+function print(content) {
+  return `${content}`
+}
+
 // exports.createGreeter = function (lang) {
 //   return new Greeter(lang);
 // }
-
+// CommonJS modules
 module.exports = Greeter;
+
+// export default Greeter;
+
+// module.exports = {
+//   print
+// }

@@ -35,3 +35,18 @@
     }
     ```
 
+- Use `esm` package to use ES Modules in nodejs app in commandline `node -r esm <filename.js>`
+
+- ES Modules can be used in `node 13.7` (experimental feature) by specifying
+  `"type": "module"` in `package.json` and while imporing give the file with `extension`
+  `import {test} from './test-module.js`
+
+- Pass file name as a param to npm script as follows,
+  Making use of `esm` package to compile with ESM modules given file
+  ```json
+  scripts: {
+    "start":"func() { nodemon -r esm $1; }; func",
+  }
+  ```
+
+- pass the param as follows `npm run start <full-path>` or `npm run start -- <file-name>`
