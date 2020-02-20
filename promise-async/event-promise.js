@@ -8,7 +8,7 @@ class QueryExecutor extends EventEmitter {
     } catch (err) {
       this.emit("addError", err);
     }
-    /* Resolve promise using .then pattern, remove async keyword before add  */
+    /* Resolve promise using .then pattern, remove 'async' keyword before add()  */
     // this.adder(param)
     //   .then(data => {
     //     this.emit("onAdded", data);
