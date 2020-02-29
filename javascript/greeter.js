@@ -1,6 +1,6 @@
 // Demonstartes the creating modules and exporting them
 
-function Greeter(lang) {
+export function Greeter(lang) {
   this.language = lang;
 
   this.greet = function () {
@@ -21,7 +21,7 @@ function print(content) {
 //   return new Greeter(lang);
 // }
 // CommonJS modules
-module.exports = Greeter;
+// module.exports = Greeter;
 
 // export default Greeter;
 

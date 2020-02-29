@@ -1,7 +1,10 @@
-const Greeter = require("./greeter");
-const mySet = require("../data-structure/set-user-defined");
-const Queue = require("../data-structure/queue-user-defined");
-import {testPrint} from './modules-ex'
+// const Greeter = require("./greeter");
+// const mySet = require("../data-structure/set-user-defined");
+// const Queue = require("../data-structure/queue-user-defined");
+import {testPrint} from './modules-ex.js'
+import {Greeter} from './greeter.js'
+import {mySet} from '../data-structure/set-user-defined.js'
+import {Queue} from '../data-structure/queue-user-defined.js'
 
 const g = new Greeter("oo");
 

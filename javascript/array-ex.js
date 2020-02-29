@@ -11,7 +11,7 @@ console.log("Length of array,", arr.length, " and has,", arr);
 // It deletes the item in the array and leave the index undefined
 console.log("Remove mat from array,", delete arr[1], ", After deleting,", arr);
 
-// use splice() to deletes the item and re-arrange the index
+// use splice() to delete the item and re-arrange the index
 // console.log('Remove 2 items from the array,', arr.splice(1, 2)); // starting from index 1 and removes 2 items
 
 // unshift() adds items at the begining and shift() removes from the begining
@@ -162,12 +162,12 @@ console.log(
 );
 
 // Slice doesn't mutate the original array
-let slicedArray = array1.slice(1, 3); // retuns, removed items
+let slicedArray = array1.slice(1, 3); // retuns the removed items
 
 console.log("slice() does not mutate the original array");
 console.log("sliced array (1, 3):", slicedArray, "Original array:", array1);
 
-let splicedArray = array1.splice(1, 2, 6, 7); // returns, removed items
+let splicedArray = array1.splice(1, 2, 6, 7); // returns the removed items
 // 1: index to start, 2: number of items to remove, 6,7: items to be added
 
 console.log("splice() mutates the original array");

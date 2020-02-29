@@ -1,4 +1,4 @@
-function mySet() {
+export function mySet() {
   // Holds the set
   let collection = [];
 
@@ -89,4 +89,4 @@ function mySet() {
   };
 }
 
-module.exports = mySet;
+// module.exports = mySet;

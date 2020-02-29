@@ -1,4 +1,4 @@
-function Queue() {
+export function Queue() {
   let collection = [];
 
   this.print = function () {
@@ -48,5 +48,3 @@ function Queue() {
     return collection.length === 0;
   };
 }
-
-module.exports = Queue;
