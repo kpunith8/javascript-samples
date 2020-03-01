@@ -33,7 +33,7 @@ function init_cache() {
   console.log('init data', initData);
 }
 
-// Prototypal inheritance
+// prototypal inheritance
 function Shape() {
   this.x = 0;
   this.y = 0;
@@ -234,7 +234,7 @@ const name2 = ['Tyke'];
 const olderSam = { ...sam, age: sam.age + 1 };
 // console.log('Older Sam', olderSam);
 
-// enhanced for loop, it does not have a index value to use it for further processing
+// enhanced 'for of' loop, it does not have a index value to use it for further processing
 /* for (const name of name1) {
   console.log('using enhanced for loop', name);
 } */
