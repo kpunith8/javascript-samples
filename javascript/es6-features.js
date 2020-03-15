@@ -1,3 +1,7 @@
+import fs, { createReadStream } from "fs";
+
+import AsyncQueue from "../data-structure/async-queue.js";
+
 /* Search for 'Example' keyword to look for example programs with the features tagged */
 
 /* DEFAULT PARAMS */
@@ -857,25 +861,100 @@ const genObj = gen23();
  * @returns a Promise for an Array with the elements
  * in `asyncIterable`
  */
-async function takeAsync(asyncIterable, count=Infinity) {
+async function takeAsync(asyncIterable, count = Infinity) {
   const result = [];
   const iterator = asyncIterable[Symbol.asyncIterator]();
   while (result.length < count) {
-      const {value,done} = await iterator.next();
-      if (done) break;
-      result.push(value);
+    const { value, done } = await iterator.next();
+    if (done) break;
+    result.push(value);
   }
   return result;
 }
 
 async function* gen24() {
-  yield 'a';
-  yield 'b';
-  yield 'c';
+  yield "a";
+  yield "b";
+  yield "c";
 }
 
 (async function() {
-  console.log('Convert async iterable to an array:', await takeAsync(gen24(), 2))
-})()
+  console.log(
+    "Convert async iterable to an array:",
+    await takeAsync(gen24(), 2)
+  );
+})();
+
+/* EXAMPLE: A queue as an async iterable */
+const asyncQueue = new AsyncQueue();
+asyncQueue.enqueue("a");
+asyncQueue.enqueue("b");
+asyncQueue.close();
+
+(async function() {
+  console.log("Queue as an async iterable:", await takeAsync(asyncQueue));
+})();
 
 /* EXAMPLE: Read text lines asynchronously */
+/**
+ * Creates an asynchronous ReadStream for the file whose name
+ * is `fileName` and feeds it into an AsyncQueue that it returns.
+ *
+ * @returns an async iterable
+ */
+function readFile(fileName) {
+  const queue = new AsyncQueue();
+  const readStream = createReadStream(fileName, {
+    encoding: "utf8",
+    bufferSize: 1024
+  });
+
+  readStream.on("data", buffer => {
+    const str = buffer.toString("utf8");
+    queue.enqueue(str);
+  });
+
+  readStream.on("end", () => {
+    // Signal end of output sequence
+    queue.close();
+  });
+
+  return queue;
+}
+
+/**
+ * Turns a sequence of text chunks into a sequence of lines
+ * (where lines are separated by newlines)
+ *
+ * @returns an async iterable
+ */
+async function* splitLines(chunksAsync) {
+  let previous = "";
+  for await (const chunk of chunksAsync) {
+    previous += chunk;
+    let eolIndex;
+    while ((eolIndex = previous.indexOf("\n")) >= 0) {
+      const line = previous.slice(0, eolIndex);
+      yield line;
+      previous = previous.slice(eolIndex + 1);
+    }
+  }
+  if (previous.length > 0) {
+    yield previous;
+  }
+}
+
+/**
+ * @returns an async iterable
+ */
+function readLines(fileName) {
+  // `queue` is an async iterable
+  const queue = readFile(fileName);
+  return splitLines(queue);
+}
+
+(async function() {
+  for await (const line of readLines("./greeter.js")) {
+    // console.log('>', line);
+  }
+})();

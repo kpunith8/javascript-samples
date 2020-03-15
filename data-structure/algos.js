@@ -117,9 +117,7 @@ let repeatedStr = "abcddsaddals";
 console.log("Unique strings using Set:", [...new Set(repeatedStr)].join(""));
 
 // First non repeating char in a given string
-
 // search by indexOf and lastIndex if they match that is the first non-repeated char
-
 export const nonRepeatedChar = str => {
   const result = str
     .split("") // split it into array so that we can apply map and filter higher order functions on them
@@ -204,5 +202,3 @@ export const mergeSortedArrays = (arr1, arr2) => {
 
   return mergedArray;
 };
-
-// export { mergeSortedArrays, reverseStringArr, reverseStringLib };
