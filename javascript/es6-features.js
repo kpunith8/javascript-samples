@@ -1,3 +1,5 @@
+/* Search for 'Example' keyword to look for example programs with the features tagged */
+
 /* DEFAULT PARAMS */
 // const GST = (price, tax = 0.20, term = 1) => price * tax * term;
 
@@ -174,7 +176,7 @@ let range = {
   // for..of calls this method once in the very beginning
   [Symbol.iterator]() {
     // ...it returns the iterator object:
-    // onward, for..of works only with that object, asking it for next values
+    // for..of works only with that object, asking it for next values
     return {
       current: this.from,
       last: this.to,
@@ -203,7 +205,7 @@ let asyncRange = {
   // for await..of calls this method once in the very beginning
   [Symbol.asyncIterator]() {
     // ...it returns the iterator object:
-    // onward, for await..of works only with that object, asking it for next values
+    // for await..of works only with that object, asking it for next values
     return {
       current: this.from,
       last: this.to,
@@ -244,7 +246,7 @@ const obj1 = {
     console.log("inside a obj1, ", this.id);
     setTimeout(function() {
       console.log("this reference inside setTimeout:", self.id); // here `this` refers to global window object
-    }, 10);
+    }, 0);
   }
 };
 
@@ -254,7 +256,7 @@ const obj2 = {
   timer: function timer() {
     setTimeout(
       () => console.log("this reference in arrow functions", this.id),
-      10
+      0
     );
   }
 };
@@ -267,15 +269,13 @@ const obj3 = {
   },
   fullModelName: () => {
     // returns undefined
-    return `\nInside a arrow, Car Model, this refernce, ${this.model} ${
-      this.manufacturer
-    }`;
+    return `\nInside a arrow, Car Model, this refernce, ${this.model} ${this.manufacturer}`;
   }
 };
 
 obj1.timer();
 obj2.timer();
-console.log(obj3.fullName(), obj3.fullModelName());
+// console.log(obj3.fullName(), obj3.fullModelName());
 
 /* Understanding var scope */
 function varScope(x, y) {
@@ -316,7 +316,7 @@ z1[1] = 20; // allowed, value within an array can be modified, immutability does
 
 const a = Object.freeze([4, 5, 6, [7, 8]]);
 // a = 10; // not allowed
-a[1] = 20; // not allowed
+// a[1] = 20; // not allowed
 a[3][0] = 10; // allowed, nested array can not be frozen to change, freeze applies shalow immutability
 
 console.log("Mutating the nested array when Object.freeze() called:", a);
@@ -399,7 +399,7 @@ function testDefaultValue1(
 testDefaultValue1();
 
 /* REST/SPREAD OPERATOR (...) */
-function spreadExample(x, y, ...rest) {
+function spreadEx(x, y, ...rest) {
   console.log(
     "Array spread operator:",
     "x:",
@@ -414,14 +414,14 @@ function spreadExample(x, y, ...rest) {
 const a1 = [1, 2, 3];
 const a2 = [4, 5, 6];
 const a3 = [1];
-spreadExample(...a1, ...a2);
-spreadExample(...a3, ...a2);
+spreadEx(...a1, ...a2);
+spreadEx(...a3, ...a2);
 
-//PROG: Remove duplicate from a string
+//EXAMPLE: Remove duplicate from a string
 const str1 = "Hello World!"; // String is an iterable
 console.log(
   "String as an iterable, use ..., remove spaces using filter:",
-  [...str1].filter(x => x !== " ")
+  [...str1].filter(x => x !== " ").join("")
 );
 console.log(
   "Remove duplicates in a string:",
@@ -432,7 +432,7 @@ console.log(
 const b1 = [1, 2];
 const [b11, b12, b13 = 3] = b1;
 
-console.log("Destructuring and default params example:", b11, b12, b13);
+console.log("Destructuring and default params:", b11, b12, b13);
 
 const b2 = [1, 2, [3, 4, 5]];
 const [b14, b15, ...args] = b2;
@@ -593,10 +593,13 @@ class UsersGenerator {
 }
 
 const usersGen = new UsersGenerator(users);
-const userSymbolGenerator =  usersGen[Symbol.iterator]();
+const userSymbolGenerator = usersGen[Symbol.iterator]();
 
-console.log('User generator with [Symbol.iterator]:', userSymbolGenerator.next());
-console.log('User generator with [Symbol.iterator] spread operator:',[...usersGen]);
+console.log(
+  "User generator with [Symbol.iterator]:",
+  userSymbolGenerator.next()
+);
+console.log("User generator with spread operator:", [...usersGen]);
 
 /* GENERATORS */
 // Generators doesn't run when executed, it returns an iterator and runs in a paused state
@@ -698,14 +701,14 @@ for (const x of generatorWithReturn()) {
 }
 
 // Recursively calling generator function using yield*
-function* gen1() {
+function* gen11() {
   yield "2";
   yield "3";
 }
 
 function* gen2() {
   yield "1";
-  yield* gen1(); // just calling gen1() returns object but doesn't yield from that.
+  yield* gen11(); // just calling gen1() returns object but doesn't yield from that.
   yield "4";
 }
 
@@ -713,3 +716,166 @@ console.log("Yielding recursively, yield*");
 for (const x of gen2()) {
   console.log(x);
 }
+
+// Synchronous generators
+const iterable = ["a", "b"];
+// an object returned by invoking [Symbol.iterator]() on an iterable.
+// It wraps each iterated element in an object and returns it via its method next() – one at a time.
+const iterator = iterable[Symbol.iterator]();
+console.log("sync iterator", iterator.next());
+
+// ES-2018 - exploringjs.com
+/* Async Generators */
+
+async function* createAsyncIterable(syncIterable) {
+  for (let element of syncIterable) {
+    yield element;
+  }
+}
+
+const asyncIterable = createAsyncIterable(["a", "b"]);
+const asyncIterator = asyncIterable[Symbol.asyncIterator]();
+asyncIterator
+  .next()
+  .then(iterResult1 => {
+    // console.log("promise, async iterator:", iterResult1);
+    return asyncIterator.next();
+  })
+  .then(iterResult2 => {
+    // console.log("promise, iterator:", iterResult2);
+    return asyncIterator.next();
+  })
+  .then(iterResult3 => {
+    // console.log("promise, async iterator:", iterResult3);
+  });
+
+async function fnAsyncIterator() {
+  const asyncIterable = createAsyncIterable(["a", "b"]);
+  const asyncIterator = asyncIterable[Symbol.asyncIterator]();
+
+  // console.log("await, async iterator:", await asyncIterator.next());
+  // console.log("await, async iterator:", await asyncIterator.next());
+  // console.log("await, async iterator:", await asyncIterator.next());
+}
+
+fnAsyncIterator();
+
+/* for-await-of */
+// Instead of using await on each async iterator, use for-await-of to
+// loop through async iterators
+
+(async function() {
+  for await (const x of createAsyncIterable(["a", "b"])) {
+    // console.log("for-await-of, async iterator:", x);
+  }
+})();
+
+// Synchronous iterables return synchronous iterators,
+// whose method next() returns {value, done} objects.
+// for-await-of handles synchronous iterables by converting them to asynchronous iterables.
+// Each iterated value is converted to a Promise (or left unchanged if it already is a Promise)
+// via Promise.resolve(). That is, for-await-of works for iterables over Promises and over normal values.
+(async function() {
+  for await (const x of ["c", "d"]) {
+    // console.log("Sync iterables, with for-await-of:", x);
+  }
+})();
+
+/* yield* in async generators */
+
+// yield* in async generators works analogously to how it works in normal generators – like a recursive invocation:
+
+async function* gen21() {
+  yield "a";
+  yield "b";
+  return 2;
+}
+
+async function* gen22() {
+  const result = yield* gen21(); // (A)
+  // console.log("Yield* in async generators:", result);
+}
+// In line (A), gen2() calls gen1(), which means that all elements yielded by gen1() are yielded by gen2():
+
+(async function() {
+  for await (const x of gen22()) {
+    // console.log(x);
+  }
+})();
+
+// The operand of yield* can be any async iterable.
+// Sync iterables are automatically converted to async iterables, just like with for-await-of.
+
+/* Errors */
+
+// In normal generators, next() can throw exceptions.
+// In async generators, next() can reject the Promise it returns
+
+/*
+async function* asyncGenerator() {
+  // The following exception is converted to a rejection
+  throw new Error("Throwing error in async generator!");
+}
+
+asyncGenerator()
+  .next()
+  .catch(err => console.log(err));
+*/
+
+// Converting exceptions to rejections is similar to how async functions work.
+
+/* Async function vs. async generator function */
+
+// Async function:
+// 1. Returns immediately with a Promise.
+// 2. Promise is fulfilled via return and rejected via throw.
+
+/*
+(async function() {
+  return "Hello";
+})().then(x => console.log(x));
+
+(async function() {
+  throw new Error("Problem!");
+})().catch(x => console.error(x));
+*/
+
+// Async generator function:
+// 1. Returns immediately with an async iterable.
+// 2. Every invocation of next() returns a Promise.
+//    'yield x' fulfills the “current” Promise with {value: x, done: false}.
+//    throw err rejects the “current” Promise with err.
+
+async function* gen23() {
+  yield "hello";
+}
+const genObj = gen23();
+// genObj.next().then(x => console.log(x));
+
+/* EXAMPLE: Convert an async iterable to an array */
+/**
+ * @returns a Promise for an Array with the elements
+ * in `asyncIterable`
+ */
+async function takeAsync(asyncIterable, count=Infinity) {
+  const result = [];
+  const iterator = asyncIterable[Symbol.asyncIterator]();
+  while (result.length < count) {
+      const {value,done} = await iterator.next();
+      if (done) break;
+      result.push(value);
+  }
+  return result;
+}
+
+async function* gen24() {
+  yield 'a';
+  yield 'b';
+  yield 'c';
+}
+
+(async function() {
+  console.log('Convert async iterable to an array:', await takeAsync(gen24(), 2))
+})()
+
+/* EXAMPLE: Read text lines asynchronously */

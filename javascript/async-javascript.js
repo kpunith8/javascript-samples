@@ -1,15 +1,17 @@
-require("@babel/core").transform("code", {});
-const fetch = require("node-fetch");
+// require("@babel/core").transform("code", {});
+import babelCore from "@babel/core";
+import fetch from "node-fetch";
 
+babelCore.transform("code", {});
 /* ASYNCHRONOUS JS */
 
-console.log("1");
-console.log("3");
+// console.log("1");
+// console.log("3");
 
 // asynchrnous call with setTimeout
 setTimeout(() => {
   console.log("2");
-}, 1000);
+}, 0);
 
 // callbacks are the way to achieve asynchronous behaviour
 const fetchUsers = async () => {
