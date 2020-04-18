@@ -5,7 +5,7 @@
 // smallest atomic unit of scope is function
 
 // Function expression
-// function expressions end witn a semicolon
+// function expressions ends with a semicolon
 var function_1 = function foo() {
   var foo = 1;
   console.log(foo);
@@ -19,14 +19,14 @@ function_1();
 var bar = "bar";
 function function_2(str) {
   eval(str); // adds the 'bar' to function scope, passed as str to function_2
-  console.log(bar); // prints 43, str is evaluated and 'bar' gets assinged with 42
+  console.log(bar); // prints 43, str is evaluated and 'bar' gets assigned with 42
 }
 
 // function_2('var bar = 42;');
 
 // eval() is going to slow down the performance of the JS engine by adding
-// additional enforment on scoping of its variables
-// don't consider using with() -> it creates new variable scopes for new declartions
+// additional enforcement on scoping of its variables
+// don't consider using with() -> it creates new variable scopes for new declarations
 // with 'strict' mode, with() cannot be used.
 
 // IIFE - Immediately Invoked function expression
@@ -35,7 +35,7 @@ var foo = "foo";
 (function IIFE() {
   var foo = "foo2";
   console.log(`IIFE, value is: ${foo}`);
-})(); // '()' can be enclosed within parantheses as well (fn(){...}())
+})(); // '()' can be enclosed within parentheses as well (fn(){...}())
 
 // It prints the value from global scope, value with in IIFE is private
 // console.log(foo);
@@ -50,7 +50,7 @@ let myModule = (function() {
   const privateVariable = "Data";
 
   const privateMethod = () => {
-    console.log(`Varibale within IIFE has ${privateVariable}`);
+    console.log(`Variable within IIFE has ${privateVariable}`);
   };
 
   return {

@@ -32,6 +32,38 @@ import AsyncQueue from "../data-structure/async-queue.js";
 
 // console.log('Sum:', sum(...numbers));
 
+/* exploringjs.com */
+// Inside object literals, the spread operator (...)
+// inserts all enumerable own properties of its operand into the object created via the literal:
+const obj31 = { foo: 1, bar: 2 };
+console.log("Spread operators in object literals:", { ...obj31, baz: 3 });
+
+// Note that order matters even if property keys don’t clash, because objects record insertion order:
+// If keys clash, order determines which entry “wins”
+console.log("Spread operator replaces with latest, if key clash:", {
+  ...obj31,
+  foo: true,
+});
+
+// The prototypes of the clones are always `Object.prototype` which is the default for objects created via object literals
+const clone1 = { ...obj31 };
+const clone2 = Object.assign({}, obj31);
+
+// Object.getPrototypeOf(clone1) === Object.prototype
+
+// Cloning an object obj, including its prototype:
+const clone3 = { __proto__: Object.getPrototypeOf(obj31), ...obj31 };
+const clone4 = Object.assign(
+  Object.create(Object.getPrototypeOf(obj31)),
+  obj31
+);
+
+console.log(
+  "Clones created with prototype using spread and Object.asign():",
+  clone3,
+  clone4
+);
+
 /* DESTRUCTURING */
 /* OBJECT DESTRUCTURING */
 const name = {
@@ -40,8 +72,8 @@ const name = {
   age1: 30,
   education: {
     degree: "Masters",
-    specification: "CSE"
-  }
+    specification: "CSE",
+  },
 };
 
 /* Object destructuring can help remove the positional parameters for eg,
@@ -81,7 +113,7 @@ const date = {
 // assigning to a variable
 // const { fName: firstName, lName: lastName, age1: age } = name;
 
-// console.log('Object destructuring, named variabes:', firstName, lastName, age);
+// console.log('Object destructuring, named variables:', firstName, lastName, age);
 
 // console.log('Object destructuring: ', fName, lName, age);
 
@@ -124,12 +156,12 @@ const gen = generateNumbers();
 // console.log(gen.next());
 
 for (let value of gen) {
-  console.log(value);
+  // console.log(value);
 }
 
 // Naturally, as generators are iterable, we can call all related functionality, e.g. the spread operator ...
 let sequence = [0, ...generateNumbers()];
-console.log(sequence);
+// console.log(sequence);
 
 // The special yield* directive is responsible for the composition.
 // It delegates the execution to another generator. Or, to say it simple,
@@ -193,9 +225,9 @@ let range = {
         } else {
           return { done: true };
         }
-      }
+      },
     };
-  }
+  },
 };
 
 for (let value of range) {
@@ -220,16 +252,16 @@ let asyncRange = {
         // (automatically wrapped into a promise by async)
 
         // can use await inside, do async stuff:
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         if (this.current <= this.last) {
           return { done: false, value: this.current++ };
         } else {
           return { done: true };
         }
-      }
+      },
     };
-  }
+  },
 };
 
 // (async () => {
@@ -240,7 +272,7 @@ let asyncRange = {
 
 /* ES6- GOOD PARTS - KYLE SIMPSON */
 
-/* ARROW FUNTCTIONS */
+/* ARROW FUNCTIONS */
 // this with arrow
 const obj1 = {
   id: 22,
@@ -248,10 +280,10 @@ const obj1 = {
     // To solve the this binding do the following, or bind the function to `this`, function() {}.bind(this);
     let self = this;
     console.log("inside a obj1, ", this.id);
-    setTimeout(function() {
+    setTimeout(function () {
       console.log("this reference inside setTimeout:", self.id); // here `this` refers to global window object
     }, 0);
-  }
+  },
 };
 
 // arrow functions doesn't have `this` keyword, goes up one level lexically gets `this` from its surrounding scope.
@@ -262,19 +294,19 @@ const obj2 = {
       () => console.log("this reference in arrow functions", this.id),
       0
     );
-  }
+  },
 };
 
 const obj3 = {
   model: "Fiesta",
   manufacturer: "Ford",
-  fullName: function() {
+  fullName: function () {
     return `Car Model, ${this.model} ${this.manufacturer}`;
   },
   fullModelName: () => {
     // returns undefined
-    return `\nInside a arrow, Car Model, this refernce, ${this.model} ${this.manufacturer}`;
-  }
+    return `\nInside a arrow, Car Model, this reference, ${this.model} ${this.manufacturer}`;
+  },
 };
 
 obj1.timer();
@@ -288,7 +320,7 @@ function varScope(x, y) {
   }
   console.log("temp outside if:", temp);
 
-  for (var i = 0; i < 10; i++) {} // i is oisted up to varScope() and available within the function body
+  for (var i = 0; i < 10; i++) {} // i is hoisted up to varScope() and available within the function body
   console.log("i outside of for:", i);
 }
 
@@ -321,18 +353,18 @@ z1[1] = 20; // allowed, value within an array can be modified, immutability does
 const a = Object.freeze([4, 5, 6, [7, 8]]);
 // a = 10; // not allowed
 // a[1] = 20; // not allowed
-a[3][0] = 10; // allowed, nested array can not be frozen to change, freeze applies shalow immutability
+a[3][0] = 10; // allowed, nested array can not be frozen to change, freeze applies shallow immutability
 
 console.log("Mutating the nested array when Object.freeze() called:", a);
 
-// TDZ - Temporal Dead Zone - accessing the vaiable before it is declared (Reference error)
+// TDZ - Temporal Dead Zone - accessing the variable before it is declared (Reference error)
 // const variable cannot be reassigned not the values inside them
 // const arr = [1, 2 ,3]; arr[1]=10 is allowed to make the changes, but not the arr = []
 function constUsage() {
   const arr = [1, 2, 3, 4];
 
   return function resetArray() {
-    // arr = null; // it is not allowed to assign a const variable even with null, onlt the way to reset is arr.length = 0;
+    // arr = null; // it is not allowed to assign a const variable even with null, only the way to reset is arr.length = 0;
     arr.length = 0;
     // if it is an array deleting all the props is trickier than setting to null;
   };
@@ -350,7 +382,7 @@ function truthyTest(x) {
 }
 
 truthyTest(0); // passing undefined(when the other check added) prints 22 because undefined tells nothing is passed,
-// but undefined is passed to the funtction, it is same as ignoring passing the param to the function.
+// but undefined is passed to the function, it is same as ignoring passing the param to the function.
 
 // NaN is not equal to null or undefined
 console.log("NaN == NaN or NaN === NaN is (false):", NaN == NaN);
@@ -369,7 +401,7 @@ function testDefaultValue(x = defaultMethod()) {
 // when we call
 testDefaultValue(1); // It executes the method with value and 1 prints 1
 testDefaultValue(undefined); // It executes defaultMethod() since no value is passed to testDefaultValue()
-// ES6 evaluates the default value invokation lazily until it is needed.
+// ES6 evaluates the default value invocation lazily until it is needed.
 
 // one usage may be throwing an error when the value is not passed
 // can also nb used to generate unique id if one is not passed.
@@ -389,7 +421,7 @@ testIsValueRequired(10, 20); // Don't pass any variables to function
 var x1 = 1;
 function testDefaultValue1(
   x1 = 2,
-  f = function() {
+  f = function () {
     return x1;
   }
 ) {
@@ -425,11 +457,11 @@ spreadEx(...a3, ...a2);
 const str1 = "Hello World!"; // String is an iterable
 console.log(
   "String as an iterable, use ..., remove spaces using filter:",
-  [...str1].filter(x => x !== " ").join("")
+  [...str1].filter((x) => x !== " ").join("")
 );
 console.log(
   "Remove duplicates in a string:",
-  new Set([...str1].filter(x => x !== " "))
+  new Set([...str1].filter((x) => x !== " "))
 );
 
 // Destructuring and default params can be used together
@@ -446,7 +478,7 @@ console.log("Nested array destructuring:", b14, b15, args);
 let x, y, z, z11, x11, y11;
 let obj12 = { a: 1, b: 2, c: 3, d: { e: 4 } };
 // assign default value if the property doesn't exist
-// surround with (), if vaiables declared in the top and destructured somewhere else
+// surround with (), if variables declared in the top and destructured somewhere else
 // in array destructuring we don't need (),since { } indicates that as a block of code.
 ({ a: x, b: y, c: z, d: { e: z11 } = {}, d: x11, b: y11 } = obj12 || {});
 
@@ -463,18 +495,18 @@ console.log(
 // If an object doesn't have the property that is being referenced while destructuring it goes up the prototype chain and
 // reads it from there
 
-// concise properies and methods
+// concise properties and methods
 // if the property name of a object to be same as assignment don't assign one; var obj = {a: a};
 var x13 = 1;
 var c = "hello";
 var obj13 = { x13, b() {}, [c]: 42 }; // computed properties can be put within [] and can be any valid JS expressions
 
-// here concise methods are lexically annoymous, not able to access them
+// here concise methods are lexically anonymous, not able to access them
 
 /* TEMPLATE LITERALS */
 // Tag functions
 function tagFunctions(strings, ...values) {
-  console.log("Tag functins accepting values:", strings, values);
+  console.log("Tag functions accepting values:", strings, values);
 }
 
 let total = 200.0;
@@ -496,7 +528,7 @@ console.log(
   "own property names",
   Object.getOwnPropertyNames(object1)
 );
-// can be accesed using getOwnPropertySymbols mehtod
+// can be accessed using getOwnPropertySymbols method
 console.log(
   "Get the symbol properties using:",
   Object.getOwnPropertySymbols(object1)
@@ -531,14 +563,14 @@ const object2 = {
         } else {
           return { done: true };
         }
-      }
+      },
     };
 
     return itr;
   },
   values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
   start: 4,
-  end: 13
+  end: 13,
 };
 
 console.log("Custom object iterator using Symbol.iterator:", [...object2]);
@@ -560,7 +592,7 @@ class Users {
         }
 
         return { done: true };
-      }
+      },
     };
   }
 }
@@ -576,7 +608,7 @@ class Users {
 const users = [{ name: "Punith" }, { name: "Rama" }, { name: "Krishna" }];
 const allUsers = new Users(users);
 
-// call the iterator seperately
+// call the iterator separately
 let userIterator = allUsers[Symbol.iterator]();
 console.log("Custom Iterator using [Symbol.iterator]:", userIterator.next());
 
@@ -640,9 +672,9 @@ function* uniqueId() {
 
 const uniqueIdentifier = uniqueId();
 console.log(
-  "Random id-1:",
+  "Random id with generators:",
   uniqueIdentifier.next().value,
-  "\nRandom id-2:",
+  "\nRandom id with generators:",
   uniqueIdentifier.next().value
 );
 
@@ -655,11 +687,11 @@ const objectGenerator = {
   },
   values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
   start: 4,
-  end: 10
+  end: 10,
 };
 
 console.log("Custom object iterator using Symbol.iterator and generators:", [
-  ...objectGenerator
+  ...objectGenerator,
 ]);
 
 const numberIteratorBySteps = {
@@ -667,7 +699,7 @@ const numberIteratorBySteps = {
     for (let index = start; index <= end; index = index + step) {
       yield index;
     }
-  }
+  },
 };
 
 for (let v of numberIteratorBySteps) {
@@ -677,12 +709,12 @@ for (let v of numberIteratorBySteps) {
 for (let v of numberIteratorBySteps[Symbol.iterator]({
   start: 40,
   step: 5,
-  end: 60
+  end: 60,
 })) {
   console.log(v); // Starts from 40 with a step 5 till 100
 }
 
-// Create a custom generator that gerates range of numbers on top of Number prototype
+// Create a custom generator that generates range of numbers on top of Number prototype
 Number.prototype[Symbol.iterator] = function* numberGenerator() {
   for (let index = 0; index <= this; index++) {
     yield index;
@@ -741,15 +773,15 @@ const asyncIterable = createAsyncIterable(["a", "b"]);
 const asyncIterator = asyncIterable[Symbol.asyncIterator]();
 asyncIterator
   .next()
-  .then(iterResult1 => {
+  .then((iterResult1) => {
     // console.log("promise, async iterator:", iterResult1);
     return asyncIterator.next();
   })
-  .then(iterResult2 => {
+  .then((iterResult2) => {
     // console.log("promise, iterator:", iterResult2);
     return asyncIterator.next();
   })
-  .then(iterResult3 => {
+  .then((iterResult3) => {
     // console.log("promise, async iterator:", iterResult3);
   });
 
@@ -768,7 +800,7 @@ fnAsyncIterator();
 // Instead of using await on each async iterator, use for-await-of to
 // loop through async iterators
 
-(async function() {
+(async function () {
   for await (const x of createAsyncIterable(["a", "b"])) {
     // console.log("for-await-of, async iterator:", x);
   }
@@ -779,7 +811,7 @@ fnAsyncIterator();
 // for-await-of handles synchronous iterables by converting them to asynchronous iterables.
 // Each iterated value is converted to a Promise (or left unchanged if it already is a Promise)
 // via Promise.resolve(). That is, for-await-of works for iterables over Promises and over normal values.
-(async function() {
+(async function () {
   for await (const x of ["c", "d"]) {
     // console.log("Sync iterables, with for-await-of:", x);
   }
@@ -801,7 +833,7 @@ async function* gen22() {
 }
 // In line (A), gen2() calls gen1(), which means that all elements yielded by gen1() are yielded by gen2():
 
-(async function() {
+(async function () {
   for await (const x of gen22()) {
     // console.log(x);
   }
@@ -878,7 +910,7 @@ async function* gen24() {
   yield "c";
 }
 
-(async function() {
+(async function () {
   console.log(
     "Convert async iterable to an array:",
     await takeAsync(gen24(), 2)
@@ -891,7 +923,7 @@ asyncQueue.enqueue("a");
 asyncQueue.enqueue("b");
 asyncQueue.close();
 
-(async function() {
+(async function () {
   console.log("Queue as an async iterable:", await takeAsync(asyncQueue));
 })();
 
@@ -906,10 +938,10 @@ function readFile(fileName) {
   const queue = new AsyncQueue();
   const readStream = createReadStream(fileName, {
     encoding: "utf8",
-    bufferSize: 1024
+    bufferSize: 1024,
   });
 
-  readStream.on("data", buffer => {
+  readStream.on("data", (buffer) => {
     const str = buffer.toString("utf8");
     queue.enqueue(str);
   });
@@ -953,8 +985,126 @@ function readLines(fileName) {
   return splitLines(queue);
 }
 
-(async function() {
+(async function () {
   for await (const line of readLines("./greeter.js")) {
     // console.log('>', line);
   }
 })();
+
+/* RegEx: Named Capture Groups - proposal */
+
+// Prior to this, captured groups were numbered and accessed with an index
+const RE_DATE = /([0-9]{4})-([0-9]{2})-([0-9]{2})/;
+
+const matchObj = RE_DATE.exec("1999-12-31");
+console.log(`RegEx captured groups: Year: ${matchObj[1]}
+Month: ${matchObj[2]}
+Day: ${matchObj[3]}`);
+
+// With captured names
+const RE_DATE_NAMES = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/;
+const matchObjNames = RE_DATE_NAMES.exec("2020-03-16");
+console.log(`RegEx captured groups with names: Year: ${matchObjNames.groups.year}
+Month: ${matchObjNames.groups.month}
+Day: ${matchObjNames.groups.day}`);
+
+// Named capture groups also create indexed entries; as if they were numbered capture groups
+// Destructure them for reability
+const {
+  groups: { day, year },
+} = RE_DATE_NAMES.exec("1999-12-31");
+
+/* Back References */
+
+// \k<name> in a regular expression means: match the string that was previously matched by the named capture group name.
+const RE_TWICE = /^(?<word>[a-z]+)!\k<word>$/;
+// RE_TWICE.test('abc!abc'); // true
+// RE_TWICE.test('abc!ab'); // false
+
+// The backreference syntax for numbered capture groups works for named capture groups, too
+
+// const RE_TWICE_1 = /^(?<word>[a-z]+)!\1$/;
+// RE_TWICE_1.test('abc!abc'); // true
+// RE_TWICE_1.test('abc!ab'); // false
+
+// Mix both syntaxes
+
+// const RE_TWICE_2 = /^(?<word>[a-z]+)!\k<word>!\1$/;
+// RE_TWICE_2.test('abc!abc!abc'); // true
+// RE_TWICE_2.test('abc!abc!ab'); // false
+
+/* replace() and named capture groups */
+
+// replace() supports named capture groups in two ways.
+// First, you can mention their names in the replacement string:
+
+console.log(
+  "replace() and named captured groups:",
+  "1999-12-31".replace(RE_DATE_NAMES, "$<month>/$<day>/$<year>")
+);
+
+// Second, each replacement function receives an additional parameter that holds an
+// object with data captured via named groups.
+console.log(
+  "1982-11-1".replace(
+    "replace() and named captured groups with additional params:",
+    RE_DATE_NAMES,
+    (g0, y, m, d, offset, input, { year, month, day }) =>
+      month + "/" + day + "/" + year
+  )
+);
+
+// Where,
+// g0 - contains the whole matched substring, '1999-12-31'
+// y, m, d - are matches for the numbered groups 1–3 (which are created via the named groups year, month, day).
+// offset - specifies where the match was found.
+// input - contains the complete input string.
+// The last parameter contains one property for each of the three named capture groups
+// year, month and day. We use destructuring to access those properties.
+
+// another way of accessing the last argument:
+console.log(
+  "replace() and named captured groups with destructuring:",
+  "2012-11-13".replace(RE_DATE_NAMES, (...args) => {
+    const { year, month, day } = args[args.length - 1];
+    return month + "/" + day + "/" + year;
+  })
+);
+
+/* Unicode Property Escapes */
+
+/* Meta programming */
+// Proxies
+/*
+Proxies are special objects that allows to customize the operations.
+A proxy is created with two parameters:
+
+1. handler: For each operation, there is a corresponding handler method that – if present – performs that operation.
+Such a method intercepts the operation (on its way to the target) and is called a trap.
+
+2. target: If the handler doesn’t intercept an operation then it is performed on the target.
+That is, it acts as a fallback for the handler.
+*/
+const target = {};
+const handler = {
+  /** Intercepts: getting properties */
+  get(target, propKey, receiver) {
+    console.log(`GET ${propKey}`);
+    return 123;
+  },
+
+  /** Intercepts: checking whether properties exist */
+  has(target, propKey) {
+    console.log(`HAS ${propKey}`);
+    return true;
+  },
+};
+const proxy = new Proxy(target, handler);
+
+console.log(proxy.foo);
+console.log("hello" in proxy);
+
+// The handler doesn’t implement the trap set (setting properties).
+// Therefore, setting proxy.bar is forwarded to target and leads to target.bar being set.
+proxy.bar = "abc";
+console.log("setting props using proxy:", target.bar);
