@@ -26,6 +26,8 @@
   }
 
   $ nodemon --exec npm run babel-node -- path/to/script.js
+  (or)
+  $ nodemon --exec babel-node /path/file.js
   ```
 
 - Add `.babelrc` file to add the `@babel/preset-env` with this entry
@@ -38,7 +40,7 @@
 - Use `esm` package to use ES Modules in nodejs app in commandline `node -r esm <filename.js>`
 
 - ES Modules can be used in `node 13.7` (experimental feature) by specifying
-  `"type": "module"` in `package.json` and while imporing give the file with `extension`
+  `"type": "module"` in `package.json` and while importing give the file with `extension`
   `import {test} from './test-module.js`
 
 - Pass file name as a param to npm script as follows,

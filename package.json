@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Consists of javascript samples, basic to advanced concepts",
   "main": "",
-  "type": "module",
   "scripts": {
     "start": "func() { nodemon -r esm $1; }; func",
-    "test": "mocha --watch"
+    "test": "jest",
+    "test:mocha": "mocha --watch"
   },
   "repository": {
     "type": "git",
@@ -42,7 +42,9 @@
     "@babel/cli": "^7.8.0",
     "@babel/core": "^7.8.0",
     "@babel/preset-env": "^7.8.0",
+    "babel-jest": "^25.4.0",
     "chai": "^4.2.0",
+    "jest": "^25.4.0",
     "nodemon": "^1.19.4",
     "sinon": "^7.5.0",
     "sinon-chai": "^3.3.0"

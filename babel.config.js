@@ -3,7 +3,10 @@ const presets = [
     "@babel/preset-env",
     {
       corejs: 3,
-      useBuiltIns: "entry"
+      useBuiltIns: "entry",
+      targets: {
+        node: 'current',
+      },
     }
   ]
 ];

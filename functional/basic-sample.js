@@ -1,4 +1,4 @@
-/* Functional programming: you dont know JS: Kyle Simpson */
+/* Functional programming: you don't know JS: Kyle Simpson */
 
 /* IMPURE FUNCTION */
 // side effects
@@ -80,8 +80,8 @@ const add10 = sumX(10);
 console.log("Closure sample1:", add10(10));
 console.log("Closure sample2:", add10(22));
 
-/* RECURRSION */
-// base case which stops the recurrsion
+/* RECURSION */
+// base case which stops the recursion
 // Function invokes itself when called
 // Tail call optimizations
 
@@ -161,7 +161,7 @@ const pipe = (f, g) => data => g(f(data));
 
 // arity - Number of arguments that a function takes
 
-// Shoping cart with FP
+// Shopping cart with FP
 const user = {
   name: "Kim",
   active: true,
@@ -174,7 +174,7 @@ const user = {
 // 3. Buy Item: cart -> purchases
 // 4. Empty cart
 
-// Genric compose takes multiple functions
+// Generic compose takes multiple functions
 const composeCart = (f, g) => (...args) => {
   console.log('f:', f, 'g:', g, ...args)
   return f(g(...args)) };
@@ -189,7 +189,7 @@ console.log(
 );
 
 // Takes more than 2 functions, one described above in the example is meant only for
-// 2 functions, reduce can be applied to take as many functinos as it wants
+// 2 functions, reduce can be applied to take as many functions as it wants
 function purchaseItem(...fns) {
   console.log('fns:', ...fns);
   return fns.reduce(composeCart);
