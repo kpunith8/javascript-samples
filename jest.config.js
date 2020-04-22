@@ -27,7 +27,12 @@ module.exports = {
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: ["/node_modules/", "./babel.config.js", "./jest.config.js", "./coverage/"],
+  coveragePathIgnorePatterns: [
+    "/node_modules/",
+    "./babel.config.js",
+    "./jest.config.js",
+    "./coverage/",
+  ],
 
   // A list of reporter names that Jest uses when writing coverage reports
   coverageReporters: ["json", "text", "lcov", "clover"],
@@ -35,10 +40,10 @@ module.exports = {
   // An object that configures minimum threshold enforcement for coverage results
   coverageThreshold: {
     global: {
-      branches: 0,
-      functions: 0,
-      lines: 0,
-      statements: 0,
+      branches: 10,
+      functions: 50,
+      lines: 35,
+      statements: 40,
     },
   },
 

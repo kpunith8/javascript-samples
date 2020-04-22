@@ -5,21 +5,22 @@ const presets = [
       corejs: 3,
       useBuiltIns: "entry",
       targets: {
-        node: 'current',
+        node: "current",
+        browsers: "last 1 chrome version",
       },
-    }
-  ]
+      loose: true,
+      shippedProposals: true,
+    },
+  ],
 ];
 
-const plugins = [
+const plugins = [];
 
-]
-
-module.exports = api => {
+module.exports = (api) => {
   api.cache(true);
 
   return {
     presets: presets,
-    plugins: plugins
+    plugins: plugins,
   };
 };

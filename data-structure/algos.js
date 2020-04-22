@@ -112,9 +112,9 @@ export const checkParentheses = word => {
 
 // Remove duplicates in a string
 
-let repeatedStr = "abcddsaddals";
+// let repeatedStr = "abcddsaddals";
 
-console.log("Unique strings using Set:", [...new Set(repeatedStr)].join(""));
+// console.log("Unique strings using Set:", [...new Set(repeatedStr)].join(""));
 
 // First non repeating char in a given string
 // search by indexOf and lastIndex if they match that is the first non-repeated char
@@ -122,12 +122,13 @@ export const nonRepeatedChar = str => {
   const result = str
     .split("") // split it into array so that we can apply map and filter higher order functions on them
     .filter(char => str.indexOf(char) === str.lastIndexOf(char));
-  console.log(`First non-repeated string in '${str}' is: ${result}`);
+  // console.log(`First non-repeated string in '${str}' is: ${result}`);
   // for (let i = 0; i < str.length; i++) {
   //   if (str.indexOf(str.charAt(i)) === str.lastIndexOf(str.charAt(i))) {
   //     return str.charAt(i);
   //   }
   // }
+  return result
 };
 
 export const firstRecurringNumber = input => {

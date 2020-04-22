@@ -1,7 +1,7 @@
 import * as algos from "./algos.js";
 import {HashTable} from './hash-table.js'
 
-console.log(algos.chunkArrayInGroups(["a", "b", "c", "d"], 3));
+console.log('chunk arrays as groups', algos.chunkArrayInGroups(["a", "b", "c", "d"], 3));
 
 console.log("sumAll():", algos.sumAll([1, 4]));
 
