@@ -228,3 +228,5 @@ function emptyCart(user) {
 * pure function(no side effects) | side effects
 * declarative	style							 | imperative style
 */
+
+

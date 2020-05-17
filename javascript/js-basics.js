@@ -703,7 +703,8 @@ function test(x) {
 
 test(1);
 
-// Funtion declartions can be called earlier than it is defined, but function expressions are not
+// Function declaration and Function expressions
+// Function declarations can be called earlier than it is defined, but function expressions are not
 printName();
 
 // function declaration

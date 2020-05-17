@@ -331,12 +331,12 @@ promiseGetData(10)
   .then(answer => console.log(answer));
 
 // Udemy course
-// astexplorer.net - to see Abstarct Syntax Tree for JS code
+// astexplorer.net - to see Abstract Syntax Tree for JS code
 
-// Each function has its own exection context
+// Each function has its own execution context
 // Each execution context has its own variable environment, this, and arguments
 function testData() {
-  var height = 10; // use strict won't allow this without var, const or let for variable declation
+  var height = 10; // use strict won't allow this without var, const or let for variable declaration
   console.log(height);
 }
 
@@ -346,7 +346,7 @@ const getName = (function() {
   return "Punith";
 })();
 
-console.log("Execute function expresion immediately", getName);
+console.log("Execute function expression immediately", getName);
 
 // Objects and this
 const obj2 = {
@@ -559,7 +559,7 @@ console.log(getArrayItemAt(800));
 function getArrayItemAtWithClosure() {
   const bigArray = new Array(7000).fill('*');
 
-  console.log('Array created, closure');
+  console.log('Array created, with closure');
   return function(index) {
     return bigArray[index];
   }
@@ -569,6 +569,9 @@ const getArrayItem = getArrayItemAtWithClosure();
 console.log(getArrayItem(300));
 console.log(getArrayItem(400));
 console.log(getArrayItem(500));
+
+
+
 
 
 

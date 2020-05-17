@@ -213,3 +213,12 @@ const water = (temperature) =>
   ])(temperature);
 
 console.log("Using cond(), acts like switch:", water(0));
+
+// FahrenheitToCelsius
+const fahrenheitToCelsius = R.pipe(
+  R.subtract(R.__, 32),
+  R.multiply(5),
+  R.divide(R.__, 9)
+)
+
+console.log('FahrenheitToCelsius:', fahrenheitToCelsius(120))
