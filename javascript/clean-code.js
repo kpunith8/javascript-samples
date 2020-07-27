@@ -87,5 +87,5 @@ const inventoryTracker = new InventoryTracker(
 );
 inventoryTracker.requestItems();
 
-const inventoryTracker = new InventoryTracker(["apples", "bananas"]);
-inventoryTracker.requestItems();
+const inventoryTracker1 = new InventoryTracker(["apples", "bananas"]);
+inventoryTracker1.requestItems();

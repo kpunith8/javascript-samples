@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "start": "func() { nodemon -r esm $1; }; func",
-    "test": "jest --watch",
+    "test": "jest --watchAll --coverage ",
     "test:mocha": "mocha --watch"
   },
   "repository": {

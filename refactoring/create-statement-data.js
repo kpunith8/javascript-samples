@@ -1,4 +1,4 @@
-export default function createStatementData(invoice, plays) {
+export function createStatementData(invoice, plays) {
   const result = {};
   result.customer = invoice.customer;
   result.performances = invoice.performances.map(enrichPerformance);
@@ -53,10 +53,6 @@ class PerformanceCalculator {
   constructor(aPerformance, aPlay) {
     this.performance = aPerformance;
     this.play = aPlay;
-  }
-
-  get amount() {
-    throw new Error("subclass responsibility");
   }
 
   get volumeCredits() {
