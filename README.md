@@ -52,3 +52,5 @@
   ```
 
 - pass the param as follows `npm run start <full-path>` or `npm run start -- <file-name>`
+
+- To get the code coverage for all files using jest, update test script in package.json as, `"jest --watchAll --coverage"`

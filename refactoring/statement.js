@@ -16,6 +16,7 @@ function renderPlainText(data) {
   return result;
 }
 
+/*
 export function htmlStatement(invoice, plays) {
   return renderHtml(createStatementData(invoice, plays));
 }
@@ -34,6 +35,7 @@ function renderHtml(data) {
   result += `<p>You earned <em>${data.totalVolumeCredits}</em> credits</p>\n`;
   return result;
 }
+*/
 
 function usd(aNumber) {
   return new Intl.NumberFormat("enUS", {
