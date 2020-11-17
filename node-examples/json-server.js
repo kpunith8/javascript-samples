@@ -46,7 +46,7 @@ const handle_incoming_request = (req, res) => {
       res.writeHead(500, {
         'Content-type': 'application/json'
       });
-      re.end(JSON.stringify({ code: 'Cannot load albums', message: err.message }));
+      res.end(JSON.stringify({ code: 'Cannot load albums', message: err.message }));
     } else {
       var output = { error: null, data: { albums: albums } };
       res.writeHead(200, {

@@ -18,7 +18,7 @@ describe("Algos", () => {
   describe("diffArray", () => {
     test("should have the array diff", () => {
       expect(
-        algos.diffArray(
+        algos.arrayDiff(
           ["diorite", "andesite", "grass", "dirt", "pink wool", "dead shrub"],
           ["diorite", "andesite", "grass", "dirt", "dead shrub"]
         )
@@ -27,7 +27,7 @@ describe("Algos", () => {
 
     test("should not have the array diff", () => {
       expect(
-        algos.diffArray(
+        algos.arrayDiff(
           ["diorite", "andesite", "grass", "dirt", "dead shrub"],
           ["diorite", "andesite", "grass", "dirt", "dead shrub"]
         )

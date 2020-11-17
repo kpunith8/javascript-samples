@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "Consists of javascript samples, basic to advanced concepts",
   "main": "",
-  "type": "module",
   "scripts": {
     "start": "func() { nodemon -r esm $1; }; func",
-    "test": "jest --watchAll --coverage ",
+    "test": "jest",
     "test:mocha": "mocha --watch"
   },
   "repository": {

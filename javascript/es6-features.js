@@ -51,7 +51,7 @@ const clone2 = Object.assign({}, obj31);
 
 // Object.getPrototypeOf(clone1) === Object.prototype
 
-// Cloning an object obj, including its prototype:
+// Cloning an object, including its prototype:
 const clone3 = { __proto__: Object.getPrototypeOf(obj31), ...obj31 };
 const clone4 = Object.assign(
   Object.create(Object.getPrototypeOf(obj31)),
