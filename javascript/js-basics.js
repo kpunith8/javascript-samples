@@ -199,11 +199,6 @@ const foo = function () {
   // console.log('accessing local variable', local1);
 };
 
-// Immediately Invoked Function Expression: Create the function and execute immediately
-(function () {
-  // console.log('IIFE in action');
-}());
-
 /* const protects the reference not the objects, it is allowed to mutate the property of an object
 Object.freeze() protects the object enclosed, (Shallow freezes not deep freezes) but the nested object
 properties are not protected;

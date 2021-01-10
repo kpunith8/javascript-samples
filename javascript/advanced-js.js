@@ -29,7 +29,7 @@ function function_2(str) {
 // don't consider using with() -> it creates new variable scopes for new declarations
 // with 'strict' mode, with() cannot be used.
 
-// IIFE - Immediately Invoked function expression
+// IIFE - Immediately Invoked function expression - coined by Ben Alman
 // anything within IIFE will be private, and is not exposed
 var foo = "foo";
 (function IIFE() {
@@ -61,7 +61,7 @@ let myModule = (function() {
 })();
 
 // As it is IIFE, the code is immediately executed, and the returned object is
-// assigned to the `myModule` variable.
+// assigned to the `myModule` variable, called 'Revealing Module Pattern' (coined by Christian Heilmann).
 // Due to closures, the returned object can still access the functions and
 // variables defined inside the IIFE even after when IIFE has finished.
 
