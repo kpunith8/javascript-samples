@@ -127,6 +127,7 @@ export const nonRepeatedChar = (str) => {
   return result;
 };
 
+// google interview question with O(n) complexity
 export const firstRecurringNumber = (input) => {
   const map = {};
 
@@ -137,6 +138,20 @@ export const firstRecurringNumber = (input) => {
       map[input[i]] = i;
     }
   }
+};
+
+// With O(n^2) complexity
+export const firstRecurringNumberImperitive = (input) => {
+  const map = {};
+
+  for (let i = 0; i < input.length; i++) {
+    for (let j = i + 1; j < input.length; i++) {
+      if (input[i] === input[j]) {
+        return input[i];
+      }
+    }
+  }
+  return undefined;
 };
 
 /* Reverse a string */
@@ -222,8 +237,9 @@ export const commonItemsInTheArray = (arr1, arr2) => {
   return arr1.filter((item) => arr2.includes(item));
 };
 
-// Convert the first arr to a object and compare with objeect properties
+// Convert the first arr to a object and compare with object properties
 // of obj with arr2, so that it would reduce the time by O(n + m)
+// Object lookup will take constant time of O(1)
 export const commonItemsInTheArrayImproved = (arr1, arr2) => {
   const arrayToObj = {};
   let commonItemFound = false;
@@ -246,11 +262,30 @@ export const commonItemsInTheArrayImproved = (arr1, arr2) => {
 export const hasPairWithSum = (arr, sum) => {
   const resultSet = new Set();
 
-  for(let i = 0; i < arr.length; i++) {
-    if(resultSet.has(arr[i])) {
+  for (let i = 0; i < arr.length; i++) {
+    if (resultSet.has(arr[i])) {
       return true;
     }
     resultSet.add(sum - arr[i]);
   }
   return false;
+};
+
+// strings: ['abc', 'cc', 'c', 'cc', 'abc'] queries: ['abc', 'cc']
+// output: [2, 0] => Frequency of query strings found in the string
+function matchingStrings(strings, queries) {
+  const res = [];
+  for (let i = 0; i < queries.length; i++) {
+    let count = 0;
+
+    strings.map((str) => {
+      if (str === queries[i]) {
+        count++;
+      }
+
+      res[i] = count;
+    });
+  }
+
+  return res;
 }

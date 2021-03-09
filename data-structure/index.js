@@ -1,5 +1,6 @@
 import * as algos from "./algos.js";
 import { HashTable } from "./hash-table.js";
+import { LinkedList, DoublyLinkedList} from "./linked-list.js";
 
 console.log(
   "chunk arrays as groups",
@@ -20,7 +21,7 @@ console.log(algos.checkParentheses("([]{}){}[]"));
 
 console.log(
   "First recurring number in an array:",
-  algos.firstRecurringNumber([2, 1, 3, 1, 2, 3, 4, 3, 2]),
+  algos.firstRecurringNumber([2, 1, 1, 4, 2, 3, 4, 3, 2]),
   algos.firstRecurringNumber([2, 1, 3, 2, 3, 4, 3, 2]),
   algos.firstRecurringNumber([2, 1, 3])
 );
@@ -59,7 +60,24 @@ console.log(
   algos.mergeSortedArrays([1, 3, 4, 55], [4, 11, 44])
 );
 
-const myHashTable = new HashTable(10); // try the size 2
+console.log("Print all the pairs of an array:");
+algos.printAllThePairs([1, 2, 3]);
+
+console.log(
+  "Common Items in the array: ",
+  algos.commonItemsInTheArray([1, 2, 4], [2, 5, 6])
+);
+console.log(
+  "Common Items in the array improved time: ",
+  algos.commonItemsInTheArrayImproved([1, 2, 4], [2, 5, 6])
+);
+
+console.log(
+  "Array has a pair with sum: ",
+  algos.hasPairWithSum([6, 4, 3, 1, 2, 7], 7)
+);
+
+const myHashTable = new HashTable(1); // try the size 2
 myHashTable.set("grapes", 10);
 myHashTable.set("apples", 20);
 
@@ -76,19 +94,31 @@ console.log("Keys in the hash table:", myHashTable.keys());
 //   console.log(k,v)
 // }
 
-console.log("Print all the pairs of an array:");
-algos.printAllThePairs([1, 2, 3]);
+const myLinkedList = new LinkedList(10);
+myLinkedList.append(11)
+myLinkedList.append(12)
+myLinkedList.prepend(9)
+myLinkedList.insert(200, 99) // index is higher than the length of the list, insert to the end of list
+myLinkedList.insert(2, 33)
+myLinkedList.insert(0, 34)
+console.log("Linkedlist before deletion:", myLinkedList.print());
 
-console.log(
-  "Common Items in the array: ",
-  algos.commonItemsInTheArray([1, 2, 4], [2, 5, 6])
-);
-console.log(
-  "Common Items in the array improved time: ",
-  algos.commonItemsInTheArrayImproved([1, 2, 4], [2, 5, 6])
-);
+myLinkedList.remove(1)
+// myLinkedList.remove(1)
+// myLinkedList.remove(1)
+// myLinkedList.remove(1)
+// myLinkedList.remove(1)
+// myLinkedList.remove(1)
 
-console.log(
-  "Array has a pair with sum: ",
-  algos.hasPairWithSum([6, 4, 3, 1, 2, 7], 9)
-);
+myLinkedList.insert(3, 45)
+
+console.log("Linkedlist after deletion:", myLinkedList.print(), myLinkedList.reverse());
+
+const myDoublyLinkedList = new DoublyLinkedList(5);
+myDoublyLinkedList.append(6)
+myDoublyLinkedList.append(7)
+myDoublyLinkedList.prepend(4)
+myDoublyLinkedList.insert(200, 99) // index is higher than the length of the list, insert to the end of list
+myDoublyLinkedList.insert(2, 33)
+// myDoublyLinkedList.insert(0, 34)
+console.log("Doubly Linkedlist:", myDoublyLinkedList.print());

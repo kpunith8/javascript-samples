@@ -1,4 +1,10 @@
-// Using Array
+// Using Array as data structure, if there is a key collision in the
+// keys it will push the item to the same array
+// It may have the time complexity of O(n) when reading the keys
+// Hash table should have the time complexity of O(1) for reading, deleting and
+// adding key value pairs
+
+// This was to demonstrate user defined hash table for learning purpose
 export class HashTable {
   constructor(size) {
     this.data = new Array(size);
@@ -48,7 +54,13 @@ export class HashTable {
     let keysArray = [];
     for (let i = 0; i < this.data.length; i++) {
       if (this.data[i]) {
-        keysArray.push(this.data[i][0][0]);
+        if (this.data[i].length > 1) {
+          this.data[i].map((item) => {
+            keysArray.push(item[0]);
+          });
+        } else {
+          keysArray.push(this.data[i][0][0]);
+        }
       }
     }
 
