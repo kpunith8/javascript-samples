@@ -1,5 +1,5 @@
 // Mastering JS Functional Programming - Kereki Fedrico
-const { performance } = require("perf_hooks");
+import { performance } from "perf_hooks";
 
 // Classes as first class objects
 const makeHelloClass = (greeting) =>
@@ -191,15 +191,17 @@ console.log("Shuffled array", shuffle(arr1));
 // Higher Order Functions
 // Passing console.log as logger to the withLog to make it
 // side effects free
-const withLog = (fn, logger = console.log) => (...args) => {
-  try {
-    logger(`Entering ${fn.name}: ${args}`);
-    return fn(...args);
-  } catch (error) {
-    logger(`Exiting ${fn.name}: threw ${error}`);
-    throw error;
-  }
-};
+const withLog =
+  (fn, logger = console.log) =>
+  (...args) => {
+    try {
+      logger(`Entering ${fn.name}: ${args}`);
+      return fn(...args);
+    } catch (error) {
+      logger(`Exiting ${fn.name}: threw ${error}`);
+      throw error;
+    }
+  };
 
 function subtract(a, b) {
   b = changeSign(b);
@@ -218,19 +220,19 @@ const getPerf = () => performance.now();
 const timeLogger = (msg, fnName, start, end) =>
   console.log(`${fnName} ${msg} took ${end * 1000 - start * 1000} s`);
 
-const withTiming = (fn, getTime = getPerf, logger = timeLogger) => (
-  ...args
-) => {
-  const start = getTime();
+const withTiming =
+  (fn, getTime = getPerf, logger = timeLogger) =>
+  (...args) => {
+    const start = getTime();
 
-  try {
-    logger("Normal exit", fn.name, start, getTime());
-    return fn(...args);
-  } catch (error) {
-    logger("Exception thrown", fn.name, start, getTime());
-    throw error;
-  }
-};
+    try {
+      logger("Normal exit", fn.name, start, getTime());
+      return fn(...args);
+    } catch (error) {
+      logger("Exception thrown", fn.name, start, getTime());
+      throw error;
+    }
+  };
 
 // const withTimeSubtract = withTiming(subtract);
 
@@ -290,7 +292,10 @@ const arr2 = [10, 2, 4, 6, -2, 12, -11, -20];
 
 const isNegative = (v) => v < 0;
 
-const not = (fn) => (...args) => !fn(...args);
+const not =
+  (fn) =>
+  (...args) =>
+    !fn(...args);
 
 const filterNot = (arr) => (fn) => arr.filter(not(fn));
 
@@ -302,7 +307,10 @@ console.log(
   arr2.filter(not(isNegative))
 );
 
-const invert = (fn) => (...args) => -fn(...args);
+const invert =
+  (fn) =>
+  (...args) =>
+    -fn(...args);
 const spanishComparison = (a, b) => a.localeCompare(b, "es");
 
 var palabras = ["ñandú", "oasis", "mano", "natural", "mítico", "musical"];
@@ -358,33 +366,49 @@ console.log(
 );
 
 // Pipeline - Functions are applied from left to right, composition - functions are appplied from right to left
+const samplePipe =
+  (f, g) =>
+  (...args) =>
+    g(f(...args));
 
-const samplePipe = (f, g) => (...args) => g(f(...args));
-
-// Pipeline imperative way
-const pipeline = (...fns) => (...args) => {
-  let result = fns[0](...args);
-  for (let i = 1; i < fns.length; i++) {
-    result = fns[i](result);
-  }
-  return result;
-};
+// imperative pipeline
+const pipeline1 =
+  (...fns) =>
+  (...args) => {
+    let result = fns[0](...args);
+    for (let i = 1; i < fns.length; i++) {
+      result = fns[i](result);
+    }
+    return result;
+  };
 
 // Pipeline using reduce
 const pipeline2 = (...fns) =>
-  fns.reduce((result, f) => (...args) => f(result(...args)));
+  fns.reduce(
+    (result, f) =>
+      (...args) =>
+        f(result(...args))
+  );
 
-const pipeline3 = (...fns) => fns.reduce(samplePipe);
+// pipeline2 in simplest form
+const pipeline3 = (...fns) => fns.reduceRight(samplePipe);
+// pipeline to apply the functions in the order passed
+const pipeline4 = (...fns) => fns.reduce(samplePipe);
 
-const positivesCount = (args) => args.length;
-
+const countNegative = (args) => args.length;
 const filterNegative = (args) => args.filter(isNegative);
 
-// console.log("Imperative Pipeline:", pipeline(filterNegative, countPositive)(arr2));
-// console.log("Reduce Pipeline:", pipeline2(filterNegative, countPositive)(arr2));
+// console.log("Imperative Pipeline:", pipeline1(filterNegative, countNegative)(arr2));
+// console.log("Reduce Pipeline:", pipeline2(filterNegative, countNegative)(arr2));
+
 console.log(
-  "Reduce with sample pipeline:",
-  pipeline3(filterNegative, positivesCount)(arr2)
+  "pipeline with reduceRight, functions are applied from R -> L:",
+  pipeline3(countNegative, filterNegative)(arr2)
+);
+
+console.log(
+  "pipeline with reduce, functions are applied from L -> R:",
+  pipeline4(filterNegative, countNegative)(arr2)
 );
 
 class City {
@@ -417,10 +441,17 @@ city1.setName("Bengaluru").setPincode("560099");
 
 console.log("Chaining with classes:", city1.getName(), city1.getPincode());
 
-const compose = (f, g) => (...args) => f(g(...args));
+// Compose with 2 functions
+const compose =
+  (f, g) =>
+  (...args) =>
+    f(g(...args));
 
-// Compose using reduceRight with pipe
+// Compose using reduceRight with pipe for variadic functions
+// compose with reduceRight executes the functions from right to left
 const compose2 = (...fns) => fns.reduceRight(samplePipe);
+
+// compose with reduce executes the functions from left to right
 const compose3 = (...fns) => fns.reduce(compose);
 
 const removeNonAlpha = (str) => str.replace(/[^a-z]/gi, " ");
@@ -665,8 +696,8 @@ class Maybe extends Functor {
   }
 }
 
-const plus1 = x => x + 1;
+const plus1 = (x) => x + 1;
 console.log(Maybe.of(2209).map(plus1).map(plus1).toString());
 console.log(Maybe.of(null).map(plus1).map(plus1).toString());
 
-module.exports = { once, onceAndAfter };
+export { once, onceAndAfter };

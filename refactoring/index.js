@@ -80,6 +80,7 @@ class Range {
 // and move the logic to filter to Range class
 // so that everything is encapsulated in the class
 const range = new Range(10, 54);
+
 function readingsOutsideRangeRefactored(station, range) {
   return station.readings.filter((r) => !range.contains(r.temp));
 }

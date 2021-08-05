@@ -69,7 +69,7 @@ export function destroyer(arr) {
 }
 
 export const whatIsInAName = (collection, source) => {
-  var srcKeys = Object.keys(source);
+  var srcKeys = Object.keys(source)
 
   return collection.filter(function (obj) {
     return srcKeys.every(function (key) {
@@ -288,4 +288,138 @@ function matchingStrings(strings, queries) {
   }
 
   return res;
+}
+
+// Recursive solution to palindrome
+export const isPalindrome = (str) => {
+  if (!str || typeof str !== "string") {
+    return false;
+  }
+
+  if (str.length < 2) {
+    return true;
+  }
+
+  if (str.charAt(0) !== str.charAt(str.length - 1)) {
+    return false;
+  }
+
+  return isPalindrome(str.slice(1, str.length - 1));
+}
+
+// Recursive solution to decimal to binary
+export const decimalToBinary = (num) => {
+  if (num === 0) {
+    return "0";
+  }
+
+  return decimalToBinary(num / 2) + (num % 2).toString();
+}
+
+// Binary search by divide and conquer
+export const binarySearch = (arr, left, right, itemToBeSearched) => {
+  if (left > right) {
+    return;
+  }
+  const mid = Math.floor((left + right) / 2)
+
+  if (itemToBeSearched === arr[mid]) {
+    console.log(`Binary search: item ${itemToBeSearched} found at index ${mid}`)
+    return arr[mid];
+  }
+
+  if (itemToBeSearched < arr[mid]) {
+    return binarySearch(arr, left, mid - 1, itemToBeSearched)
+  }
+
+  return binarySearch(arr, mid + 1, right, itemToBeSearched)
+}
+
+// merge sort - divide and conquer
+const merge = (arr, start, mid, end) => {
+  // create a temp array
+  const temp = new Array(end - start + 1);
+
+  // crawlers for both intervals and for temp
+  let i = start
+  let j = mid + 1
+  let k = 0
+
+  // traverse both arrays and in each iteration add smaller of both elements in temp
+  while (i <= mid && j <= end) {
+    if (arr[i] <= arr[j]) {
+      temp[k] = arr[i]; // could be, temp[k++] = arr[i++] and remove the increment steps
+      k += 1; i += 1;
+    }
+    else {
+      temp[k] = arr[j];
+      k += 1; j += 1;
+    }
+  }
+
+  // add elements left in the first array
+  while (i <= mid) {
+    temp[k] = arr[i];
+    k += 1; i += 1;
+  }
+
+  // add elements left in the second array
+  while (j <= end) {
+    temp[k] = arr[j];
+    k += 1; j += 1;
+  }
+
+  // copy temp to original interval
+  for (i = start; i <= end; i += 1) {
+    arr[i] = temp[i - start]
+  }
+}
+
+export const mergeSort = (arr, start, end) => {
+  if (start < end) {
+    const mid = Math.floor((start + end) / 2);
+    console.log({start, end})
+    mergeSort(arr, start, mid);
+    mergeSort(arr, mid + 1, end);
+    merge(arr, start, mid, end);
+  }
+
+  // return arr
+}
+
+
+const merge1 = (left, right) => {
+  let arr = []
+  // Break out of loop if any one of the array gets empty
+  while (left.length && right.length) {
+    // Pick the smaller among the smallest element of left and right sub arrays
+    if (left[0] < right[0]) {
+      arr.push(left.shift())
+    } else {
+      arr.push(right.shift())
+    }
+  }
+
+  // Concatenating the leftover elements
+  // (in case we didn't go through the entire left or right array)
+  return [...arr, ...left, ...right]
+}
+
+export const mergeSort1 = array => {
+  const half = array.length / 2
+
+  // Base case or terminating case
+  if (array.length < 2) {
+    return array
+  }
+
+  const left = array.splice(0, half)
+  return merge1(mergeSort1(left), mergeSort1(array))
+}
+
+// String reverse using recursively
+export const recursiveReverseString = str => {
+  if(str === '') return ''
+
+  return recursiveReverseString(str.substring(1)) + str.charAt(0)
 }

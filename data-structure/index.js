@@ -1,6 +1,7 @@
 import * as algos from "./algos.js";
 import { HashTable } from "./hash-table.js";
-import { LinkedList, DoublyLinkedList} from "./linked-list.js";
+import { LinkedList, DoublyLinkedList, StackLL, QueueLL} from "./linked-list.js";
+import { BinarySearchTree, treeTraverse } from "./trees.js";
 
 console.log(
   "chunk arrays as groups",
@@ -122,3 +123,39 @@ myDoublyLinkedList.insert(200, 99) // index is higher than the length of the lis
 myDoublyLinkedList.insert(2, 33)
 // myDoublyLinkedList.insert(0, 34)
 console.log("Doubly Linkedlist:", myDoublyLinkedList.print());
+
+const myLLStack = new StackLL()
+myLLStack.push(100)
+myLLStack.push(110)
+myLLStack.push(115)
+
+console.log('Stack implemented in LL:', myLLStack.pop())
+
+const myLLQueue = new QueueLL()
+myLLQueue.enqueue(1)
+myLLQueue.enqueue(3)
+myLLQueue.enqueue(5)
+
+myLLQueue.dequeue()
+
+console.log('Queue implemented in LL:', myLLQueue)
+
+const bst = new BinarySearchTree()
+bst.insert(10)
+bst.insert(20)
+bst.insert(9)
+bst.insert(7)
+bst.insert(8)
+bst.insert(12)
+bst.insert(23)
+
+console.log('Binary Search Tree:', JSON.stringify(treeTraverse(bst.root)), 'lookup:', bst.lookup(20))
+
+console.log('Binary search:', algos.binarySearch([2,3,6,8,12,33,55,77], 0, 7, 77))
+
+const arrayToMerge = [4, 1, 8, -2, 0]
+
+console.log('Merge sort:', algos.mergeSort(arrayToMerge, 0, arrayToMerge.length - 1))
+console.log('Merge sort-1:', algos.mergeSort1(arrayToMerge))
+
+console.log('Reverse a string recursively:', algos.recursiveReverseString("hello"))

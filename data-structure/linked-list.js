@@ -237,3 +237,91 @@ export class DoublyLinkedList {
     return currentNode;
   }
 }
+
+export class StackLL {
+  constructor() {
+    this.top = null;
+    this.bottom = null;
+    this.length = 0;
+  }
+
+  peek() {
+    return this.top;
+  }
+
+  push(value) {
+    const newNode = new Node(value);
+    if (this.length === 0) {
+      this.top = newNode;
+      this.bottom = newNode;
+    } else {
+      const holdingPointer = this.top;
+      this.top = newNode;
+      this.top.next = holdingPointer;
+    }
+
+    this.length++;
+
+    return this;
+  }
+
+  pop() {
+    if (!this.top) {
+      return null;
+    }
+
+    if(this.length === 0) { // this.bottom === this.top
+      this.bottom = null
+    }
+    // May not be used in the implementation, it is avoid
+    // JS from not being gargage collecting the top item
+    // and return the removed item if needed
+    // const holdingPointer = this.top;
+    this.top = this.top.next;
+    this.length--;
+
+    return this;
+  }
+}
+
+export class QueueLL {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.length = 0
+  }
+
+  peek() {
+    return this.first
+  }
+
+  enqueue(value) {
+    const newNode = new Node(value)
+
+    if(this.length === 0) {
+      this.first = newNode;
+      this.last = newNode
+    }
+    else {
+      this.last.next = newNode;
+      this.last = newNode;
+    }
+    this.length++;
+
+    return this;
+  }
+
+  dequeue() {
+    if(!this.first) {
+      return null
+    }
+
+    if(this.first === this.last) {
+      this.last = null
+    }
+
+    this.first = this.first.next
+    this.length--;
+    return this;
+  }
+}

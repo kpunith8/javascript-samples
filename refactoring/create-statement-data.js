@@ -19,6 +19,7 @@ export function createStatementData(invoice, plays) {
     return result;
   }
 
+  // Factory pattern
   function createPerformanceCalculator(aPerformance, aPlay) {
     switch (aPlay.type) {
       case "tragedy":
