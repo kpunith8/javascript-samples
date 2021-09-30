@@ -46,7 +46,7 @@ var foo = "foo";
   console.log(`IIFE, value set from param is: ${foo}`);
 })(foo);
 
-let myModule = (function() {
+let myModule = (function () {
   const privateVariable = "Data";
 
   const privateMethod = () => {
@@ -54,7 +54,7 @@ let myModule = (function() {
   };
 
   return {
-    publicMethod: function() {
+    publicMethod: function () {
       privateMethod();
     }
   };
@@ -98,7 +98,7 @@ closureFoo();
 /* functions can be returned from a function */
 function closure1() {
   var bar = "bar";
-  return function() {
+  return function () {
     console.log(`Returning function within closure: ${bar}`);
   };
 }
@@ -130,7 +130,7 @@ or declare let instead of var inside for loop in the above example*/
 // 1. there would be outer enclosing function
 // 2. one or more functions get retunned from the function call,
 // one or more innner functions have closure over inner private scope
-var closure2 = (function() {
+var closure2 = (function () {
   var o = { bar: "bar" };
 
   // return {
@@ -140,10 +140,10 @@ var closure2 = (function() {
   // };
   // it can also be written by assigning to a variable to modify things later
   const publicAPI = {
-    bar: function() {
+    bar: function () {
       publicAPI.baz();
     },
-    baz: function() {
+    baz: function () {
       console.log(`Module pattern ${o.bar}`);
     }
   };
@@ -166,14 +166,14 @@ function OOPExample(who) {
   this.me = who;
 }
 
-OOPExample.prototype.identity = function() {
+OOPExample.prototype.identity = function () {
   return `I'm ${this.me}`;
 };
 
 var a1 = new OOPExample("Punith");
 var a2 = new OOPExample("Sahana");
 
-a2.speak = function() {
+a2.speak = function () {
   console.log(`Hello ${this.identity()}`); // this referes to OOPExample
 };
 
@@ -195,7 +195,7 @@ function OOPExample1(who) {
 // OOPExample1.prototype = new OOPExample(); // or
 OOPExample1.prototype = Object.create(OOPExample.prototype);
 
-OOPExample1.prototype.speak1 = function() {
+OOPExample1.prototype.speak1 = function () {
   console.log("Called with in OOPExample1:", this.identity());
 };
 
@@ -207,16 +207,16 @@ console.log("Get the prototype of an object:", Object.getPrototypeOf(a1));
 // Other way of creating child classes using delegation inheriting the parent prototype
 // OLOO: Object Linked to Other Objects
 let OOPFoo = {
-  init: function(who) {
+  init: function (who) {
     this.me = who;
   },
-  identify: function() {
+  identify: function () {
     return `I'm ${this.me}`;
   }
 };
 
 let OOPBar = Object.create(OOPFoo);
-OOPBar.speak = function() {
+OOPBar.speak = function () {
   console.log(`Hello ${this.identify()}`);
 };
 
@@ -268,11 +268,11 @@ function callbacksGetData(data, callback) {
   }, 2);
 }
 
-callbacksGetData(10, function(num1) {
+callbacksGetData(10, function (num1) {
   let x = num1 + 1;
-  callbacksGetData(30, function(num2) {
+  callbacksGetData(30, function (num2) {
     let y = num2 + 1;
-    callbacksGetData(`Nested callbacks, Total: ${x + y}`, function(answer) {
+    callbacksGetData(`Nested callbacks, Total: ${x + y}`, function (answer) {
       console.log(answer);
     });
   });
@@ -281,12 +281,12 @@ callbacksGetData(10, function(num1) {
 // Generators - async
 function coroutine(g) {
   let it = g();
-  return function() {
+  return function () {
     return it.next.apply(it, arguments);
   };
 }
 
-let generatorsGetDataSync = coroutine(function*() {
+let generatorsGetDataSync = coroutine(function* () {
   let x = 1 + (yield null);
   let y = 1 + (yield null);
   yield x + y;
@@ -300,7 +300,7 @@ function getDataAsync(data) {
   setTimeout(() => generatorsGetDataAsync(data), 4);
 }
 
-let generatorsGetDataAsync = coroutine(function*() {
+let generatorsGetDataAsync = coroutine(function* () {
   let x = 1 + (yield getDataAsync(10));
   let y = 1 + (yield getDataAsync(30));
   let answer = yield getDataAsync(`Total using async generators: ${x + y}`);
@@ -342,7 +342,7 @@ function testData() {
 
 // function expressions can be immediately executed not the function declaration
 // it can be achieved with IIFE
-const getName = (function() {
+const getName = (function () {
   return "Punith";
 })();
 
@@ -357,7 +357,7 @@ const obj2 = {
     getNameAndLogo() {
       return `${this.name} ${this.logo}`;
     },
-    getName: function() {
+    getName: function () {
       return `${this.name}`;
     }
   },
@@ -411,7 +411,7 @@ const obj6 = {
     console.log("sing, this", this);
 
     // or var self = this to access the this inside the function
-    const anotherFunc = function() {
+    const anotherFunc = function () {
       console.log("anotherFunc.bind(this)", this);
     };
     return anotherFunc.bind(this); // binding this to anotherFunc
@@ -560,7 +560,7 @@ function getArrayItemAtWithClosure() {
   const bigArray = new Array(7000).fill('*');
 
   console.log('Array created, with closure');
-  return function(index) {
+  return function (index) {
     return bigArray[index];
   }
 }
@@ -571,8 +571,39 @@ console.log(getArrayItem(400));
 console.log(getArrayItem(500));
 
 
+// Implement Node's EventEmitter
 
+// Event Emitter
 
+class EventEmitter {
+  eventTypes = {} // {event: [callback1, callback2]}
+  on(eventType, callback) {
+    if (this.eventTypes[eventType]) {
+      this.eventTypes[eventType] = this.eventTypes[eventType].concat(callback)
+    } else {
+      this.eventTypes[eventType] = [callback]
+    }
+  }
 
+  emit(eventType, ...params) {
+    this.eventTypes[eventType].forEach(callback => callback(...params))
+  }
+}
 
+// client code
+const ee = new EventEmitter();
 
+ee.on('err', (err, date) => {
+  console.log(err, date)
+})
+
+ee.on('err', (err, date) => {
+  console.log(err, date)
+})
+
+ee.on('success', () => {
+  console.log('success')
+});
+
+ee.emit('err', new Error(), new Date());
+ee.emit('success');

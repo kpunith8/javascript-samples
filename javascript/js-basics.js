@@ -715,4 +715,4 @@ function printName() {
 // function expression
 const printIt = function(name) {
   console.log('Function expression:', name);
-}
+};

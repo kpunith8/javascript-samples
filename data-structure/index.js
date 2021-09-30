@@ -2,6 +2,7 @@ import * as algos from "./algos.js";
 import { HashTable } from "./hash-table.js";
 import { LinkedList, DoublyLinkedList, StackLL, QueueLL} from "./linked-list.js";
 import { BinarySearchTree, treeTraverse } from "./trees.js";
+import {Graph} from "./graph.js";
 
 console.log(
   "chunk arrays as groups",
@@ -159,3 +160,23 @@ console.log('Merge sort:', algos.mergeSort(arrayToMerge, 0, arrayToMerge.length 
 console.log('Merge sort-1:', algos.mergeSort1(arrayToMerge))
 
 console.log('Reverse a string recursively:', algos.recursiveReverseString("hello"))
+
+console.log('Graphs')
+const myGraph = new Graph();
+myGraph.addVertex('0');
+myGraph.addVertex('1');
+myGraph.addVertex('2');
+myGraph.addVertex('3');
+myGraph.addVertex('4');
+myGraph.addVertex('5');
+myGraph.addVertex('6');
+myGraph.addEdge('3', '1');
+myGraph.addEdge('3', '4');
+myGraph.addEdge('4', '2');
+myGraph.addEdge('4', '5');
+myGraph.addEdge('1', '2');
+myGraph.addEdge('1', '0');
+myGraph.addEdge('0', '2');
+myGraph.addEdge('6', '5');
+
+myGraph.showConnections();

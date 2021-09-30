@@ -79,10 +79,10 @@ export const whatIsInAName = (collection, source) => {
 };
 
 // Balanced braces
-var stack = [];
+let stack = [];
 
 export const checkParentheses = (word) => {
-  var map = {
+  const map = {
     "(": ")",
     "[": "]",
     "{": "}",
@@ -91,7 +91,7 @@ export const checkParentheses = (word) => {
     if (word[i] === "(" || word[i] === "[" || word[i] === "{") {
       stack.push(word[i]);
     } else {
-      var last = stack.pop();
+      const last = stack.pop();
 
       if (word[i] !== map[last]) {
         return false;
@@ -116,7 +116,7 @@ export const checkParentheses = (word) => {
 // search by indexOf and lastIndex if they match that is the first non-repeated char
 export const nonRepeatedChar = (str) => {
   const result = str
-    .split("") // split it into array so that we can apply map and filter higher order functions on them
+    .split("") // split it into array so that we can apply filter function on it
     .filter((char) => str.indexOf(char) === str.lastIndexOf(char));
   // console.log(`First non-repeated string in '${str}' is: ${result}`);
   // for (let i = 0; i < str.length; i++) {
@@ -296,15 +296,16 @@ export const isPalindrome = (str) => {
     return false;
   }
 
-  if (str.length < 2) {
-    return true;
+  // Remove special chars
+  str = str.replace(/[^\w\s]/g, "").toLowerCase()
+  if (str.length === 1) return true;
+  if (str.length === 2) return str[0] === str[1];
+
+  if (str[0] === str[str.length - 1]) {
+    return isPalindrome(str.slice(1, str.length - 1))
   }
 
-  if (str.charAt(0) !== str.charAt(str.length - 1)) {
-    return false;
-  }
-
-  return isPalindrome(str.slice(1, str.length - 1));
+  return false
 }
 
 // Recursive solution to decimal to binary
@@ -378,7 +379,7 @@ const merge = (arr, start, mid, end) => {
 export const mergeSort = (arr, start, end) => {
   if (start < end) {
     const mid = Math.floor((start + end) / 2);
-    console.log({start, end})
+    console.log({ start, end })
     mergeSort(arr, start, mid);
     mergeSort(arr, mid + 1, end);
     merge(arr, start, mid, end);
@@ -419,7 +420,7 @@ export const mergeSort1 = array => {
 
 // String reverse using recursively
 export const recursiveReverseString = str => {
-  if(str === '') return ''
+  if (str === '') return ''
 
   return recursiveReverseString(str.substring(1)) + str.charAt(0)
 }

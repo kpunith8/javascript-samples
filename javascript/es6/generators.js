@@ -168,7 +168,7 @@ function* gen11() {
 
 function* gen2() {
   yield "1";
-  yield* gen11(); // just calling gen1() returns object but doesn't yield from that.
+  yield* gen11(); // just calling gen11() returns object but doesn't yield from that.
   yield "4";
 }
 

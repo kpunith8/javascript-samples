@@ -1,8 +1,9 @@
-const fs = require('fs');
-const EventEmitter = require('events');
+import fs from 'fs';
+import EventEmitter from 'events';
 
 // Synchronous events
-class WithLog extends EventEmitter {
+export class WithLog extends EventEmitter {
+  // Implement execute() method
   execute(taskFunc) {
     console.log('Before executing...');
     this.emit('begin');
@@ -13,7 +14,7 @@ class WithLog extends EventEmitter {
 }
 
 // Async event emitters
-class WithTime extends EventEmitter {
+export class WithTime extends EventEmitter {
   execute(asyncFunc, ...args) {
     console.time('execute');
     asyncFunc(...args, (err, data) => {
@@ -27,12 +28,12 @@ class WithTime extends EventEmitter {
   }
 }
 
-// const withLog = new WithLog();
+const withLog = new WithLog();
 
-// withLog.on('begin', () => console.log('About to begin'));
-// withLog.on('end', () => console.log('Done with exection'));
+withLog.on('begin', () => console.log('About to begin'));
+withLog.on('end', () => console.log('Done with exection'));
 
-// withLog.execute(() => console.log('*** Executing task ***'));
+withLog.execute(() => console.log('*** Executing task ***'));
 
 const withTime = new WithTime();
 
@@ -56,4 +57,3 @@ process.once('uncaughtException', err => { // once can be used to avoid process 
 // if the same event is needed and wanted to be executed first, use prependListener('event', callback), to call it first
 // To remove a event listener call removeListener('eventName')
 
-module.exports = { WithLog, WithTime };
