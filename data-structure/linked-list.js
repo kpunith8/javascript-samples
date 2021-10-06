@@ -114,7 +114,6 @@ export class LinkedList {
     let firstNode = this.head;
     this.tail = this.head;
     let secondNode = firstNode.next;
-
     while(secondNode) {
       const temp = secondNode.next;
       secondNode.next = firstNode;
@@ -126,6 +125,21 @@ export class LinkedList {
     this.head = firstNode;
 
     return this;
+  }
+
+  reverse1() {
+    let prev = null;
+    let current = this.head;
+    let next = null;
+
+    while(current) {
+      next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+
+    return prev
   }
 }
 

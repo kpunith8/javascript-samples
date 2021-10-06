@@ -19,7 +19,7 @@ console.log(
   )
 );
 
-console.log(algos.checkParentheses("([]{}){}[]"));
+console.log('check parantheses', algos.checkParentheses("([]{{}){}[]"));
 
 console.log(
   "First recurring number in an array:",
@@ -105,16 +105,17 @@ myLinkedList.insert(2, 33)
 myLinkedList.insert(0, 34)
 console.log("Linkedlist before deletion:", myLinkedList.print());
 
-myLinkedList.remove(1)
+// myLinkedList.remove(1)
 // myLinkedList.remove(1)
 // myLinkedList.remove(1)
 // myLinkedList.remove(1)
 // myLinkedList.remove(1)
 // myLinkedList.remove(1)
 
-myLinkedList.insert(3, 45)
+// myLinkedList.insert(3, 45)
 
-console.log("Linkedlist after deletion:", myLinkedList.print(), myLinkedList.reverse());
+// console.log("Linkedlist after deletion:", myLinkedList.print())
+console.log('Reversed LL', JSON.stringify(myLinkedList.reverse1()));
 
 const myDoublyLinkedList = new DoublyLinkedList(5);
 myDoublyLinkedList.append(6)
@@ -180,3 +181,13 @@ myGraph.addEdge('0', '2');
 myGraph.addEdge('6', '5');
 
 myGraph.showConnections();
+
+
+console.log('isPalindrome:', algos.isPalindrome('madam'))
+
+console.log('number palindrome:', algos.numberPalindrome(121))
+
+console.log('Find all duplicates of an array', algos.findAllDuplicatesInArray([1, 2, 3, 4, 5, 3, 2, 1]))
+
+console.log('Find all duplicates of an array-1', algos.findAllDuplicatesInArray1([6, 7, 3, 4, 5, 6, 2, 3]))
+

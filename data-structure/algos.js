@@ -296,8 +296,9 @@ export const isPalindrome = (str) => {
     return false;
   }
 
-  // Remove special chars
-  str = str.replace(/[^\w\s]/g, "").toLowerCase()
+  // Remove special chars and _
+  // str.replace(/[^\w\s]/g, "")
+  str = str.replace(/[\W_\s]/g, "").toLowerCase()
   if (str.length === 1) return true;
   if (str.length === 2) return str[0] === str[1];
 
@@ -306,6 +307,20 @@ export const isPalindrome = (str) => {
   }
 
   return false
+}
+
+export const numberPalindrome = (num) => {
+  let actualNum = num
+  let remainder
+  let reversedNumber = 0
+
+  while (num > 0) {
+    remainder = num % 10
+    reversedNumber = reversedNumber * 10 + remainder
+    num = parseInt(num / 10)
+  }
+
+  return actualNum === reversedNumber
 }
 
 // Recursive solution to decimal to binary
@@ -423,4 +438,34 @@ export const recursiveReverseString = str => {
   if (str === '') return ''
 
   return recursiveReverseString(str.substring(1)) + str.charAt(0)
+}
+
+export const findAllDuplicatesInArray = arr => {
+  const set = new Set()
+  const duplicates = []
+
+  arr.forEach(item => {
+    if (set.has(item)) {
+      duplicates.push(item)
+    } else {
+      set.add(item)
+    }
+  })
+
+  return duplicates
+}
+
+export const findAllDuplicatesInArray1 = arr => {
+  const duplicates = []
+  const uniqueItems = {}
+
+  arr.forEach(item => {
+    if (uniqueItems[item]) {
+      duplicates.push(item)
+    } else {
+      uniqueItems[item] = true
+    }
+  })
+
+  return duplicates
 }
