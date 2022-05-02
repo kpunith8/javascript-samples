@@ -1,107 +1,83 @@
-// Rotate a 2D a array 90 degrees clockwise
-const rotateImage = array => {
-  const n = array.length;
+import * as algos from "./general-algos.js";
 
-  for (let i = 0; i < n; i++) {
-    for (let j = i; j < n; j++) {
-      const temp = array[i][j];
-      array[i][j] = array[j][i];
-      array[j][i] = temp;
-    }
-  }
+console.log(
+  "chunk arrays as groups",
+  algos.chunkArrayInGroups(["a", "b", "c", "d"], 3)
+);
 
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < (n / 2); j++) {
-      const temp = array[i][j];
-      array[i][j] = array[i][n-1-j];
-      array[i][n-1-j] = temp;
-    }
-  }
+console.log("sumAll():", algos.sumAll([1, 4]));
 
-  return array
-}
+console.log(
+  "Array Diff:",
+  algos.arrayDiff(
+    ["diorite", "andesite", "grass", "dirt", "pink wool", "dead shrub"],
+    ["diorite", "andesite", "grass", "dirt", "dead shrub"]
+  )
+);
 
-const arrayTranspose = array => {
-  const n = array.length;
-  const result = [];
-  for (let i = 0; i < n; i++) {
-    result[i] = [];
-    for (let j = 0; j < n; j++) {
-      result[i][j] = array[j][i];
-    }
-  }
-  return result;
-}
+console.log('check parantheses', algos.checkParentheses("([]{{}){}[]"));
+
+console.log(
+  "First recurring number in an array:",
+  algos.firstRecurringNumber([2, 1, 1, 4, 2, 3, 4, 3, 2]),
+  algos.firstRecurringNumber([2, 1, 3, 2, 3, 4, 3, 2]),
+  algos.firstRecurringNumber([2, 1, 3])
+);
+
+algos.nonRepeatedChar("abccdefabde");
+algos.nonRepeatedChar("abccadeedbk");
+
+console.log(
+  algos.whatIsInAName(
+    [
+      { first: "Romeo", last: "Montague" },
+      { first: "Mercutio", last: null },
+      { first: "Tybalt", last: "Capulet" },
+    ],
+    [{ last: "Capulet" }]
+  )
+);
+
+console.log(
+  "Remove the items passed from an array:",
+  algos.destroyer(algos.destroyer(["tree", "hamburger", 53], "tree", 53))
+);
+
+console.log(
+  "Reverse a string with array:",
+  algos.reverseStringArr("Hello Punith")
+);
+
+console.log(
+  "Reverse a string with lib functions:",
+  algos.reverseStringLib("Hello World")
+);
+
+console.log(
+  "Merged sorted arrays:",
+  algos.mergeSortedArrays([1, 3, 4, 55], [4, 11, 44])
+);
+
+console.log("Print all the pairs of an array:");
+algos.printAllThePairs([1, 2, 3]);
+
+console.log(
+  "Common Items in the array: ",
+  algos.commonItemsInTheArray([1, 2, 4], [2, 5, 6])
+);
+console.log(
+  "Common Items in the array improved time: ",
+  algos.commonItemsInTheArrayImproved([1, 2, 4], [2, 5, 6])
+);
+
+console.log(
+  "Array has a pair with sum: ",
+  algos.hasPairWithSum([6, 4, 3, 1, 2, 7], 7)
+);
 
 
-const arr1 = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9]
-];
+console.log('number palindrome:', algos.numberPalindrome(121))
 
-const rotatedArray = [[7, 4, 1], [8, 5, 2], [9, 6, 3]];
+console.log('Find all duplicates of an array', algos.findAllDuplicatesInArray([1, 2, 3, 4, 5, 3, 2, 1]))
 
-console.log('transpose of an array', arrayTranspose(arr1));
-
-console.log('Rotate an image', rotateImage(arr1));
-
-// [-6, -4, -1, 1, 2, 5] => [1, 1, 4, 16, 25, 36]
-const sortedSquaredArray = arr => {
-  const result = [];
-  let left = 0;
-  let right = arr.length - 1;
-
-  // Keep 2 pointers, one at the start and one at the end
-  // If the absolute value of the element at the start is greater than the element at the end, put the squared value to the end
-  for(let i = arr.length - 1; i >= 0; i--) {
-    if(Math.abs(arr[left]) > arr[right]) {
-      result[i] = arr[left] * arr[left];
-      left++;
-    } else {
-      result[i] = arr[right] * arr[right];
-      right--;
-    }
-  }
-
-  return result
-}
-
-console.log('Sorted squared array', sortedSquaredArray([-6, -4, -1, 1, 2, 5]));
-
-
-// sum of two numbers in 2 arrays, takes O(a + b) time
-const sumOfTwoNumbers = (arr1, arr2, target) => {
-  const match = {}
-  for (let i = 0; i < arr1.length; i++) {
-    const diff = target - arr1[i];
-    match[diff] = diff
-  }
-
-  for(let j = 0; j < arr2.length; j++) {
-    if(match[arr2[j]]) {
-      return true
-    }
-  }
-
-  return false
-}
-// Another solution would be looping through both arrays, that could take O(n^2) time
-
-console.log('sumOfTwoNumbers:', sumOfTwoNumbers([1, 2, 3, 4, 5], [2, 3, 4, 5, 6], 8));
-
-// Kadan's algorithm
-// Maxium sum of contiguous subarray
-const maxSubArray = arr => {
-  let maxSum = arr[0];
-  let currentSum = arr[0];
-
-  for (let i = 1; i < arr.length; i++) {
-    currentSum = Math.max(arr[i], currentSum + arr[i]);
-    maxSum = Math.max(maxSum, currentSum);
-  }
-
-  return maxSum
-}
-
-console.log('maximum sum of contiguous array:', maxSubArray([-2, 2, 5, -11, 6])); // [2, 5] => 7
+console.log('Find all duplicates of an array-1', algos.findAllDuplicatesInArray1([6, 7, 3, 4, 5, 6, 2, 3]))

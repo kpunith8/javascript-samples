@@ -88,5 +88,3 @@ export function mySet() {
     return firstSet.every(element => otherSet.has(element));
   };
 }
-
-// module.exports = mySet;

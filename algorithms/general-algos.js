@@ -290,25 +290,6 @@ function matchingStrings(strings, queries) {
   return res;
 }
 
-// Recursive solution to palindrome
-export const isPalindrome = (str) => {
-  if (!str || typeof str !== "string") {
-    return false;
-  }
-
-  // Remove special chars and _
-  // str.replace(/[^\w\s]/g, "")
-  str = str.replace(/[\W_\s]/g, "").toLowerCase()
-  if (str.length === 1) return true;
-  if (str.length === 2) return str[0] === str[1];
-
-  if (str[0] === str[str.length - 1]) {
-    return isPalindrome(str.slice(1, str.length - 1))
-  }
-
-  return false
-}
-
 export const numberPalindrome = (num) => {
   let actualNum = num
   let remainder
@@ -321,123 +302,6 @@ export const numberPalindrome = (num) => {
   }
 
   return actualNum === reversedNumber
-}
-
-// Recursive solution to decimal to binary
-export const decimalToBinary = (num) => {
-  if (num === 0) {
-    return "0";
-  }
-
-  return decimalToBinary(num / 2) + (num % 2).toString();
-}
-
-// Binary search by divide and conquer
-export const binarySearch = (arr, left, right, itemToBeSearched) => {
-  if (left > right) {
-    return;
-  }
-  const mid = Math.floor((left + right) / 2)
-
-  if (itemToBeSearched === arr[mid]) {
-    console.log(`Binary search: item ${itemToBeSearched} found at index ${mid}`)
-    return arr[mid];
-  }
-
-  if (itemToBeSearched < arr[mid]) {
-    return binarySearch(arr, left, mid - 1, itemToBeSearched)
-  }
-
-  return binarySearch(arr, mid + 1, right, itemToBeSearched)
-}
-
-// merge sort - divide and conquer
-const merge = (arr, start, mid, end) => {
-  // create a temp array
-  const temp = new Array(end - start + 1);
-
-  // crawlers for both intervals and for temp
-  let i = start
-  let j = mid + 1
-  let k = 0
-
-  // traverse both arrays and in each iteration add smaller of both elements in temp
-  while (i <= mid && j <= end) {
-    if (arr[i] <= arr[j]) {
-      temp[k] = arr[i]; // could be, temp[k++] = arr[i++] and remove the increment steps
-      k += 1; i += 1;
-    }
-    else {
-      temp[k] = arr[j];
-      k += 1; j += 1;
-    }
-  }
-
-  // add elements left in the first array
-  while (i <= mid) {
-    temp[k] = arr[i];
-    k += 1; i += 1;
-  }
-
-  // add elements left in the second array
-  while (j <= end) {
-    temp[k] = arr[j];
-    k += 1; j += 1;
-  }
-
-  // copy temp to original interval
-  for (i = start; i <= end; i += 1) {
-    arr[i] = temp[i - start]
-  }
-}
-
-export const mergeSort = (arr, start, end) => {
-  if (start < end) {
-    const mid = Math.floor((start + end) / 2);
-    console.log({ start, end })
-    mergeSort(arr, start, mid);
-    mergeSort(arr, mid + 1, end);
-    merge(arr, start, mid, end);
-  }
-
-  // return arr
-}
-
-
-const merge1 = (left, right) => {
-  let arr = []
-  // Break out of loop if any one of the array gets empty
-  while (left.length && right.length) {
-    // Pick the smaller among the smallest element of left and right sub arrays
-    if (left[0] < right[0]) {
-      arr.push(left.shift())
-    } else {
-      arr.push(right.shift())
-    }
-  }
-
-  // Concatenating the leftover elements
-  // (in case we didn't go through the entire left or right array)
-  return [...arr, ...left, ...right]
-}
-
-export const mergeSort1 = array => {
-  const half = array.length / 2
-
-  // Base case or terminating case
-  if (array.length < 2) {
-    return array
-  }
-
-  const left = array.splice(0, half)
-  return merge1(mergeSort1(left), mergeSort1(array))
-}
-
-// String reverse using recursively
-export const recursiveReverseString = str => {
-  if (str === '') return ''
-
-  return recursiveReverseString(str.substring(1)) + str.charAt(0)
 }
 
 export const findAllDuplicatesInArray = arr => {
@@ -469,3 +333,111 @@ export const findAllDuplicatesInArray1 = arr => {
 
   return duplicates
 }
+
+// Rotate a 2D a array 90 degrees clockwise
+const rotateImage = array => {
+  const n = array.length;
+
+  for (let i = 0; i < n; i++) {
+    for (let j = i; j < n; j++) {
+      const temp = array[i][j];
+      array[i][j] = array[j][i];
+      array[j][i] = temp;
+    }
+  }
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < (n / 2); j++) {
+      const temp = array[i][j];
+      array[i][j] = array[i][n-1-j];
+      array[i][n-1-j] = temp;
+    }
+  }
+
+  return array
+}
+
+const arrayTranspose = array => {
+  const n = array.length;
+  const result = [];
+  for (let i = 0; i < n; i++) {
+    result[i] = [];
+    for (let j = 0; j < n; j++) {
+      result[i][j] = array[j][i];
+    }
+  }
+  return result;
+}
+
+
+const arr1 = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+
+const rotatedArray = [[7, 4, 1], [8, 5, 2], [9, 6, 3]];
+
+console.log('transpose of an array', arrayTranspose(arr1));
+
+console.log('Rotate an image', rotateImage(arr1));
+
+// [-6, -4, -1, 1, 2, 5] => [1, 1, 4, 16, 25, 36]
+const sortedSquaredArray = arr => {
+  const result = [];
+  let left = 0;
+  let right = arr.length - 1;
+
+  // Keep 2 pointers, one at the start and one at the end
+  // If the absolute value of the element at the start is greater than the element at the end, put the squared value to the end
+  for(let i = arr.length - 1; i >= 0; i--) {
+    if(Math.abs(arr[left]) > arr[right]) {
+      result[i] = arr[left] * arr[left];
+      left++;
+    } else {
+      result[i] = arr[right] * arr[right];
+      right--;
+    }
+  }
+
+  return result
+}
+
+console.log('Sorted squared array', sortedSquaredArray([-6, -4, -1, 1, 2, 5]));
+
+
+// sum of two numbers in 2 arrays, takes O(a + b) time
+const sumOfTwoNumbers = (arr1, arr2, target) => {
+  const match = {}
+  for (let i = 0; i < arr1.length; i++) {
+    const diff = target - arr1[i];
+    match[diff] = diff
+  }
+
+  for(let j = 0; j < arr2.length; j++) {
+    if(match[arr2[j]]) {
+      return true
+    }
+  }
+
+  return false
+}
+// Another solution would be looping through both arrays, that could take O(n^2) time
+
+console.log('sumOfTwoNumbers:', sumOfTwoNumbers([1, 2, 3, 4, 5], [2, 3, 4, 5, 6], 8));
+
+// Kadan's algorithm
+// Maxium sum of contiguous subarray
+const maxSubArray = arr => {
+  let maxSum = arr[0];
+  let currentSum = arr[0];
+
+  for (let i = 1; i < arr.length; i++) {
+    currentSum = Math.max(arr[i], currentSum + arr[i]);
+    maxSum = Math.max(maxSum, currentSum);
+  }
+
+  return maxSum
+}
+
+console.log('maximum sum of contiguous array:', maxSubArray([-2, 2, 5, -11, 6])); // [2, 5] => 7
