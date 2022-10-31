@@ -1,4 +1,6 @@
 import * as algos from "./general-algos.js";
+import * as recursiveAlgos from "./recursive-algos.js";
+import binarySearch from './binary-search.js'
 
 console.log(
   "chunk arrays as groups",
@@ -81,3 +83,9 @@ console.log('number palindrome:', algos.numberPalindrome(121))
 console.log('Find all duplicates of an array', algos.findAllDuplicatesInArray([1, 2, 3, 4, 5, 3, 2, 1]))
 
 console.log('Find all duplicates of an array-1', algos.findAllDuplicatesInArray1([6, 7, 3, 4, 5, 6, 2, 3]))
+
+console.log('Convert a number to binary using recurssion:', recursiveAlgos.decimalToBinary(10)) // 1010
+
+console.log('Reverse a string using recurrsion:', recursiveAlgos.recursiveReverseString("hello")) // oello
+
+console.log('Binary search using recursion:', binarySearch([2, 5, 9, 11, 14, 25, 28, 32, 77, 99, 220, 442], 0, 12, 9))

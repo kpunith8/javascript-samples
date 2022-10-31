@@ -4,6 +4,7 @@ const binarySearch = (arr, left, right, itemToBeSearched) => {
   if (left > right) {
     return;
   }
+
   const mid = Math.floor((left + right) / 2)
 
   if (itemToBeSearched === arr[mid]) {

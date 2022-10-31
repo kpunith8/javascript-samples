@@ -1,10 +1,10 @@
 // Recursive solution to decimal to binary
 export const decimalToBinary = (num) => {
   if (num === 0) {
-    return "0";
+    return 0;
   }
 
-  return decimalToBinary(num / 2) + (num % 2).toString();
+  return decimalToBinary(parseInt(num / 2)) + (num % 2).toString();
 }
 
 // String reverse using recursively
