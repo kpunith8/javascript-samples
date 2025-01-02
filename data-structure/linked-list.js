@@ -128,9 +128,9 @@ export class LinkedList {
   }
 
   reverse1() {
-    let prev = null;
-    let current = this.head;
     let next = null;
+    let current = this.head;
+    let prev = null;
 
     while(current) {
       next = current.next;
