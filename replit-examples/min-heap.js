@@ -2,7 +2,6 @@
 // Right: 2 * n + 1
 // Parent: floor(n / 2)
 
-// Priority Queue or Heap are the same thing
 class MinHeap {
   constructor(items) {
     // Initialize the first element to null, adding elements from index 1
@@ -91,15 +90,6 @@ class MinHeap {
   display() {
     return this.heap;
   }
-
-  // Heap Sort Takes O(n log n) time complexity
-  sort() {
-    const result = [];
-    while (this.heap.length > 1) {
-      result.push(this.remove());
-    }
-    return result;
-  }
 }
 
 const minHeap = new MinHeap([4, 5, 8, 2]);
@@ -111,102 +101,4 @@ console.log(minHeap.insert(3));
 
 // console.log('remove', minHeap.remove())
 
-console.log("minHeap:", minHeap.display());
-console.log("heap sort:", minHeap.sort());
-
-class MinHeap1 {
-  constructor() {
-    this.heap = [];
-  }
-
-  // Helper method to get parent index
-  getParentIndex(index) {
-    return Math.floor((index - 1) / 2);
-  }
-
-  // Helper method to get left child index
-  getLeftChildIndex(index) {
-    return 2 * index + 1;
-  }
-
-  // Helper method to get right child index
-  getRightChildIndex(index) {
-    return 2 * index + 2;
-  }
-
-  // Insert a new key into the heap
-  insert(key) {
-    this.heap.push(key);
-    this.heapifyUp(this.heap.length - 1);
-  }
-
-  // Move an element up to maintain heap property after insertion
-  heapifyUp(index) {
-    let currentIndex = index;
-    while (
-      currentIndex > 0 &&
-      this.heap[currentIndex] < this.heap[this.getParentIndex(currentIndex)]
-    ) {
-      [this.heap[currentIndex], this.heap[this.getParentIndex(currentIndex)]] =
-        [this.heap[this.getParentIndex(currentIndex)], this.heap[currentIndex]];
-      currentIndex = this.getParentIndex(currentIndex);
-    }
-  }
-
-  // Get the minimum element (root) of the heap
-  peek() {
-    return this.heap[0];
-  }
-
-  // Remove and return the minimum element
-  extractMin() {
-    if (this.heap.length === 0) return null;
-    if (this.heap.length === 1) return this.heap.pop();
-
-    const min = this.heap[0];
-    this.heap[0] = this.heap.pop();
-    this.heapifyDown(0);
-    return min;
-  }
-
-  // Move an element down to maintain heap property after removal
-  heapifyDown(index) {
-    let smallest = index;
-    const left = this.getLeftChildIndex(index);
-    const right = this.getRightChildIndex(index);
-
-    if (left < this.heap.length && this.heap[left] < this.heap[smallest]) {
-      smallest = left;
-    }
-
-    if (right < this.heap.length && this.heap[right] < this.heap[smallest]) {
-      smallest = right;
-    }
-
-    if (smallest !== index) {
-      [this.heap[index], this.heap[smallest]] = [
-        this.heap[smallest],
-        this.heap[index],
-      ];
-      this.heapifyDown(smallest);
-    }
-  }
-
-  display() {
-    return this.heap;
-  }
-}
-
-// Example usage:
-const heap1 = new MinHeap1();
-heap1.insert(4);
-heap1.insert(5);
-heap1.insert(8);
-heap1.insert(2);
-heap1.insert(3);
-
-console.log("minHeap1:", heap1.display());
-console.log('Min item:', heap1.peek())
-console.log('Extract min:', heap1.extractMin())
-console.log("After the extraction:", heap1.display());
-
+console.log("minHeap", minHeap.display());
