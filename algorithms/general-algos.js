@@ -69,7 +69,7 @@ export function destroyer(arr) {
 }
 
 export const whatIsInAName = (collection, source) => {
-  var srcKeys = Object.keys(source)
+  var srcKeys = Object.keys(source);
 
   return collection.filter(function (obj) {
     return srcKeys.every(function (key) {
@@ -291,51 +291,51 @@ function matchingStrings(strings, queries) {
 }
 
 export const numberPalindrome = (num) => {
-  let actualNum = num
-  let remainder
-  let reversedNumber = 0
+  let actualNum = num;
+  let remainder;
+  let reversedNumber = 0;
 
   while (num > 0) {
-    remainder = num % 10
-    reversedNumber = reversedNumber * 10 + remainder
-    num = parseInt(num / 10)
+    remainder = num % 10;
+    reversedNumber = reversedNumber * 10 + remainder;
+    num = parseInt(num / 10);
   }
 
-  return actualNum === reversedNumber
-}
+  return actualNum === reversedNumber;
+};
 
-export const findAllDuplicatesInArray = arr => {
-  const set = new Set()
-  const duplicates = []
+export const findAllDuplicatesInArray = (arr) => {
+  const set = new Set();
+  const duplicates = [];
 
-  arr.forEach(item => {
+  arr.forEach((item) => {
     if (set.has(item)) {
-      duplicates.push(item)
+      duplicates.push(item);
     } else {
-      set.add(item)
+      set.add(item);
     }
-  })
+  });
 
-  return duplicates
-}
+  return duplicates;
+};
 
-export const findAllDuplicatesInArray1 = arr => {
-  const duplicates = []
-  const uniqueItems = {}
+export const findAllDuplicatesInArray1 = (arr) => {
+  const duplicates = [];
+  const uniqueItems = {};
 
-  arr.forEach(item => {
+  arr.forEach((item) => {
     if (uniqueItems[item]) {
-      duplicates.push(item)
+      duplicates.push(item);
     } else {
-      uniqueItems[item] = true
+      uniqueItems[item] = true;
     }
-  })
+  });
 
-  return duplicates
-}
+  return duplicates;
+};
 
 // Rotate a 2D a array 90 degrees clockwise
-const rotateImage = array => {
+const rotateImage = (array) => {
   const n = array.length;
 
   for (let i = 0; i < n; i++) {
@@ -347,17 +347,17 @@ const rotateImage = array => {
   }
 
   for (let i = 0; i < n; i++) {
-    for (let j = 0; j < (n / 2); j++) {
+    for (let j = 0; j < n / 2; j++) {
       const temp = array[i][j];
-      array[i][j] = array[i][n-1-j];
-      array[i][n-1-j] = temp;
+      array[i][j] = array[i][n - 1 - j];
+      array[i][n - 1 - j] = temp;
     }
   }
 
-  return array
-}
+  return array;
+};
 
-const arrayTranspose = array => {
+const arrayTranspose = (array) => {
   const n = array.length;
   const result = [];
   for (let i = 0; i < n; i++) {
@@ -367,31 +367,34 @@ const arrayTranspose = array => {
     }
   }
   return result;
-}
-
+};
 
 const arr1 = [
   [1, 2, 3],
   [4, 5, 6],
-  [7, 8, 9]
+  [7, 8, 9],
 ];
 
-const rotatedArray = [[7, 4, 1], [8, 5, 2], [9, 6, 3]];
+const rotatedArray = [
+  [7, 4, 1],
+  [8, 5, 2],
+  [9, 6, 3],
+];
 
-console.log('transpose of an array', arrayTranspose(arr1));
+console.log("transpose of an array", arrayTranspose(arr1));
 
-console.log('Rotate an image', rotateImage(arr1));
+console.log("Rotate an image", rotateImage(arr1));
 
 // [-6, -4, -1, 1, 2, 5] => [1, 1, 4, 16, 25, 36]
-const sortedSquaredArray = arr => {
+const sortedSquaredArray = (arr) => {
   const result = [];
   let left = 0;
   let right = arr.length - 1;
 
   // Keep 2 pointers, one at the start and one at the end
   // If the absolute value of the element at the start is greater than the element at the end, put the squared value to the end
-  for(let i = arr.length - 1; i >= 0; i--) {
-    if(Math.abs(arr[left]) > arr[right]) {
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (Math.abs(arr[left]) > arr[right]) {
       result[i] = arr[left] * arr[left];
       left++;
     } else {
@@ -400,35 +403,37 @@ const sortedSquaredArray = arr => {
     }
   }
 
-  return result
-}
+  return result;
+};
 
-console.log('Sorted squared array', sortedSquaredArray([-6, -4, -1, 1, 2, 5]));
-
+console.log("Sorted squared array", sortedSquaredArray([-6, -4, -1, 1, 2, 5]));
 
 // sum of two numbers in 2 arrays, takes O(a + b) time
 const sumOfTwoNumbers = (arr1, arr2, target) => {
-  const match = {}
+  const match = {};
   for (let i = 0; i < arr1.length; i++) {
     const diff = target - arr1[i];
-    match[diff] = diff
+    match[diff] = diff;
   }
 
-  for(let j = 0; j < arr2.length; j++) {
-    if(match[arr2[j]]) {
-      return true
+  for (let j = 0; j < arr2.length; j++) {
+    if (match[arr2[j]]) {
+      return true;
     }
   }
 
-  return false
-}
+  return false;
+};
 // Another solution would be looping through both arrays, that could take O(n^2) time
 
-console.log('sumOfTwoNumbers:', sumOfTwoNumbers([1, 2, 3, 4, 5], [2, 3, 4, 5, 6], 8));
+console.log(
+  "sumOfTwoNumbers:",
+  sumOfTwoNumbers([1, 2, 3, 4, 5], [2, 3, 4, 5, 6], 8)
+);
 
 // Kadan's algorithm
 // Maxium sum of contiguous subarray
-const maxSubArray = arr => {
+const maxSubArray = (arr) => {
   let maxSum = arr[0];
   let currentSum = arr[0];
 
@@ -437,7 +442,336 @@ const maxSubArray = arr => {
     maxSum = Math.max(maxSum, currentSum);
   }
 
-  return maxSum
+  return maxSum;
+};
+
+console.log(
+  "maximum sum of contiguous array:",
+  maxSubArray([-2, 2, 5, -11, 6])
+); // [2, 5] => 7
+
+/* ============= Replit examples ============== */
+// Understanding this with arrow functions
+// 1. arrow functions do not have their own this binding or prototype and cannot be used as a constructor.
+// 2. Arrow functions have lexical this, meaning the value of this is determined by the surrounding scope.
+const printNumbers = {
+  phrase: "The current value is:",
+  numbers: [1, 2, 3, 4],
+
+  loop() {
+    this.numbers.forEach(function (number) {
+      console.log(this.phrase, number);
+    });
+  },
+};
+
+printNumbers.loop();
+// Above call would return undefined 1, undefined 2 and so on.
+// Traditional function will not determine its `this` value from the scope of the environment, which is the printNumbers object.
+
+// To fix this we need to bind the annonymous function passed to forEach as
+/*
+loop() {
+  // Bind the `this` from printNumbers to the inner forEach function
+  this.numbers.forEach(
+    function (number) {
+      console.log(this.phrase, number)
+    }.bind(this),
+  )
+}
+*/
+
+// With arrow functions we don't need to bind `this`, because `this` value is determined based on the its lexical scope
+/*
+loop() {
+  this.numbers.forEach((number) => {
+    console.log(this.phrase, number)
+  })
+}
+*/
+
+function calculateDiscount(amount, discount, callback) {
+  // Callbacks
+  if (amount < 0 || discount > 100) {
+    callback(
+      new Error(
+        "amount cannot be less than 0 or discount cannot be greater than 100"
+      )
+    );
+  } else {
+    const productDiscount = amount * (discount / 100);
+    const promiseResult = new Promise((resolve, reject) => {
+      setTimeout(() => resolve(productDiscount), 3000);
+    });
+
+    callback(null, promiseResult);
+  }
 }
 
-console.log('maximum sum of contiguous array:', maxSubArray([-2, 2, 5, -11, 6])); // [2, 5] => 7
+calculateDiscount(82, 20, async (err, res) => {
+  if (err) throw err;
+  console.log("res-1", await res);
+});
+
+calculateDiscount(100, 20, async (err, res) => {
+  if (err) throw err;
+  console.log("res-2", await res);
+});
+
+// Custom JS map
+function myMap(arr, callback) {
+  let res = [];
+  for (let i = 0; i < arr.length; i++) {
+    res.push(callback(arr[i]));
+    callback(arr[i], i, arr);
+  }
+  return res;
+}
+
+const doubleIt = (a) => a * 2;
+
+const doubleArr = myMap([1, 2, 3], doubleIt);
+
+// console.log("double arr", doubleArr);
+
+// const nums = [10, 4, 2, 5, 6]
+
+// const minA = Math.min(...nums); // or Math.min(2,4,2,5,6)
+
+// console.log({ minA })
+
+// Mastering JS Funtional Programming  - Kereki Fedrico
+
+// Classes as first class objects
+const makeHelloClass = (greeting) =>
+  class {
+    constructor(name) {
+      this.name = name;
+    }
+
+    sayHelloTo(person) {
+      console.log(`${this.name} says ${greeting} to ${person}`);
+    }
+  };
+
+const Spanish = makeHelloClass("Hola");
+new Spanish("Roy").sayHelloTo("Mang");
+
+new (makeHelloClass("Hello"))("Roy").sayHelloTo("Mand");
+
+const fullHello = (c, x, y) => new c(x).sayHelloTo(y);
+const French = makeHelloClass("BON JOUR");
+fullHello(French, "EPSILON", "ZETA");
+
+// Count the total number of occurences of a char in a string
+const charCount = (str, char) => str.split(char).length - 1;
+
+const charCount1 = (str, chr) => {
+  const charMap = {};
+  for (const char of str) {
+    if (char in charMap) {
+      charMap[char] += 1;
+    } else {
+      charMap[char] = 1;
+    }
+  }
+
+  return charMap[chr];
+};
+console.log(
+  "\nChar count:",
+  charCount("Heolllok", "l"),
+  "Heolllok".split("l"),
+  charCount1("my name is namma", "m")
+);
+
+// Check if an object is empty
+const isEmpty = (obj) =>
+  Reflect.ownKeys(obj).length === 0 && obj.constructor === Object;
+
+// Get the days between 2 dates
+const daysBetween = (date1, date2) =>
+  Math.ceil(Math.abs(date1 - date2) / (1000 * 60 * 60 * 24));
+
+console.log(
+  "\nDays between:",
+  daysBetween(new Date("2019-1-9"), new Date("2021-2-9"))
+);
+
+// Shuffle an array
+const arrayShuffle = (arr) => arr.sort(() => 0.5 - Math.random());
+
+// REGEX
+// Check password
+function checkPassword(password) {
+  const oneLowercaseLetter = /(?=.*[a-z])/; // Positive look ahead; use ! for negative look ahead (= should be replaced by !)
+  const oneUppercaseLetter = /(?=.*[A-Z])/;
+  const oneDigit = /(?=.*[0-9])/;
+  const oneSpecialCharacter = /(?=.*[!@#$%^&*])/;
+  const minimumEightCharacters = /(?=.{8,})/;
+
+  const isValid =
+    oneLowercaseLetter.test(password) &&
+    oneUppercaseLetter.test(password) &&
+    oneDigit.test(password) &&
+    oneSpecialCharacter.test(password) &&
+    minimumEightCharacters.test(password);
+
+  return isValid ? "Your password is valid!" : "Your password is not valid!";
+}
+
+console.log(checkPassword("Pd123#uyt"));
+console.log(checkPassword("dd123#uyt"));
+
+// Look behind
+// str.match(/(?<=\$)\d+/) // Matches $30 in the string
+
+// Capturing groups and reusing the pattern
+let repeatStr = "regex regex";
+let repeatRegex = /(\w+)\s\1/; // \1 to repeat the capture group
+repeatRegex.test(repeatStr); // Returns true
+console.log("RegEx capturing groups: Strings:", repeatStr.match(repeatRegex)); // Returns ["regex regex", "regex"]
+
+let repeatNum = "42 42 42";
+// Match exactly 3 times, could be any number with a space in between
+let reRegex = /^(\d+)\s\1\s\1$/; // Returns ["42 42 42", "42"]
+reRegex.test(repeatNum);
+console.log("RegEx capturing groups: numbers:", repeatNum.match(reRegex));
+
+// Remove whitespaces from the begining and at the end using regex
+let hello = "   Hello, World!  ";
+let wsRegex = /^\s+|\s+$/g;
+let result = hello.replace(wsRegex, "");
+console.log("string without spaces:", result);
+
+// Node's EventEmitter implementation
+// Event Emitter class
+class EventEmitter {
+  eventTypes = {}; // {event: [callback1, callback2]}
+  on(eventType, callback) {
+    if (this.eventTypes[eventType]) {
+      return;
+      // this.eventTypes[eventType] = this.eventTypes[eventType].concat(callback)
+    } else {
+      this.eventTypes[eventType] = callback;
+      // this.eventTypes[eventType] = [callback]
+    }
+  }
+
+  emit(eventType, ...params) {
+    this.eventTypes[eventType](...params);
+    // this.eventTypes[eventType].forEach(callback => callback(...params))
+  }
+}
+
+// client code
+const em = new EventEmitter();
+
+console.log("\nCustom EventEmitter");
+em.on("err", (err, date) => {
+  console.log(err, date);
+});
+
+// em.on('err', (err, date) => {
+//   console.log(err, date)
+// })
+
+em.on("success", (data) => {
+  console.log("success!", data);
+});
+
+em.emit("err", new Error("Wrong input"), new Date());
+em.emit("success", "Done executing");
+// em.emit('success', new Error('error'));
+em.emit("success", "Another success event");
+
+const arr = [
+  [1, 2, 3],
+  [3, 4, 5, 6],
+  [7, 8, 9],
+  [10, 11, 12, 13, 14],
+];
+
+const read2dArray = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      console.log(arr[i][j]);
+    }
+  }
+};
+
+// read2dArray(arr)
+
+const url = require("url");
+
+const dataHandler = (event) => {
+  // const {request} = event.Records[0].cf
+  // const objectUri = request.uri
+  const myURL = new URL(event);
+
+  console.log("myURL", url.parse(event));
+
+  const request = {};
+  // Rewrite S3 origin request URIs for objects without a file extension
+  if (!event.match(/[^/]\w+\.\w+$/)) {
+    console.log(`Rewriting ${event} to /index.html.`);
+    request.uri = "/index.html";
+  }
+
+  return request;
+};
+
+// console.log('dataHandler:', dataHandler('https://hello.com/new-ui?email=test'))
+
+// let aa = [1, 2, 3]
+
+// console.log(aa.shift(), aa)
+
+// for (let [i, j] of [1, 2, 3].entries()) {
+//   console.log('for..of', i, j)
+// }
+
+// Chaining methods with callbacks, onSuccess => then and onError => catch in the promises API
+class Animal {
+  makesSound = "";
+  name = "";
+  error = "";
+  sounds = {
+    dog: "Bark...",
+    cat: "Meow...",
+  };
+
+  constructor(name) {
+    this.name = name;
+  }
+
+  onSuccess(successCallback) {
+    if (this.name) {
+      this.makesSound = `I'm a ${this.name} and I ${
+        this.sounds[this.name.toLowerCase()]
+      }`;
+      successCallback(this.makesSound);
+    }
+    return this;
+  }
+
+  // Expecting onError to be called at the end, hence not returning 'this', not allowing to chain on onError method
+  onError(errorCallback) {
+    if (!this.name) {
+      this.error = new Error("Please enter a animal name, (cat or dog)");
+      errorCallback(this.error);
+    }
+  }
+}
+
+const dog = new Animal();
+
+dog
+  .onSuccess((res) => console.log(res))
+  .onError((err) => console.log("Error loading animal: ", err.message));
+
+const cat = new Animal("cat");
+
+cat
+  .onSuccess((res) => console.log(res))
+  .onError((err) => console.log("Error loading animal: ", err.message));

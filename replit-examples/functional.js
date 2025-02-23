@@ -1,8 +1,6 @@
 import axios from "axios";
 import { Map } from "immutable";
-import moment from 'moment';
-
-// General
+import moment from "moment";
 
 // Add function inspired by lodash
 function baseToNumber(value) {
@@ -35,11 +33,7 @@ const multiply = createMathOperation(
 console.log("add:", addIt(10, 5));
 console.log("multiply:", multiply(3, 4));
 
-// const { arrayDiff, arrayDiff1 } = require('./algos')
-// console.log('Array diff using set and filter:', arrayDiff([1, 2, 3], [2, 3, 4]))
-// console.log('Array diff using filter:', arrayDiff1([4, 2, 3, 5, 5], [2, 3, 4,]))
-
-// 2. Receive params from the invoking function createResource
+// 2. Receive params from the invoking function `createResource`
 const readUser = (opts) => {
   const { env, urls = [] } = opts;
 
@@ -57,7 +51,7 @@ const readUser = (opts) => {
 // readUser is returned with additional info back to createSingleResource
 // That is finally used as res
 const createResource = (fn) => {
-  const data = fn(); // Args can be passed from here too, if they are common in all the cases
+  const data = fn(); // Args can be passed from here too, if they are common for all the cases
 
   return { data, name: "Punith K" };
 };
@@ -98,15 +92,10 @@ const userEnvEmails = createUserEnvWithUrls({
 console.log({ userEnv, userEnvEmails, userEnvInlineArgs });
 
 // Referernce: https://github.com/getify/Functional-Light-JS/blob/master/manuscript/ch1.md/#chapter-1-why-functional-programming
-
 // Reference: https://mostly-adequate.gitbook.io/mostly-adequate-guide/
-// A pure function is a function that, given the same input, will always return the same output and does not have any observable side effect.
 
-// 1. Pure Function
-// A pure function is a function that, given the same input, will always return the same output and does not have any observable side effect.
-
-// 1.1 Side effects
-// A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result.
+// Pure Function: A pure function is a function that, given the same input, will always return the same output and does not have any observable side effect.
+// Side effects: A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result.
 console.log("\nPure function examples:");
 // impure
 let minimum = 21; // Any changes to minimum by other users would effect the result of checkAge()
@@ -149,16 +138,20 @@ const squareNumber = memoize((x) => x * x);
 console.log("memoize:", squareNumber(4)); // 16
 console.log("memoized value returned:", squareNumber(4)); // 16, returns cache for input 4
 
-// 1.2 Memoizing a function
-// Transform some impure functions into pure ones by delaying evaluation, here it doesn't cache the results of the http call, rather it caches the generated function.
+// Memoizing a function
+// Transform some impure functions into pure ones by delaying evaluation,
+// here it doesn't cache the results of the http call, rather it caches the generated function.
 const pureHttpCall = memoize((url, params) => () => axios.get(url, params));
 
-// pureHttpCall('https://jsonplaceholder.typicode.com/todos/1')().then(res => console.log(res.data)).catch(err => console.error(err))
+// pureHttpCall('https://jsonplaceholder.typicode.com/todos/1')()
+// .then(res => console.log(res.data))
+// .catch(err => console.error(err))
 
-// pureHttpCall('https://jsonplaceholder.typicode.com/todos/2')().then(res => console.log(res.data)).catch(err => console.error(err))
+// pureHttpCall('https://jsonplaceholder.typicode.com/todos/2')()
+// .then(res => console.log(res.data))
+// .catch(err => console.error(err))
 
-// 1.3 Reducing code
-
+// Reducing code
 const jobe = Map({ name: "Jobe", hp: 20, team: "red" });
 const michael = Map({ name: "Michael", hp: 20, team: "green" });
 const decrementHP = (p) => p.set("hp", p.get("hp") - 1);
@@ -181,10 +174,11 @@ const punch1 = (a, t) => t.set("hp", t.get("hp") - 1);
 
 console.log("Reduced code:", punch1(michael, jobe).toJSON());
 
-// 1.4 Parallelism
-// We can run any pure function in parallel since it does not need access to shared memory and it cannot, by definition, have a race condition due to some side effect
+// Parallelism
+// We can run any pure function in parallel since it does not need access to shared memory and it cannot,
+// by definition, have a race condition due to some side effect
 
-// 2. Currying
+// Currying
 // Call a function with fewer arguments than it expects. It returns a function that takes the remaining arguments.
 
 // Curry helper function
@@ -196,7 +190,7 @@ function curry(fn) {
       // `bind` attaches `this` and returns the function and it needs to be invoked separately
       return $curry.bind(null, ...args);
     }
-    // `call` attaches `this` into function and executes the function immediately:
+    // `call` attaches `this` into function and executes the function immediately
     return fn.call(null, ...args);
   };
 }
@@ -217,13 +211,15 @@ function sum1(a, b, c) {
   return a + b + c;
 }
 
-let curriedSum = curry1(sum1);
+// let curriedSum = curry1(sum1);
+let curriedSum = curry(sum1);
 
 curriedSum(1, 2, 3); // 6, still callable normally
 curriedSum(1)(2, 3); // 6, partial currying of 1st arg
 curriedSum(1)(2)(3); // 6, full currying
 
-// Last argument in the callback fn to be passed to curry should be the data to be operated on, common algorithms/logic to be applied, should be passed as first, second arguments, and so on.
+// Last argument in the callback fn to be passed to curry should be the data to be operated on,
+// common algorithms/logic to be applied, should be passed as first, second arguments, and so on.
 
 const add2 = (x) => (y) => x + y;
 const increment = add2(1);
@@ -284,8 +280,7 @@ const getName = prop("name");
 
 console.log("Get property of an object:", getName(user));
 
-// 3. Composition
-
+// Composition
 // Compose utility function for variadic arguments
 const compose =
   (...fns) =>
@@ -303,7 +298,7 @@ const pipe =
 // compose with reduce executes the functions from right to left
 const composeLR = (...fns) => fns.reduce(pipe);
 
-// compose with reduceRight executes the functions from right to left
+// compose with reduceRight executes the functions from left to right
 const composeRL = (...fns) => fns.reduceRight(pipe);
 
 // Simple compose for 2 params
@@ -371,8 +366,10 @@ const angry = compose(exclaim, toUpperCase);
 const loudLastUpper = compose(angry, last);
 */
 
-// 3.1 Pointfree style
-// Pointfree style means never having to say your data. It means functions that never mention the data upon which they operate. First class functions, currying, and composition all play well together to create this style
+// Pointfree style
+// Pointfree style means never having to say your data. It means functions that
+// never mention the data upon which they operate. First class functions,
+// currying, and composition all play well together to create this style
 
 // not pointfree because we mention the data: word
 const snakeCase = (word) => word.toLowerCase().replace(/\s+/gi, "_");
