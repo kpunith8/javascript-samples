@@ -7,7 +7,11 @@ import {
 } from "./linked-list.js";
 import { BinarySearchTree, treeTraverse } from "./trees.js";
 import { Graph } from "./graph.js";
-import { depthFirstSearchPrint, Node, depthFirstRecursive } from "./dfs-tree.js";
+import {
+  depthFirstSearchPrint,
+  Node,
+  depthFirstRecursive,
+} from "./dfs-tree.js";
 
 const myHashTable = new HashTable(1); // try the size 2
 myHashTable.set("grapes", 10);
@@ -45,7 +49,7 @@ console.log("Linkedlist before deletion:", myLinkedList.print());
 // myLinkedList.insert(3, 45)
 
 // console.log("Linkedlist after deletion:", myLinkedList.print())
-console.log("Reversed LL", JSON.stringify(myLinkedList.reverse1()));
+console.log("Reversed LL(reverse1)", JSON.stringify(myLinkedList.reverse1()));
 
 const myDoublyLinkedList = new DoublyLinkedList(5);
 myDoublyLinkedList.append(6);

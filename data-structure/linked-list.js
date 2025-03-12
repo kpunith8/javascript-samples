@@ -79,7 +79,6 @@ export class LinkedList {
   }
 
   remove(index) {
-
     // Implement the edge cases, deleting the single item in the list
     // if(this.length == 1 && index > 0) {
     //   console.log(`There is only ${this.length} item in the list, not able to delete any more item`)
@@ -107,14 +106,14 @@ export class LinkedList {
   }
 
   reverse() {
-    if(!this.head.next) {
+    if (!this.head.next) {
       return this;
     }
 
     let firstNode = this.head;
     this.tail = this.head;
     let secondNode = firstNode.next;
-    while(secondNode) {
+    while (secondNode) {
       const temp = secondNode.next;
       secondNode.next = firstNode;
       firstNode = secondNode;
@@ -132,14 +131,14 @@ export class LinkedList {
     let current = this.head;
     let prev = null;
 
-    while(current) {
+    while (current) {
       next = current.next;
       current.next = prev;
       prev = current;
       current = next;
     }
 
-    return prev
+    return prev;
   }
 }
 
@@ -161,7 +160,7 @@ export class DoublyLinkedList {
       prev: null,
     };
 
-    newNode.prev = this.tail
+    newNode.prev = this.tail;
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
@@ -224,7 +223,6 @@ export class DoublyLinkedList {
   }
   // Update this
   remove(index) {
-
     // Implement the edge cases, deleting the single item in the list
     // if(this.length == 1 && index > 0) {
     //   console.log(`There is only ${this.length} item in the list, not able to delete any more item`)
@@ -284,8 +282,9 @@ export class StackLL {
       return null;
     }
 
-    if(this.length === 0) { // this.bottom === this.top
-      this.bottom = null
+    if (this.length === 0) {
+      // this.bottom === this.top
+      this.bottom = null;
     }
     // May not be used in the implementation, it is avoid
     // JS from not being gargage collecting the top item
@@ -302,21 +301,20 @@ export class QueueLL {
   constructor() {
     this.first = null;
     this.last = null;
-    this.length = 0
+    this.length = 0;
   }
 
   peek() {
-    return this.first
+    return this.first;
   }
 
   enqueue(value) {
-    const newNode = new Node(value)
+    const newNode = new Node(value);
 
-    if(this.length === 0) {
+    if (this.length === 0) {
       this.first = newNode;
-      this.last = newNode
-    }
-    else {
+      this.last = newNode;
+    } else {
       this.last.next = newNode;
       this.last = newNode;
     }
@@ -326,16 +324,82 @@ export class QueueLL {
   }
 
   dequeue() {
-    if(!this.first) {
-      return null
+    if (!this.first) {
+      return null;
     }
 
-    if(this.first === this.last) {
-      this.last = null
+    if (this.first === this.last) {
+      this.last = null;
     }
 
-    this.first = this.first.next
+    this.first = this.first.next;
     this.length--;
     return this;
   }
+}
+
+// Slow and speed pointer approach
+// Detecting a Cycle in a Linked List (Floyd’s Cycle Detection)
+// This algorithm determines whether a linked list has a cycle. If a cycle exists, the fast pointer will eventually meet the slow pointer.
+function hasCycle(head) {
+  let slow = head,
+    fast = head;
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next; // Move slow pointer one step
+    fast = fast.next.next; // Move fast pointer two steps
+    if (slow === fast) {
+      // Cycle detected
+      return true;
+    }
+  }
+  // No cycle found
+  return false;
+}
+
+// Slow and speed pointer approach
+// Finding the Middle of a Linked List
+// In this problem, when the fast pointer reaches the end, the slow pointer will be in the middle.
+function findMiddle(head) {
+  let slow = head,
+    fast = head;
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next; // Move slow pointer one step
+    fast = fast.next.next; // Move fast pointer two steps
+  }
+  // Slow pointer is now at the middle of the list
+  return slow;
+}
+
+// Slow and speed pointer approach
+// Checking for a Palindrome in a Linked List
+// This approach involves using the two-pointer technique to first find the middle of the linked list, then reverse the second half, and finally compare both halves for equality.
+function isPalindrome(head) {
+  if (!head || !head.next) return true;
+
+  // Step 1: Find the middle of the list
+  let slow = head,
+    fast = head;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  // Step 2: Reverse the second half of the list
+  let prev = null;
+  while (slow) {
+    let next = slow.next;
+    slow.next = prev;
+    prev = slow;
+    slow = next;
+  }
+
+  // Step 3: Compare the first and second halves
+  let left = head,
+    right = prev;
+  while (right) {
+    if (left.val !== right.val) return false;
+    left = left.next;
+    right = right.next;
+  }
+  return true;
 }

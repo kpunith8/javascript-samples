@@ -111,3 +111,69 @@ const anagrams = (s1, s2) => {
 };
 
 console.log("anagrams:", anagrams("restful", "fluster"));
+
+// https://structy.net/problems/most-frequent-char
+const mostFrequentChar = (s) => {
+  const count = {};
+
+  for (let char of s) {
+    if (char in count) {
+      count[char] += 1;
+    } else {
+      count[char] = 0;
+    }
+  }
+
+  let best = null;
+  for (let char in count) {
+    if (best === null || count[char] > count[best]) {
+      best = char;
+    }
+  }
+
+  return best;
+};
+
+console.log("mostFrequentChar:", mostFrequentChar("bookeepero"));
+
+const pairSum = (numbers, targetSum) => {
+  const previousNumbers = {};
+
+  for (let i = 0; i < numbers.length; i++) {
+    const currentNumber = numbers[i];
+    const complement = targetSum - currentNumber; // For the pair product, use targetSum / currentNumber
+    if (previousNumbers[complement] !== undefined) {
+      return [previousNumbers[complement], i];
+    } else {
+      previousNumbers[currentNumber] = i;
+    }
+  }
+};
+
+console.log("pairSum:", pairSum([1, 2, 3, 4, 6], 6));
+
+// https://structy.net/problems/uncompress
+const uncompress = (s) => {
+  let result = [];
+  const numbers = "0123456789";
+  let i = 0;
+  let j = 0;
+
+  while (j < s.length) {
+    if (numbers.includes(s[j])) {
+      j += 1;
+    } else {
+      const count = Number(s.slice(i, j));
+      for (let k = 0; k < count; k += 1) {
+        result.push(s[j]); // String concatenation would take O(n) time complexity
+      }
+
+      j += 1;
+      i = j;
+    }
+  }
+
+  return result.join("");
+};
+
+console.log("uncompress:", uncompress("2a5b1c"), uncompress("10g"));

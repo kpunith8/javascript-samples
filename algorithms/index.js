@@ -55,11 +55,6 @@ console.log(
   algos.reverseStringLib("Hello World")
 );
 
-console.log(
-  "Merged sorted arrays:",
-  algos.mergeSortedArrays([1, 3, 4, 55], [4, 11, 44])
-);
-
 console.log("Print all the pairs of an array:");
 algos.printAllThePairs([1, 2, 3]);
 

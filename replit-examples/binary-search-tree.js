@@ -132,6 +132,8 @@ class BinarySearchTree {
     }
   }
 
+  // BFS - Queue
+  // DFS - Stack
   BreadthFirstSearch() {
     let currentNode = this.root;
     let list = [];

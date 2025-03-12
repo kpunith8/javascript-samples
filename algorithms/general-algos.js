@@ -177,41 +177,6 @@ export const reverseStringLib = (str) => {
   return str.split("").reverse().join("");
 };
 
-/* Merge sorted arrays */
-export const mergeSortedArrays = (arr1, arr2) => {
-  let mergedArray = [];
-  let array1Item = arr1[0];
-  let array2Item = arr2[0];
-  let i = 1;
-  let j = 1;
-
-  if (!arr1 || !arr2) {
-    return;
-  }
-
-  if (arr1.length === 0) {
-    return arr2;
-  }
-
-  if (arr2.length === 0) {
-    return arr1;
-  }
-
-  while (array1Item || array2Item) {
-    if (!array2Item || array1Item < array2Item) {
-      mergedArray = [...mergedArray, array1Item];
-      array1Item = arr1[i];
-      i++;
-    } else {
-      mergedArray = [...mergedArray, array2Item];
-      array2Item = arr2[j];
-      j++;
-    }
-  }
-
-  return mergedArray;
-};
-
 // Log all the pairs of an array
 // for an array, a = [1,2,3] => [1,1], [1,2], [1,3], [2, 1], [2, 2], [2, 3] and son on
 export const printAllThePairs = (arr) => {
@@ -385,29 +350,6 @@ console.log("transpose of an array", arrayTranspose(arr1));
 
 console.log("Rotate an image", rotateImage(arr1));
 
-// [-6, -4, -1, 1, 2, 5] => [1, 1, 4, 16, 25, 36]
-const sortedSquaredArray = (arr) => {
-  const result = [];
-  let left = 0;
-  let right = arr.length - 1;
-
-  // Keep 2 pointers, one at the start and one at the end
-  // If the absolute value of the element at the start is greater than the element at the end, put the squared value to the end
-  for (let i = arr.length - 1; i >= 0; i--) {
-    if (Math.abs(arr[left]) > arr[right]) {
-      result[i] = arr[left] * arr[left];
-      left++;
-    } else {
-      result[i] = arr[right] * arr[right];
-      right--;
-    }
-  }
-
-  return result;
-};
-
-console.log("Sorted squared array", sortedSquaredArray([-6, -4, -1, 1, 2, 5]));
-
 // sum of two numbers in 2 arrays, takes O(a + b) time
 const sumOfTwoNumbers = (arr1, arr2, target) => {
   const match = {};
@@ -424,7 +366,6 @@ const sumOfTwoNumbers = (arr1, arr2, target) => {
 
   return false;
 };
-// Another solution would be looping through both arrays, that could take O(n^2) time
 
 console.log(
   "sumOfTwoNumbers:",
@@ -450,7 +391,6 @@ console.log(
   maxSubArray([-2, 2, 5, -11, 6])
 ); // [2, 5] => 7
 
-/* ============= Replit examples ============== */
 // Understanding this with arrow functions
 // 1. arrow functions do not have their own this binding or prototype and cannot be used as a constructor.
 // 2. Arrow functions have lexical this, meaning the value of this is determined by the surrounding scope.
@@ -465,7 +405,7 @@ const printNumbers = {
   },
 };
 
-printNumbers.loop();
+// printNumbers.loop();
 // Above call would return undefined 1, undefined 2 and so on.
 // Traditional function will not determine its `this` value from the scope of the environment, which is the printNumbers object.
 
@@ -534,35 +474,6 @@ const doubleArr = myMap([1, 2, 3], doubleIt);
 
 // console.log("double arr", doubleArr);
 
-// const nums = [10, 4, 2, 5, 6]
-
-// const minA = Math.min(...nums); // or Math.min(2,4,2,5,6)
-
-// console.log({ minA })
-
-// Mastering JS Funtional Programming  - Kereki Fedrico
-
-// Classes as first class objects
-const makeHelloClass = (greeting) =>
-  class {
-    constructor(name) {
-      this.name = name;
-    }
-
-    sayHelloTo(person) {
-      console.log(`${this.name} says ${greeting} to ${person}`);
-    }
-  };
-
-const Spanish = makeHelloClass("Hola");
-new Spanish("Roy").sayHelloTo("Mang");
-
-new (makeHelloClass("Hello"))("Roy").sayHelloTo("Mand");
-
-const fullHello = (c, x, y) => new c(x).sayHelloTo(y);
-const French = makeHelloClass("BON JOUR");
-fullHello(French, "EPSILON", "ZETA");
-
 // Count the total number of occurences of a char in a string
 const charCount = (str, char) => str.split(char).length - 1;
 
@@ -601,8 +512,7 @@ console.log(
 // Shuffle an array
 const arrayShuffle = (arr) => arr.sort(() => 0.5 - Math.random());
 
-// REGEX
-// Check password
+// Check password - regex
 function checkPassword(password) {
   const oneLowercaseLetter = /(?=.*[a-z])/; // Positive look ahead; use ! for negative look ahead (= should be replaced by !)
   const oneUppercaseLetter = /(?=.*[A-Z])/;
@@ -644,47 +554,6 @@ let wsRegex = /^\s+|\s+$/g;
 let result = hello.replace(wsRegex, "");
 console.log("string without spaces:", result);
 
-// Node's EventEmitter implementation
-// Event Emitter class
-class EventEmitter {
-  eventTypes = {}; // {event: [callback1, callback2]}
-  on(eventType, callback) {
-    if (this.eventTypes[eventType]) {
-      return;
-      // this.eventTypes[eventType] = this.eventTypes[eventType].concat(callback)
-    } else {
-      this.eventTypes[eventType] = callback;
-      // this.eventTypes[eventType] = [callback]
-    }
-  }
-
-  emit(eventType, ...params) {
-    this.eventTypes[eventType](...params);
-    // this.eventTypes[eventType].forEach(callback => callback(...params))
-  }
-}
-
-// client code
-const em = new EventEmitter();
-
-console.log("\nCustom EventEmitter");
-em.on("err", (err, date) => {
-  console.log(err, date);
-});
-
-// em.on('err', (err, date) => {
-//   console.log(err, date)
-// })
-
-em.on("success", (data) => {
-  console.log("success!", data);
-});
-
-em.emit("err", new Error("Wrong input"), new Date());
-em.emit("success", "Done executing");
-// em.emit('success', new Error('error'));
-em.emit("success", "Another success event");
-
 const arr = [
   [1, 2, 3],
   [3, 4, 5, 6],
@@ -702,24 +571,24 @@ const read2dArray = (arr) => {
 
 // read2dArray(arr)
 
-const url = require("url");
+// const url = require("url");
 
-const dataHandler = (event) => {
-  // const {request} = event.Records[0].cf
-  // const objectUri = request.uri
-  const myURL = new URL(event);
+// const dataHandler = (event) => {
+//   // const {request} = event.Records[0].cf
+//   // const objectUri = request.uri
+//   const myURL = new URL(event);
 
-  console.log("myURL", url.parse(event));
+//   console.log("myURL", url.parse(event));
 
-  const request = {};
-  // Rewrite S3 origin request URIs for objects without a file extension
-  if (!event.match(/[^/]\w+\.\w+$/)) {
-    console.log(`Rewriting ${event} to /index.html.`);
-    request.uri = "/index.html";
-  }
+//   const request = {};
+//   // Rewrite S3 origin request URIs for objects without a file extension
+//   if (!event.match(/[^/]\w+\.\w+$/)) {
+//     console.log(`Rewriting ${event} to /index.html.`);
+//     request.uri = "/index.html";
+//   }
 
-  return request;
-};
+//   return request;
+// };
 
 // console.log('dataHandler:', dataHandler('https://hello.com/new-ui?email=test'))
 
@@ -764,14 +633,44 @@ class Animal {
   }
 }
 
-const dog = new Animal();
+// const dog = new Animal();
 
-dog
-  .onSuccess((res) => console.log(res))
-  .onError((err) => console.log("Error loading animal: ", err.message));
+// dog
+//   .onSuccess((res) => console.log(res))
+//   .onError((err) => console.log("Error loading animal: ", err.message));
 
-const cat = new Animal("cat");
+// const cat = new Animal("cat");
 
-cat
-  .onSuccess((res) => console.log(res))
-  .onError((err) => console.log("Error loading animal: ", err.message));
+// cat
+//   .onSuccess((res) => console.log(res))
+//   .onError((err) => console.log("Error loading animal: ", err.message));
+
+const minimumSubArraySum = (nums, target) => {
+  let left = 0;
+  let total = 0;
+  let res = Infinity;
+
+  for (let i = 0; i < nums.length; i++) {
+    total += nums[i];
+
+    while (total >= target) {
+      res = Math.min(res, i - left + 1);
+      total -= nums[left];
+      left += 1;
+    }
+  }
+
+  if (res === Infinity) return 0;
+  else return res;
+};
+
+// Input: target = 7, nums = [2,3,1,2,4,3]
+//  Output: 2
+//  Explanation: The subarray [4,3] has the minimal length under the problem constraint.
+
+//  Input: target = 4, nums = [1,4,4]
+//  Output: 1
+
+//  Input: target = 11, nums = [1,1,1,1,1,1,1,1]
+//  Output: 0
+console.log("minimumSubArraySum: ", minimumSubArraySum([2, 3, 1, 2, 4, 3], 7));

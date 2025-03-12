@@ -1,3 +1,5 @@
+const arr1 = [3, 0, 2, 5, -1, 4, 1];
+
 // Compare the next element and swap if its greater than the previous, O(n^2)
 const bubbleSort = (arr) => {
   const length = arr.length;
@@ -5,9 +7,10 @@ const bubbleSort = (arr) => {
   for (let i = 0; i < length; i++) {
     for (let j = 0; j < length; j++) {
       if (arr[j] > arr[j + 1]) {
-        let temp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = temp;
+        //   let temp = arr[j];
+        //   arr[j] = arr[j + 1];
+        //   arr[j + 1] = temp;
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       }
     }
   }
@@ -18,7 +21,6 @@ const bubbleSort = (arr) => {
 console.log("Bubble sort:", bubbleSort(arr1));
 
 // Find the minimum element in the list and swap with the first element and so on, O(n^2)
-
 // First item in the array becomes min
 const selectionSort = (arr) => {
   const length = arr.length;
@@ -40,29 +42,8 @@ const selectionSort = (arr) => {
 
 console.log("Selection sort:", selectionSort(arr1));
 
-// Insert the minimum number found to the right position
+// Inserstion sort
 const insertionSort = (arr) => {
-  const length = arr.length;
-  for (let i = 0; i < length; i++) {
-    if (arr[i] < arr[0]) {
-      // Move the number to first position
-      arr.unshift(arr.splice(i, 1)[0]);
-    } else {
-      // Move the number to the right position
-      for (let j = 1; j < i; j++) {
-        if (arr[i] > arr[j - 1] && arr[i] < arr[j]) {
-          arr.splice(j, 0, arr.splice(j, 1)[0]);
-        }
-      }
-    }
-  }
-  return arr;
-};
-
-console.log("Insertion sort:", insertionSort(arr1));
-
-// Inserstion sort - another version
-const insertionSort1 = (arr) => {
   const length = arr.length;
   // First item in the array considered sorted by default and compared and inserted
   for (let i = 1; i < length; i++) {
@@ -79,11 +60,12 @@ const insertionSort1 = (arr) => {
   return arr;
 };
 
-console.log("Insertion sort:", insertionSort1([3, 0, 2, 5, -1, 4, 1]));
+console.log("Insertion sort:", insertionSort([3, 0, 2, 5, -1, 4, 1]));
 
 // Bubble, selection, and insertion sorts, sort the array in place doesn't take more memory hence space complexity is O(1)
 
 // egghead.io - Quick sort
+// O(n log n)
 function quickSort(array) {
   if (array.length < 2) return array;
   let pivotIndex = Math.floor(array.length / 2);
@@ -107,83 +89,86 @@ const merge = (arr, start, mid, end) => {
   const temp = new Array(end - start + 1);
 
   // crawlers for both intervals and for temp
-  let i = start
-  let j = mid + 1
-  let k = 0
+  let i = start;
+  let j = mid + 1;
+  let k = 0;
 
   // traverse both arrays and in each iteration add smaller of both elements in temp
   while (i <= mid && j <= end) {
     if (arr[i] <= arr[j]) {
       temp[k] = arr[i]; // could be, temp[k++] = arr[i++] and remove the increment steps
-      k += 1; i += 1;
-    }
-    else {
+      k += 1;
+      i += 1;
+    } else {
       temp[k] = arr[j];
-      k += 1; j += 1;
+      k += 1;
+      j += 1;
     }
   }
 
   // add elements left in the first array
   while (i <= mid) {
     temp[k] = arr[i];
-    k += 1; i += 1;
+    k += 1;
+    i += 1;
   }
 
   // add elements left in the second array
   while (j <= end) {
     temp[k] = arr[j];
-    k += 1; j += 1;
+    k += 1;
+    j += 1;
   }
 
   // copy temp to original interval
   for (i = start; i <= end; i += 1) {
-    arr[i] = temp[i - start]
+    arr[i] = temp[i - start];
   }
-}
+};
 
 export const mergeSort = (arr, start, end) => {
   if (start < end) {
     const mid = Math.floor((start + end) / 2);
-    console.log({ start, end })
+    // recursively divide the array into two halves
     mergeSort(arr, start, mid);
     mergeSort(arr, mid + 1, end);
+    // merge the sorted halves
     merge(arr, start, mid, end);
   }
 
-  return arr
-}
-
+  return arr;
+};
 
 const merge1 = (left, right) => {
-  let arr = []
+  let arr = [];
   // Break out of loop if any one of the array gets empty
   while (left.length && right.length) {
     // Pick the smaller among the smallest element of left and right sub arrays
     if (left[0] < right[0]) {
-      arr.push(left.shift())
+      arr.push(left.shift());
     } else {
-      arr.push(right.shift())
+      arr.push(right.shift());
     }
   }
 
   // Concatenating the leftover elements
   // (in case we didn't go through the entire left or right array)
-  return [...arr, ...left, ...right]
-}
+  return [...arr, ...left, ...right];
+};
 
-export const mergeSort1 = array => {
-  const half = array.length / 2
+export const mergeSort1 = (array) => {
+  const half = array.length / 2;
 
   // Base case or terminating case
   if (array.length < 2) {
-    return array
+    return array;
   }
 
-  const left = array.splice(0, half)
-  return merge1(mergeSort1(left), mergeSort1(array))
-}
+  const left = array.splice(0, half);
+  return merge1(mergeSort1(left), mergeSort1(array));
+};
 
-/* Merge sorted arrays */
+/* Merge 2 sorted arrays */
 const mergeSortedArrays2 = (arr1, arr2) => {
   let mergedArray = [];
   let array1Item = arr1[0];
