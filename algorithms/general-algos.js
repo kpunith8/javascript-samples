@@ -106,6 +106,24 @@ export const checkParentheses = (word) => {
   return true;
 };
 
+// Sliding window technique
+function lengthOfLongestSubstring(s) {
+  const map = new Map();
+  let left = 0, maxLen = 0;
+
+  for (let right = 0; right < s.length; right++) {
+      if (map.has(s[right])) {
+          left = Math.max(left, map.get(s[right]) + 1); // Move left pointer
+      }
+      map.set(s[right], right);
+      maxLen = Math.max(maxLen, right - left + 1);
+  }
+  return maxLen;
+}
+
+// Example usage:
+console.log(lengthOfLongestSubstring("abcabcbb")); // Output: 3
+
 // Remove duplicates in a string
 
 // let repeatedStr = "abcddsaddals";
@@ -674,3 +692,31 @@ const minimumSubArraySum = (nums, target) => {
 //  Input: target = 11, nums = [1,1,1,1,1,1,1,1]
 //  Output: 0
 console.log("minimumSubArraySum: ", minimumSubArraySum([2, 3, 1, 2, 4, 3], 7));
+
+// https://leetcode.com/problems/zigzag-conversion/description/
+/*
+The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this:
+P   A   H   N
+A P L S I I G
+Y   I   R
+*/
+const convertToZigZag = (inputString, numRows) => {
+  if (numRows === 1) return inputString;
+
+  const rows = new Array(Math.min(numRows, inputString.length)).fill('');
+  let direction = -1;
+  let currentRow = 0;
+
+  for (const char of inputString) {
+      rows[currentRow] += char;
+      currentRow += (direction === -1) ? 1 : -1;
+
+      if (currentRow === 0 || currentRow === numRows - 1) {
+          direction = -direction;
+      }
+  }
+
+  return rows.join('');
+}
+
+console.log('convertToZigZag:', convertToZigZag('PAYPALISHIRING', 3)); // Output: "PAHNAPLSIIGYIR"

@@ -396,4 +396,4 @@ const nonRepetedStr = repeatedStr
   .filter((item, idx, arr) => arr.indexOf(item) === idx)
   .join("");
 
-console.log("remove duplicates:", nonRepetedStr);
+console.log("nonRepetedStr:", nonRepetedStr);

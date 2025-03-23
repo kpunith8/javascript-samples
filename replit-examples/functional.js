@@ -27,7 +27,7 @@ let addIt = createMathOperation(
 );
 const multiply = createMathOperation(
   (firstValue, secondValue) => firstValue * secondValue,
-  0
+  1
 );
 
 console.log("add:", addIt(10, 5));
@@ -76,7 +76,7 @@ const userEnv = useSingleResource(readUser, {
   env: "dev",
 });
 
-// Args can be passed to createResource from useSingular resource without passing args to useSingleResource()
+// Args can be passed to createResource from useSingleResource without passing args to useSingleResource()
 const userEnvInlineArgs = useSingleResource((opts) =>
   readUser({ ...opts, ...{ urls: ["http://idontknow.com"] } })
 );
@@ -107,7 +107,7 @@ const checkAgePure = (age) => {
   return age >= minimum;
 };
 
-// splice() - mutates the orginal array each time it is applied, instead of slice() - doesn't mutate the original array
+// splice() - mutates the orginal array, use slice() instead - it doesn't mutate the original array
 
 /*
 Side effects may include, but are not limited to:
@@ -207,12 +207,21 @@ function curry1(func) {
   };
 }
 
-function sum1(a, b, c) {
+function curry2(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) return fn(...args);
+    return function (...moreArgs) {
+      return curried(...args, ...moreArgs);
+    };
+  };
+}
+
+function sum(a, b, c) {
   return a + b + c;
 }
 
-// let curriedSum = curry1(sum1);
-let curriedSum = curry(sum1);
+// let curriedSum = curry1(sum);
+let curriedSum = curry(sum);
 
 curriedSum(1, 2, 3); // 6, still callable normally
 curriedSum(1)(2, 3); // 6, partial currying of 1st arg

@@ -67,6 +67,7 @@ console.log("Insertion sort:", insertionSort([3, 0, 2, 5, -1, 4, 1]));
 // egghead.io - Quick sort
 // O(n log n)
 function quickSort(array) {
+  // Base case
   if (array.length < 2) return array;
   let pivotIndex = Math.floor(array.length / 2);
   let pivot = array[pivotIndex];

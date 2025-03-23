@@ -201,7 +201,6 @@ class MinHeap1 {
   }
 }
 
-// Example usage:
 const heap1 = new MinHeap1();
 heap1.insert(4);
 heap1.insert(5);
@@ -224,15 +223,6 @@ class MinHeapGrok3 {
     this.bubbleUp();
   }
 
-  extractMin() {
-    if (this.heap.length === 0) return null;
-    if (this.heap.length === 1) return this.heap.pop();
-    const min = this.heap[0];
-    this.heap[0] = this.heap.pop();
-    this.sinkDown();
-    return min;
-  }
-
   bubbleUp() {
     let index = this.heap.length - 1;
     while (index > 0) {
@@ -244,6 +234,15 @@ class MinHeapGrok3 {
       ];
       index = parentIndex;
     }
+  }
+
+  extractMin() {
+    if (this.heap.length === 0) return null;
+    if (this.heap.length === 1) return this.heap.pop();
+    const min = this.heap[0];
+    this.heap[0] = this.heap.pop();
+    this.sinkDown();
+    return min;
   }
 
   sinkDown() {
@@ -287,12 +286,87 @@ heap2.insert(2);
 heap2.insert(3);
 
 console.log("Min item, MinHeapGrok3:", heap2.peek());
-// console.log("Extract min:", heap2.extractMin());
 console.log("After the extraction, MinHeapGrok3:", heap2.display());
 
-// Kth Largest Element in an Array
-// Time Complexity: O(n log k)
-// Maintain a min heap of size k. If it exceeds k, remove the smallest. The top element is the kth largest. O(n log k) time, O(k) space.
+
+// MinHeap class for efficient node comparison
+class LinkedListMinHeap {
+  constructor() {
+    this.heap = []; // Array to store heap elements
+  }
+
+  // Insert a node into the heap
+  insert(node) {
+    this.heap.push(node);
+    this.bubbleUp();
+  }
+
+  // Extract the minimum node from the heap
+  extractMin() {
+    if (this.heap.length === 0) return null;
+    if (this.heap.length === 1) return this.heap.pop(); // JS built-in pop
+
+    const min = this.heap[0];
+    this.heap[0] = this.heap.pop(); // Replace root with last element
+    this.sinkDown();
+    return min;
+  }
+
+  // Bubble up the last inserted element to maintain heap property
+  bubbleUp() {
+    let index = this.heap.length - 1;
+    while (index > 0) {
+      let parentIndex = Math.floor((index - 1) / 2); // JS built-in Math.floor
+      if (this.heap[parentIndex].val <= this.heap[index].val) break;
+      [this.heap[parentIndex], this.heap[index]] = [
+        this.heap[index],
+        this.heap[parentIndex],
+      ];
+      index = parentIndex;
+    }
+  }
+
+  // Sink down the root to maintain heap property
+  sinkDown() {
+    let index = 0;
+    const length = this.heap.length;
+    while (true) {
+      let leftChild = 2 * index + 1;
+      let rightChild = 2 * index + 2;
+      let smallest = index;
+
+      if (
+        leftChild < length &&
+        this.heap[leftChild].val < this.heap[smallest].val
+      ) {
+        smallest = leftChild;
+      }
+      if (
+        rightChild < length &&
+        this.heap[rightChild].val < this.heap[smallest].val
+      ) {
+        smallest = rightChild;
+      }
+      if (smallest === index) break;
+      [this.heap[index], this.heap[smallest]] = [
+        this.heap[smallest],
+        this.heap[index],
+      ];
+      index = smallest;
+    }
+  }
+
+  // Check if heap is empty
+  size() {
+    return this.heap.length;
+  }
+}
+
+/*
+Kth Largest Element in an Array
+Time Complexity: O(n log k)
+Maintain a min heap of size k. If it exceeds k, remove the smallest. The top element is the kth largest. O(n log k) time, O(k) space.
+*/
 function findKthLargest(nums, k) {
   const minHeap = new MinHeapGrok3();
 
@@ -314,9 +388,11 @@ class ListNode {
   }
 }
 
-// Merge K Sorted Lists: Use a min heap to store nodes by value.
-// Extract the smallest, add its next node, and build the merged list. O(n log k) time, O(k) space.
-// Time Complexity: O(n log k) (n = total nodes, k = number of lists)
+/*
+Merge K Sorted Lists: Use a min heap to store nodes by value.
+Extract the smallest, add its next node, and build the merged list. O(n log k) time, O(k) space.
+Time Complexity: O(n log k) (n = total nodes, k = number of lists)
+*/
 function mergeKLists(lists) {
   const minHeap = new MinHeapGrok3();
 
@@ -335,57 +411,180 @@ function mergeKLists(lists) {
     if (node.next) minHeap.insert({ val: node.next.val, node: node.next }); // Add next node
   }
 
-  return dummy.next;
+  return dummy.next; // Dummy node has 0 as its value as the first element
 }
 
 const l1 = new ListNode(1, new ListNode(4, new ListNode(8)));
 const l2 = new ListNode(2, new ListNode(6));
-console.log("Merge K Sorted Lists:", JSON.stringify(mergeKLists([l1, l2]))); // Output: 1 -> 2 -> 4 -> 6
+
+// Works for 2 lists
+console.log("Merge K Sorted Lists:", JSON.stringify(mergeKLists([l1, l2]))); // Output: 1 -> 2 -> 4 -> 6 -> 8
 
 // K Closest Points to Origin
 // Time Complexity: O(n log k)
 function kClosest(points, k) {
-    const minHeap = new MinHeapGrok3();
+  const minHeap = new MinHeapGrok3();
 
-    for (let [x, y] of points) {
-        const dist = x * x + y * y; // Distance squared (no need for sqrt)
-        minHeap.insert([dist, x, y]); // Store [distance, x, y]
-        console.log('minHeap:', minHeap.display())
-        if (minHeap.size() > k) minHeap.extractMin(); // Keep k closest
-    }
+  for (let [x, y] of points) {
+    const dist = x * x + y * y; // Distance squared (no need for sqrt)
+    minHeap.insert([dist, x, y]); // Store [distance, x, y]
+    console.log("minHeap:", minHeap.display());
+    if (minHeap.size() > k) minHeap.extractMin(); // Keep k closest
+  }
 
-    const result = [];
-    while (minHeap.size() > 0) {
-        const [, x, y] = minHeap.extractMin();
-        result.push([x, y]); // Extract coordinates
-    }
-    return result;
+  const result = [];
+  while (minHeap.size() > 0) {
+    const [, x, y] = minHeap.extractMin();
+    result.push([x, y]); // Extract coordinates
+  }
+  return result;
 }
 
-// Example usage:
-console.log(kClosest([[1, 3], [-2, 2]], 1)); // Output: [[-2, 2]]
+console.log(
+  "kClosest:",
+  kClosest(
+    [
+      [1, 3],
+      [-2, 2],
+    ],
+    1
+  )
+); // Output: [[-2, 2]]
 
-// Top K Frequent Elements
-// Time Complexity: O(n log k)
+/*
+Top K Frequent Elements
+Time Complexity: O(n log k)
+*/
 function topKFrequent(nums, k) {
-    const freqMap = new Map();
-    for (let num of nums) {
-        freqMap.set(num, (freqMap.get(num) || 0) + 1); // Build frequency map
-    }
+  const freqMap = new Map();
+  for (let num of nums) {
+    freqMap.set(num, (freqMap.get(num) || 0) + 1); // Build frequency map
+  }
 
-    const minHeap = new MinHeapGrok3();
-    for (let [num, freq] of freqMap) {
-        minHeap.insert([freq, num]); // Store [frequency, number]
-        if (minHeap.size() > k) minHeap.extractMin(); // Keep k most frequent
-    }
+  const minHeap = new MinHeapGrok3();
+  for (let [num, freq] of freqMap) {
+    minHeap.insert([freq, num]); // Store [frequency, number]
+    if (minHeap.size() > k) minHeap.extractMin(); // Keep k most frequent
+  }
 
-    const result = [];
-    while (minHeap.size() > 0) {
-        result.push(minHeap.extractMin()[1]); // Extract numbers
-    }
-    return result;
+  const result = [];
+  while (minHeap.size() > 0) {
+    result.push(minHeap.extractMin()[1]); // Extract numbers
+  }
+  return result;
 }
 
-// Example usage:
-console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2)); // Output: [1, 2]
+console.log("topKFrequent:", topKFrequent([1, 1, 1, 2, 2, 3], 2)); // Output: [1, 2]
 
+/*
+Sort an Almost Sorted Array (K-Sorted Array)
+Time Complexity: O(n log k), O(k) space
+*/
+function sortKSortedArray(arr, k) {
+  const minHeap = new MinHeapGrok3();
+  const result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    minHeap.insert(arr[i]); // Add elements to heap
+    if (minHeap.size() > k + 1) {
+      result.push(minHeap.extractMin()); // Extract when window exceeds k
+    }
+  }
+  while (minHeap.size() > 0) {
+    result.push(minHeap.extractMin()); // Empty remaining heap
+  }
+  return result;
+}
+
+console.log("sortKSortedArray:", sortKSortedArray([6, 5, 3, 2, 8, 10, 9], 3)); // Output: [2, 3, 5, 6, 8, 9, 10]
+
+/*
+Minimum Cost to Connect Sticks
+Time Complexity: O(n log n), O(n) space
+*/
+function connectSticks(sticks) {
+  if (sticks.length <= 1) return 0;
+  const minHeap = new MinHeapGrok3();
+
+  for (let stick of sticks) {
+    minHeap.insert(stick); // Add all sticks to heap
+  }
+
+  let cost = 0;
+  while (minHeap.size() > 1) {
+    const stick1 = minHeap.extractMin();
+    const stick2 = minHeap.extractMin();
+    const combined = stick1 + stick2;
+    cost += combined;
+    minHeap.insert(combined); // Add combined stick back
+  }
+  return cost;
+}
+
+console.log("connectSticks:", connectSticks([2, 4, 3])); // Output: 14
+
+// Function to merge K sorted linked lists
+function mergeKLinkedLists(lists) {
+  // Filter out null or empty lists and ensure K > 2
+  lists = lists.filter((list) => list !== null);
+  if (lists.length <= 2) {
+    throw new Error("Number of lists must be greater than 2");
+  }
+
+  const minHeap = new LinkedListMinHeap();
+
+  // Initialize heap with the head of each list
+  for (let list of lists) {
+    if (list) minHeap.insert(list); // Add head node of each list
+  }
+
+  // Dummy node to simplify merging
+  const dummy = new ListNode(0);
+  let current = dummy;
+
+  // Merge lists using the heap
+  while (minHeap.size() > 0) {
+    const minNode = minHeap.extractMin(); // Get smallest node
+    current.next = minNode; // Append to result
+    current = current.next;
+
+    if (minNode.next) {
+      minHeap.insert(minNode.next); // Add next node from the same list
+    }
+  }
+
+  return dummy.next; // Return merged list
+}
+
+// Helper function to create a linked list from an array
+function createList(arr) {
+  if (!arr.length) return null;
+  const head = new ListNode(arr[0]);
+  let current = head;
+  for (let i = 1; i < arr.length; i++) {
+    current.next = new ListNode(arr[i]);
+    current = current.next;
+  }
+  return head;
+}
+
+// Helper function to print the linked list
+function printList(head) {
+  const result = [];
+  let current = head;
+  while (current) {
+    result.push(current.val);
+    current = current.next;
+  }
+  console.log(result.join(" -> "));
+}
+
+// Example usage with K > 2 lists
+const list1 = createList([1, 4, 5]);
+const list2 = createList([2, 6]);
+const list3 = createList([3, 7, 8]);
+const list4 = createList([0, 9]);
+
+const lists = [list1, list2, list3, list4];
+const mergedList = mergeKLinkedLists(lists);
+printList(mergedList); // Output: 0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9

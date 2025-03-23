@@ -34,6 +34,34 @@ export const depthFirstRecursive = (root) => {
   depthFirstRecursive(root.right);
 };
 
+// Use stack as data structure, pre-order traversal = Self - Left - Right
+export const breadFirstSearchPrint = (root) => {
+  const stack = [root];
+
+  while (stack.length > 0) {
+    const curr = stack.shift();
+    console.log(curr.val);
+    // Stack is FIFO, top most item to be removed should be on top
+    // hence pushing the left child at the end
+    if (curr.left !== null) {
+      stack.push(curr.left);
+    }
+
+    if (curr.right !== null) {
+      stack.push(curr.right);
+    }
+  }
+};
+
+// Pre-oder traversal
+export const breadhFirstRecursive = (root) => {
+  if (root === null) return;
+
+  console.log(root.val);
+  depthFirstRecursive(root.left);
+  depthFirstRecursive(root.right);
+};
+
 // Change the order of printing the value of the node to traverse
 // in post-order and in-order
 

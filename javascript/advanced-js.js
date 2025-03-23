@@ -73,7 +73,7 @@ let block1 = 10;
 
 /* Dynamic scoping - runtime decision */
 
-/* Hoisting: All functions are hoisted to top then the variable declations, function expression will not be hoisted */
+/* Hoisting: All function declarations are hoisted to top then the variable declations, function expression will not be hoisted */
 
 /* Every function, while executing, has a refrence to its current exection context, called 'this' */
 

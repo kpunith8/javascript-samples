@@ -71,3 +71,74 @@ function isHappy(n) {
 
 const number = 19;
 console.log(`${number} is a happy number:`, isHappy(number)); // Output: true
+
+/*
+Detecting a Cycle in a Linked List (Floyd’s Cycle Detection)
+This algorithm determines whether a linked list has a cycle.
+If a cycle exists, the fast pointer will eventually meet the slow pointer.
+*/
+function hasCycle(head) {
+  let slow = head,
+    fast = head;
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next; // Move slow pointer one step
+    fast = fast.next.next; // Move fast pointer two steps
+    if (slow === fast) {
+      // Cycle detected
+      return true;
+    }
+  }
+  // No cycle found
+  return false;
+}
+
+/*
+Finding the Middle of a Linked List
+In this problem, when the fast pointer reaches the end, the slow pointer will be in the middle.
+*/
+function findMiddle(head) {
+  let slow = head,
+    fast = head;
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next; // Move slow pointer one step
+    fast = fast.next.next; // Move fast pointer two steps
+  }
+  // Slow pointer is now at the middle of the list
+  return slow;
+}
+
+/*
+Checking for a Palindrome in a Linked List
+This approach involves using the two-pointer technique to first find the middle of the linked list,
+then reverse the second half, and finally compare both halves for equality.
+*/
+function isPalindrome(head) {
+  if (!head || !head.next) return true;
+
+  // Step 1: Find the middle of the list
+  let slow = head,
+    fast = head;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  // Step 2: Reverse the second half of the list
+  let prev = null;
+  while (slow) {
+    let next = slow.next;
+    slow.next = prev;
+    prev = slow;
+    slow = next;
+  }
+
+  // Step 3: Compare the first and second halves
+  let left = head,
+    right = prev;
+  while (right) {
+    if (left.val !== right.val) return false;
+    left = left.next;
+    right = right.next;
+  }
+  return true;
+}
