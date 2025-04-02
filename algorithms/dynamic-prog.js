@@ -104,6 +104,34 @@ console.log("howSum(4, [2, 4]):", howSum(4, [2, 4]));
 console.log("howSum(7, [3, 4, 7, 5, 2]):", howSum(7, [3, 4, 7, 5, 2]));
 console.log("howSum(300, [7, 14]):", howSum(300, [7, 14]));
 
+const canContruct = (target, wordBank, memo = {}) => {
+  if (target in memo) return memo[target];
+  if (target === "") return true;
+
+  for (let word of wordBank) {
+    if (target.indexOf(word) === 0) {
+      const suffix = target.slice(word.length);
+      if (canContruct(suffix, wordBank) === true) {
+        map[suffix] = true;
+        return true;
+      }
+    }
+  }
+  memo[target] = false;
+
+  return memo[target];
+};
+console.log(
+  "canContruct",
+  canContruct("abcdef", ["ab", "abc", "cd", "def", "abcd"])
+);
+console.log(
+  "canContruct",
+  canContruct("skateboard", ["bo", "rd", "ate", "t", "ska", "sk", "boar"])
+);
+
+console.log("canContruct:", canContruct(4, [2, 4]));
+
 /*
 Climbing Stairs:
 

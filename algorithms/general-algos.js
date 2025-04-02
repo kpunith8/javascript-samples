@@ -1,3 +1,85 @@
+// List of algorithms to practice
+/*
+Prefix Sum
+303. Range Sum Query - Immutable
+525. Contiguous Array
+560. Subarray Sum Equals K
+
+Two Pointers
+167. Two Sum II - Input Array is Sorted
+15. 3 Sum
+11. Container with most water
+
+Sliding Window
+643. Maximum Average Subarray I
+3. Longest Substring without Repeating Characters
+76. Minimum Window Substring
+
+Fast and Slow Pointers
+141. Linked List Cycle
+202. Happy Number
+287. Find the Duplicate Number
+
+Linked List in-place reversal
+206. Reverse Linked List
+92. Reverse Linked List II
+24. Swap Nodes in Pairs
+
+Monotonic Stack
+496. Next Greater Element I
+739. Daily Temperatures
+84. Largest Rectangle in Histogram
+
+Top K. Elements OR min/max Heap
+215. Kth Largest element in an array
+347. Top K Frequent Elements
+373. Find K Pairs with Smallest Sums
+
+Overlapping Intervals
+56. Merge Intervals
+57. Insert Interval
+435. Non-overlapping intervals
+
+Modified Binary Search
+33. Search in Rotated Sorted Array
+153. Find Minimum in Rotated Sorted Array
+240. Search a 2D Matrix II
+
+Binary Tree Traversal
+257. Binary Tree Paths
+230. Kth Smallest Element in a BST
+124. Binary Tree Maximum Path Sum
+107. Binary Tree Level Order Traversal II
+
+Depth First Search
+133. Clone Graph
+113. Path Sum II
+210. Course Schedule II
+
+Breadth First Search
+102. Binary Tree Level Order Traversal
+994. Rotting Oranges
+127. Word Ladder
+
+Matrix Traversal
+733. Flood Fill
+200. Number of Islands
+130. Surrounded Regions
+
+Backtracking
+46. Permutations
+78. Subsets
+51. N-Queens
+
+Dynamic Programming
+70. Climbing Stairs
+322. Coin Change
+300. Longest Increasing Subsequence
+416. Partition Equal Subset Sum
+312. Burst Balloons
+1143. Longest Common Subsequence
+*/
+
 // Split the array based on size and return the 2-D array
 export const chunkArrayInGroups = (arr, size) => {
   let newArr = [];
@@ -106,24 +188,6 @@ export const checkParentheses = (word) => {
   return true;
 };
 
-// Sliding window technique
-function lengthOfLongestSubstring(s) {
-  const map = new Map();
-  let left = 0, maxLen = 0;
-
-  for (let right = 0; right < s.length; right++) {
-      if (map.has(s[right])) {
-          left = Math.max(left, map.get(s[right]) + 1); // Move left pointer
-      }
-      map.set(s[right], right);
-      maxLen = Math.max(maxLen, right - left + 1);
-  }
-  return maxLen;
-}
-
-// Example usage:
-console.log(lengthOfLongestSubstring("abcabcbb")); // Output: 3
-
 // Remove duplicates in a string
 
 // let repeatedStr = "abcddsaddals";
@@ -205,19 +269,6 @@ export const printAllThePairs = (arr) => {
       console.log([arr[i], arr[j]]);
     }
   }
-};
-
-// If it has length > 1 we can say they have the common item in them
-export const commonItemsInTheArray = (arr1, arr2) => {
-  // for(let i = 0; i < arr1.length; i++) {
-  //   for(let j = 0; j < arr2.length; j++) {
-  //     if(arr1[i] === arr2[j]) {
-  //       return true; // Or return the item from either of the array
-  //     }
-  //   }
-  // }
-  // Takes O(n^2) time because it loops over each items
-  return arr1.filter((item) => arr2.includes(item));
 };
 
 // Convert the first arr to a object and compare with object properties
@@ -409,73 +460,6 @@ console.log(
   maxSubArray([-2, 2, 5, -11, 6])
 ); // [2, 5] => 7
 
-// Understanding this with arrow functions
-// 1. arrow functions do not have their own this binding or prototype and cannot be used as a constructor.
-// 2. Arrow functions have lexical this, meaning the value of this is determined by the surrounding scope.
-const printNumbers = {
-  phrase: "The current value is:",
-  numbers: [1, 2, 3, 4],
-
-  loop() {
-    this.numbers.forEach(function (number) {
-      console.log(this.phrase, number);
-    });
-  },
-};
-
-// printNumbers.loop();
-// Above call would return undefined 1, undefined 2 and so on.
-// Traditional function will not determine its `this` value from the scope of the environment, which is the printNumbers object.
-
-// To fix this we need to bind the annonymous function passed to forEach as
-/*
-loop() {
-  // Bind the `this` from printNumbers to the inner forEach function
-  this.numbers.forEach(
-    function (number) {
-      console.log(this.phrase, number)
-    }.bind(this),
-  )
-}
-*/
-
-// With arrow functions we don't need to bind `this`, because `this` value is determined based on the its lexical scope
-/*
-loop() {
-  this.numbers.forEach((number) => {
-    console.log(this.phrase, number)
-  })
-}
-*/
-
-function calculateDiscount(amount, discount, callback) {
-  // Callbacks
-  if (amount < 0 || discount > 100) {
-    callback(
-      new Error(
-        "amount cannot be less than 0 or discount cannot be greater than 100"
-      )
-    );
-  } else {
-    const productDiscount = amount * (discount / 100);
-    const promiseResult = new Promise((resolve, reject) => {
-      setTimeout(() => resolve(productDiscount), 3000);
-    });
-
-    callback(null, promiseResult);
-  }
-}
-
-calculateDiscount(82, 20, async (err, res) => {
-  if (err) throw err;
-  console.log("res-1", await res);
-});
-
-calculateDiscount(100, 20, async (err, res) => {
-  if (err) throw err;
-  console.log("res-2", await res);
-});
-
 // Custom JS map
 function myMap(arr, callback) {
   let res = [];
@@ -489,8 +473,6 @@ function myMap(arr, callback) {
 const doubleIt = (a) => a * 2;
 
 const doubleArr = myMap([1, 2, 3], doubleIt);
-
-// console.log("double arr", doubleArr);
 
 // Count the total number of occurences of a char in a string
 const charCount = (str, char) => str.split(char).length - 1;
@@ -507,6 +489,7 @@ const charCount1 = (str, chr) => {
 
   return charMap[chr];
 };
+
 console.log(
   "\nChar count:",
   charCount("Heolllok", "l"),
@@ -530,169 +513,6 @@ console.log(
 // Shuffle an array
 const arrayShuffle = (arr) => arr.sort(() => 0.5 - Math.random());
 
-// Check password - regex
-function checkPassword(password) {
-  const oneLowercaseLetter = /(?=.*[a-z])/; // Positive look ahead; use ! for negative look ahead (= should be replaced by !)
-  const oneUppercaseLetter = /(?=.*[A-Z])/;
-  const oneDigit = /(?=.*[0-9])/;
-  const oneSpecialCharacter = /(?=.*[!@#$%^&*])/;
-  const minimumEightCharacters = /(?=.{8,})/;
-
-  const isValid =
-    oneLowercaseLetter.test(password) &&
-    oneUppercaseLetter.test(password) &&
-    oneDigit.test(password) &&
-    oneSpecialCharacter.test(password) &&
-    minimumEightCharacters.test(password);
-
-  return isValid ? "Your password is valid!" : "Your password is not valid!";
-}
-
-console.log(checkPassword("Pd123#uyt"));
-console.log(checkPassword("dd123#uyt"));
-
-// Look behind
-// str.match(/(?<=\$)\d+/) // Matches $30 in the string
-
-// Capturing groups and reusing the pattern
-let repeatStr = "regex regex";
-let repeatRegex = /(\w+)\s\1/; // \1 to repeat the capture group
-repeatRegex.test(repeatStr); // Returns true
-console.log("RegEx capturing groups: Strings:", repeatStr.match(repeatRegex)); // Returns ["regex regex", "regex"]
-
-let repeatNum = "42 42 42";
-// Match exactly 3 times, could be any number with a space in between
-let reRegex = /^(\d+)\s\1\s\1$/; // Returns ["42 42 42", "42"]
-reRegex.test(repeatNum);
-console.log("RegEx capturing groups: numbers:", repeatNum.match(reRegex));
-
-// Remove whitespaces from the begining and at the end using regex
-let hello = "   Hello, World!  ";
-let wsRegex = /^\s+|\s+$/g;
-let result = hello.replace(wsRegex, "");
-console.log("string without spaces:", result);
-
-const arr = [
-  [1, 2, 3],
-  [3, 4, 5, 6],
-  [7, 8, 9],
-  [10, 11, 12, 13, 14],
-];
-
-const read2dArray = (arr) => {
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr[i].length; j++) {
-      console.log(arr[i][j]);
-    }
-  }
-};
-
-// read2dArray(arr)
-
-// const url = require("url");
-
-// const dataHandler = (event) => {
-//   // const {request} = event.Records[0].cf
-//   // const objectUri = request.uri
-//   const myURL = new URL(event);
-
-//   console.log("myURL", url.parse(event));
-
-//   const request = {};
-//   // Rewrite S3 origin request URIs for objects without a file extension
-//   if (!event.match(/[^/]\w+\.\w+$/)) {
-//     console.log(`Rewriting ${event} to /index.html.`);
-//     request.uri = "/index.html";
-//   }
-
-//   return request;
-// };
-
-// console.log('dataHandler:', dataHandler('https://hello.com/new-ui?email=test'))
-
-// let aa = [1, 2, 3]
-
-// console.log(aa.shift(), aa)
-
-// for (let [i, j] of [1, 2, 3].entries()) {
-//   console.log('for..of', i, j)
-// }
-
-// Chaining methods with callbacks, onSuccess => then and onError => catch in the promises API
-class Animal {
-  makesSound = "";
-  name = "";
-  error = "";
-  sounds = {
-    dog: "Bark...",
-    cat: "Meow...",
-  };
-
-  constructor(name) {
-    this.name = name;
-  }
-
-  onSuccess(successCallback) {
-    if (this.name) {
-      this.makesSound = `I'm a ${this.name} and I ${
-        this.sounds[this.name.toLowerCase()]
-      }`;
-      successCallback(this.makesSound);
-    }
-    return this;
-  }
-
-  // Expecting onError to be called at the end, hence not returning 'this', not allowing to chain on onError method
-  onError(errorCallback) {
-    if (!this.name) {
-      this.error = new Error("Please enter a animal name, (cat or dog)");
-      errorCallback(this.error);
-    }
-  }
-}
-
-// const dog = new Animal();
-
-// dog
-//   .onSuccess((res) => console.log(res))
-//   .onError((err) => console.log("Error loading animal: ", err.message));
-
-// const cat = new Animal("cat");
-
-// cat
-//   .onSuccess((res) => console.log(res))
-//   .onError((err) => console.log("Error loading animal: ", err.message));
-
-const minimumSubArraySum = (nums, target) => {
-  let left = 0;
-  let total = 0;
-  let res = Infinity;
-
-  for (let i = 0; i < nums.length; i++) {
-    total += nums[i];
-
-    while (total >= target) {
-      res = Math.min(res, i - left + 1);
-      total -= nums[left];
-      left += 1;
-    }
-  }
-
-  if (res === Infinity) return 0;
-  else return res;
-};
-
-// Input: target = 7, nums = [2,3,1,2,4,3]
-//  Output: 2
-//  Explanation: The subarray [4,3] has the minimal length under the problem constraint.
-
-//  Input: target = 4, nums = [1,4,4]
-//  Output: 1
-
-//  Input: target = 11, nums = [1,1,1,1,1,1,1,1]
-//  Output: 0
-console.log("minimumSubArraySum: ", minimumSubArraySum([2, 3, 1, 2, 4, 3], 7));
-
 // https://leetcode.com/problems/zigzag-conversion/description/
 /*
 The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this:
@@ -703,20 +523,20 @@ Y   I   R
 const convertToZigZag = (inputString, numRows) => {
   if (numRows === 1) return inputString;
 
-  const rows = new Array(Math.min(numRows, inputString.length)).fill('');
+  const rows = new Array(Math.min(numRows, inputString.length)).fill("");
   let direction = -1;
   let currentRow = 0;
 
   for (const char of inputString) {
-      rows[currentRow] += char;
-      currentRow += (direction === -1) ? 1 : -1;
+    rows[currentRow] += char;
+    currentRow += direction === -1 ? 1 : -1;
 
-      if (currentRow === 0 || currentRow === numRows - 1) {
-          direction = -direction;
-      }
+    if (currentRow === 0 || currentRow === numRows - 1) {
+      direction = -direction;
+    }
   }
 
-  return rows.join('');
-}
+  return rows.join("");
+};
 
-console.log('convertToZigZag:', convertToZigZag('PAYPALISHIRING', 3)); // Output: "PAHNAPLSIIGYIR"
+console.log("convertToZigZag:", convertToZigZag("PAYPALISHIRING", 3)); // Output: "PAHNAPLSIIGYIR"

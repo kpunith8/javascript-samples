@@ -59,10 +59,6 @@ console.log("Print all the pairs of an array:");
 algos.printAllThePairs([1, 2, 3]);
 
 console.log(
-  "Common Items in the array: ",
-  algos.commonItemsInTheArray([1, 2, 4], [2, 5, 6])
-);
-console.log(
   "Common Items in the array improved time: ",
   algos.commonItemsInTheArrayImproved([1, 2, 4], [2, 5, 6])
 );

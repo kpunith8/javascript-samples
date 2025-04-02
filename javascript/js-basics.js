@@ -716,3 +716,85 @@ function printName() {
 const printIt = function(name) {
   console.log('Function expression:', name);
 };
+
+// Understanding this with arrow functions
+// 1. arrow functions do not have their own this binding or prototype and cannot be used as a constructor.
+// 2. Arrow functions have lexical this, meaning the value of this is determined by the surrounding scope.
+const printNumbers = {
+  phrase: "The current value is:",
+  numbers: [1, 2, 3, 4],
+
+  loop() {
+    this.numbers.forEach(function (number) {
+      console.log(this.phrase, number);
+    });
+  },
+};
+
+// printNumbers.loop();
+// Above call would return undefined 1, undefined 2 and so on.
+// Traditional function will not determine its `this` value from the scope of the environment, which is the printNumbers object.
+
+// To fix this we need to bind the annonymous function passed to forEach as
+/*
+loop() {
+  // Bind the `this` from printNumbers to the inner forEach function
+  this.numbers.forEach(
+    function (number) {
+      console.log(this.phrase, number)
+    }.bind(this),
+  )
+}
+*/
+
+// With arrow functions we don't need to bind `this`, because `this` value is determined based on the its lexical scope
+/*
+loop() {
+  this.numbers.forEach((number) => {
+    console.log(this.phrase, number)
+  })
+}
+*/
+
+
+// Check password - regex
+function checkPassword(password) {
+  const oneLowercaseLetter = /(?=.*[a-z])/; // Positive look ahead; use ! for negative look ahead (= should be replaced by !)
+  const oneUppercaseLetter = /(?=.*[A-Z])/;
+  const oneDigit = /(?=.*[0-9])/;
+  const oneSpecialCharacter = /(?=.*[!@#$%^&*])/;
+  const minimumEightCharacters = /(?=.{8,})/;
+
+  const isValid =
+    oneLowercaseLetter.test(password) &&
+    oneUppercaseLetter.test(password) &&
+    oneDigit.test(password) &&
+    oneSpecialCharacter.test(password) &&
+    minimumEightCharacters.test(password);
+
+  return isValid ? "Your password is valid!" : "Your password is not valid!";
+}
+
+console.log(checkPassword("Pd123#uyt"));
+console.log(checkPassword("dd123#uyt"));
+
+// Look behind
+// str.match(/(?<=\$)\d+/) // Matches $30 in the string
+
+// Capturing groups and reusing the pattern
+let repeatStr = "regex regex";
+let repeatRegex = /(\w+)\s\1/; // \1 to repeat the capture group
+repeatRegex.test(repeatStr); // Returns true
+console.log("RegEx capturing groups: Strings:", repeatStr.match(repeatRegex)); // Returns ["regex regex", "regex"]
+
+let repeatNum = "42 42 42";
+// Match exactly 3 times, could be any number with a space in between
+let reRegex = /^(\d+)\s\1\s\1$/; // Returns ["42 42 42", "42"]
+reRegex.test(repeatNum);
+console.log("RegEx capturing groups: numbers:", repeatNum.match(reRegex));
+
+// Remove whitespaces from the begining and at the end using regex
+let hello = "   Hello, World!  ";
+let wsRegex = /^\s+|\s+$/g;
+let result = hello.replace(wsRegex, "");
+console.log("string without spaces:", result);

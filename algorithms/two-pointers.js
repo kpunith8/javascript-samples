@@ -232,26 +232,3 @@ function moveZeroes(nums) {
 }
 
 console.log("moveZeroes:", moveZeroes([0, 1, 0, 3, 12])); // Output: [1, 3, 12, 0, 0]
-
-/*
-Longest Substring Without Repeating Characters
-Problem: Find the length of the longest substring without repeating characters.
-Best Time Complexity: O(n), O(min(m, n)) space (m = charset size).
-*/
-function lengthOfLongestSubstring(s) {
-  let map = new Map(); // Store char -> index
-  let left = 0;
-  let maxLen = 0;
-
-  for (let right = 0; right < s.length; right++) {
-    if (map.has(s[right])) {
-      left = Math.max(left, map.get(s[right]) + 1); // Move left past the last occurrence
-    }
-    map.set(s[right], right); // Update last seen index
-    maxLen = Math.max(maxLen, right - left + 1); // Update max length
-  }
-  return maxLen;
-}
-
-// Example usage:
-console.log("lengthOfLongestSubstring:", lengthOfLongestSubstring("abcabcbb")); // Output: 3

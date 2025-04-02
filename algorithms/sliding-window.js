@@ -26,6 +26,23 @@ console.log(
   lengthOfLongestSubstring(str)
 );
 
+function lengthOfLongestSubstringMap(s) {
+  const map = new Map();
+  let left = 0;
+  let maxLen = 0;
+
+  for (let right = 0; right < s.length; right++) {
+    if (map.has(s[right])) {
+      left = Math.max(left, map.get(s[right]) + 1); // Move left pointer
+    }
+    map.set(s[right], right);
+    maxLen = Math.max(maxLen, right - left + 1);
+  }
+  return maxLen;
+}
+
+console.log(lengthOfLongestSubstringMap("abcabcbb")); // Output: 3
+
 // https://leetcode.com/problems/minimum-size-subarray-sum/description/
 /*
 Input: target = 7, nums = [2,3,1,2,4,3]

@@ -390,7 +390,7 @@ class ListNode {
 
 /*
 Merge K Sorted Lists: Use a min heap to store nodes by value.
-Extract the smallest, add its next node, and build the merged list. O(n log k) time, O(k) space.
+Extract the smallest, add its next node, and build the merged list.
 Time Complexity: O(n log k) (n = total nodes, k = number of lists)
 */
 function mergeKLists(lists) {
