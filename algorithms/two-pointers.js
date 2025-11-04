@@ -60,6 +60,7 @@ function removeDuplicates(nums) {
       write++;
     }
   }
+  // return sums.slice(0, write); // If you want the array without duplicates
   return write; // Length of array without duplicates
 }
 

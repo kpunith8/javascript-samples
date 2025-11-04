@@ -63,7 +63,7 @@ const reverseStringImperative = (str) => {
 const reverseStringRecursive = (str) => {
   if (str.length === 0) return;
   if (str.length === 1) return str;
-  return reverseStringRecursive(str.substr(1)) + str[0];
+  return reverseStringRecursive(str.substring(1)) + str[0];
 };
 
 console.log("string reverse: recursive:", reverseStringRecursive("abcde"));

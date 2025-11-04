@@ -66,3 +66,32 @@ var minSubArrayLen = function (target, nums) {
 
   return minLength === Infinity ? 0 : minLength;
 };
+
+// Find the maximum sum of any contiguous subarray of size ‘k’
+/*
+Input: [2, 1, 5, 1, 3, 2], k=3
+Output: 9
+Explanation: Subarray with maximum sum is [5, 1, 3].
+*/
+function maxSumSubarrayOfSizeK(k, arr) {
+  let maxSum = 0;
+  let windowSum = 0;
+  let windowStart = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    windowSum += arr[i]; // Add the next element
+
+    // Slide the window, we don't start shrinking until we hit the size 'k'
+    if (i >= k - 1) {
+      maxSum = Math.max(maxSum, windowSum);
+      windowSum -= arr[windowStart]; // Subtract the element going out
+      windowStart++; // Slide the window ahead
+    }
+  }
+
+  return maxSum;
+}
+console.log(
+  "Maximum sum of subarray of size k:",
+  maxSumSubarrayOfSizeK(3, [2, 1, 5, 1, 3, 2])
+);
