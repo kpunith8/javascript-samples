@@ -127,15 +127,15 @@ export class LinkedList {
   }
 
   reverse1() {
-    let next = null;
+    // let next = null;
     let current = this.head;
     let prev = null;
 
     while (current) {
-      next = current.next;
+      const temp = current.next;
       current.next = prev;
       prev = current;
-      current = next;
+      current = temp;
     }
 
     return prev;

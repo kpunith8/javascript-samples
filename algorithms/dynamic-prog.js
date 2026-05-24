@@ -112,7 +112,7 @@ const canContruct = (target, wordBank, memo = {}) => {
     if (target.indexOf(word) === 0) {
       const suffix = target.slice(word.length);
       if (canContruct(suffix, wordBank) === true) {
-        map[suffix] = true;
+        memo[suffix] = true;
         return true;
       }
     }
@@ -130,10 +130,8 @@ console.log(
   canContruct("skateboard", ["bo", "rd", "ate", "t", "ska", "sk", "boar"])
 );
 
-console.log("canContruct:", canContruct(4, [2, 4]));
-
 /*
-Climbing Stairs:
+Climbing Stairs: bottom-up with tabulation
 
 You have n stairs and can climb 1 or 2 steps at a time. Count the number of distinct ways to reach the top.
 Use a fibonacci sequence to solve this problem.
@@ -153,7 +151,30 @@ const climbStairs = (n) => {
 console.log("climbStairs:", climbStairs(5)); // Output: 8
 
 /*
-House Robber:
+Climb stairs with min cost
+Space: O(1) time: O(n)
+*/
+const minCostClimbingStairs = (cost) => {
+  const n = cost.length;
+  let prev1 = cost[1];
+  let prev2 = cost[0];
+
+  for (let i = 2; i < n; i++) {
+    const current = cost[i] + Math.min(prev1, prev2);
+    prev2 = prev1;
+    prev1 = current;
+  }
+
+  return Math.min(prev1, prev2);
+};
+
+console.log(
+  "minCostClimbingStairs:",
+  minCostClimbingStairs([10, 15, 20, 4, 5, 8])
+);
+
+/*
+House Robber: bottom-up with tabulation
 
 Given an array of non-negative integers (each representing the amount of money in a house),
 determine the maximum amount you can rob such that you never rob two adjacent houses.
@@ -208,3 +229,43 @@ function maxSubArray(nums) {
 }
 
 console.log("maxSubArray:", maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])); // Output: 6
+
+/*
+Unique paths with obstacles
+
+A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+The robot can only move either down or right at any point in time.
+The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
+Now consider if some obstacles are added to the grids. How many unique paths would there be?
+An obstacle and empty space is marked as 1 and 0 respectively in the grid.
+*/
+const uniquePathsWithObstacles = (obstacleGrid) => {
+  if (obstacleGrid[0][0] === 1) return 0;
+  const m = obstacleGrid.length;
+  const n = obstacleGrid[0].length;
+  const dp = new Array(m).fill(0);
+
+  // Starting point
+  dp[0] = 1;
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (obstacleGrid[i][j] === 1) {
+        dp[j] = 0; // Obstacle cell
+      } else if (j > 0) {
+        dp[j] += dp[j - 1];
+      }
+    }
+  }
+
+  return dp[n - 1];
+};
+
+console.log(
+  "uniquePathsWithObstacles:",
+  uniquePathsWithObstacles([
+    [0, 0, 0],
+    [0, 1, 0],
+    [0, 0, 0],
+  ])
+); // Output: 2

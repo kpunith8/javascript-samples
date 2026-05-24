@@ -188,6 +188,19 @@ export const checkParentheses = (word) => {
   return true;
 };
 
+export const isValidParentheses = (s) => {
+    const stack = [];
+    const pairs = { '(': ')', '{': '}', '[': ']' };
+    for (let char of s) {
+        if (pairs[char]) {
+            stack.push(char);
+        } else if (char !== pairs[stack.pop()]) {
+            return false;
+        }
+    }
+    return stack.length === 0;
+}
+
 // Remove duplicates in a string
 
 // let repeatedStr = "abcddsaddals";
@@ -441,7 +454,7 @@ console.log(
   sumOfTwoNumbers([1, 2, 3, 4, 5], [2, 3, 4, 5, 6], 8)
 );
 
-// Kadan's algorithm
+// Kadane's algorithm
 // Maxium sum of contiguous subarray
 const maxSubArray = (arr) => {
   let maxSum = arr[0];
@@ -540,3 +553,20 @@ const convertToZigZag = (inputString, numRows) => {
 };
 
 console.log("convertToZigZag:", convertToZigZag("PAYPALISHIRING", 3)); // Output: "PAHNAPLSIIGYIR"
+
+
+const deepMergeObjects = (target, source) => {
+	for (const key in source) {
+		if (source[key] instanceof Object && key in target) {
+			Object.assign(source[key], deepMergeObjects(target[key], source[key]));
+		}
+	}
+
+	Object.assign(target || {}, source);
+	return target;
+};
+
+const obj1 = { a: 1, b: { x: 10, y: 20 } };
+const obj2 = { b: { y: 30, z: 40 }, c: 3 };
+
+const mergedObj = deepMergeObjects(obj1, obj2);

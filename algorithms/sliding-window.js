@@ -95,3 +95,35 @@ console.log(
   "Maximum sum of subarray of size k:",
   maxSumSubarrayOfSizeK(3, [2, 1, 5, 1, 3, 2])
 );
+
+// Maximum Average Subarray - 2 Pointer
+/*
+Input: nums = [1,12,-5,-6,50,3], k = 4
+
+Window 1: [1,12,-5,-6] → sum = 1+12-5-6 = 2 → avg = 0.5
+Window 2: [12,-5,-6,50] → sum = 12-5-6+50 = 51 → avg = 12.75
+Window 3: [-5,-6,50,3] → sum = -5-6+50+3 = 42 → avg = 10.5
+Maximum average: 12.75
+*/
+const maximumAvgSubArray = (arr, k) => {
+	let currentSum = 0;
+	// Calculate the sum of first K elements
+	for (let i = 0; i < k; i++) {
+		currentSum += arr[i];
+	}
+
+	let maxSum = currentSum;
+
+	// Start from Kth index
+	for (let i = k; i < arr.length; i++) {
+		currentSum += arr[i] - arr[i - k]; // Add the current element and remove the last one
+		maxSum = Math.max(maxSum, currentSum);
+	}
+
+	return maxSum / k;
+};
+
+console.log(
+	"MaximumAvgSubarray:",
+	maximumAvgSubArray([1, 12, -5, -6, 50, 3], 4)
+);

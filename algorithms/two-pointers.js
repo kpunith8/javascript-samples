@@ -26,7 +26,7 @@ Two Sum (Sorted Array)
 Problem: Given a sorted array and a target sum, find two numbers that add up to the target.
 O(n) time, O(1) space.
 */
-function twoSum(numbers, target) {
+function twoSumSorted(numbers, target) {
   let left = 0; // Pointer at the start
   let right = numbers.length - 1; // Pointer at the end
 
@@ -43,7 +43,19 @@ function twoSum(numbers, target) {
   return []; // No solution found
 }
 
-console.log("twoSum:", twoSum([2, 7, 11, 15], 9)); // Output: [1, 2]
+console.log("twoSum:", twoSumSorted([2, 7, 11, 15], 9)); // Output: [1, 2]
+
+function twoSumUnsorted(nums, target) {
+    const map = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+        if (map.has(complement)) {
+            return [map.get(complement), i];
+        }
+        map.set(nums[i], i);
+    }
+    return [];
+}
 
 /*
 Remove Duplicates from Sorted Array
@@ -51,22 +63,24 @@ Problem: Remove duplicates in-place from a sorted array and return the new lengt
 O(n) time, O(1) space.
 */
 function removeDuplicates(nums) {
-  if (nums.length === 0) return 0;
+  if (nums.length === 0) return [0, []];
+  const duplicates = new Set()
 
-  let write = 1; // Pointer to place next unique element
-  for (let read = 1; read < nums.length; read++) {
-    if (nums[read] !== nums[read - 1]) {
-      nums[write] = nums[read]; // Copy unique element
-      write++;
+  let i = 0; // Pointer to place next unique element
+  for (let j = 1; j < nums.length; j++) {
+    if (nums[j] !== nums[i]) {
+      i++;
+      nums[i] = nums[j]; // Copy unique element
+    } else {
+      duplicates.add(nums[j]);
     }
   }
-  // return sums.slice(0, write); // If you want the array without duplicates
-  return write; // Length of array without duplicates
+  // return nums.slice(0, i); // If you want an array without duplicates
+  return [i + 1, Array.from(duplicates)]; // Length of array without duplicates
 }
 
 let nums = [0, 0, 1, 1, 1, 2, 3, 3];
-console.log("removeDuplicates:", removeDuplicates(nums)); // Output: 4
-console.log("Non-duplicate array items:", nums.slice(0, 4)); // Output: [0, 1, 2, 3]
+console.log("removeDuplicates:", removeDuplicates(nums)); // Output: [4, [0, 1, 3]]
 
 /*
 Container With Most Water

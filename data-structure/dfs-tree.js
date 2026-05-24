@@ -34,7 +34,7 @@ export const depthFirstRecursive = (root) => {
   depthFirstRecursive(root.right);
 };
 
-// Use stack as data structure, pre-order traversal = Self - Left - Right
+// Use queue as data structure, pre-order traversal = Self - Left - Right
 export const breadFirstSearchPrint = (root) => {
   const stack = [root];
 

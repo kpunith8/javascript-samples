@@ -74,8 +74,10 @@ const reverseStringReduce = (str) => {
 
 const palindromeRecursive = (str) => {
   // Remove non alphabet chars and compare
-  // replace(/[^\w]/g, "").replace(/_/g, "")
-  str = str.replace(/[\W_\s]/g, "").toLowerCase();
+  // .replace(/[^\w]/g, "")
+  // .replace(/[^a-z0-9]/g, "")
+  // replace space chars with /s
+  str = str.replace(/[\W\s]/g, "").toLowerCase();
   if (str.length === 1) return true;
   if (str.length === 2) return str[0] === str[1];
 

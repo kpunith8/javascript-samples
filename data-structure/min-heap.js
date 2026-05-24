@@ -240,6 +240,13 @@ class MinHeapGrok3 {
     if (this.heap.length === 0) return null;
     if (this.heap.length === 1) return this.heap.pop();
     const min = this.heap[0];
+    /*
+    Why assign the last element to the root?
+    This is a standard heap deletion strategy:
+    We can't simply delete the root and shift all elements (too expensive - O(n))
+    Instead, we move the last element to the root position, then restore the heap property by "sinking down" (heapifying)
+    This keeps the operation O(log n)
+    */
     this.heap[0] = this.heap.pop();
     this.sinkDown();
     return min;
@@ -394,7 +401,7 @@ Extract the smallest, add its next node, and build the merged list.
 Time Complexity: O(n log k) (n = total nodes, k = number of lists)
 */
 function mergeKLists(lists) {
-  const minHeap = new MinHeapGrok3();
+  const minHeap = new LinkedListMinHeap();
 
   // Add first node of each list to heap
   for (let list of lists) {
@@ -428,7 +435,6 @@ function kClosest(points, k) {
   for (let [x, y] of points) {
     const dist = x * x + y * y; // Distance squared (no need for sqrt)
     minHeap.insert([dist, x, y]); // Store [distance, x, y]
-    console.log("minHeap:", minHeap.display());
     if (minHeap.size() > k) minHeap.extractMin(); // Keep k closest
   }
 
@@ -474,7 +480,7 @@ function topKFrequent(nums, k) {
   return result;
 }
 
-console.log("topKFrequent:", topKFrequent([1, 1, 1, 2, 2, 3], 2)); // Output: [1, 2]
+console.log("topKFrequent:", topKFrequent([1, 4, 1, 4, 2, 5, 6, 2, 3, 8], 2)); // Output: [1, 2]
 
 /*
 Sort an Almost Sorted Array (K-Sorted Array)
@@ -486,7 +492,7 @@ function sortKSortedArray(arr, k) {
 
   for (let i = 0; i < arr.length; i++) {
     minHeap.insert(arr[i]); // Add elements to heap
-    if (minHeap.size() > k + 1) {
+    if (minHeap.size() > k) {
       result.push(minHeap.extractMin()); // Extract when window exceeds k
     }
   }

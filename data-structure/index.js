@@ -30,13 +30,15 @@ console.log("Keys in the hash table:", myHashTable.keys());
 //   console.log(k,v)
 // }
 
-const myLinkedList = new LinkedList(10);
-myLinkedList.append(11);
-myLinkedList.append(12);
-myLinkedList.prepend(9);
-myLinkedList.insert(200, 99); // index is higher than the length of the list, insert to the end of list
-myLinkedList.insert(2, 33);
-myLinkedList.insert(0, 34);
+const myLinkedList = new LinkedList(1);
+myLinkedList.append(2);
+myLinkedList.append(3);
+myLinkedList.append(4);
+myLinkedList.append(5);
+// myLinkedList.prepend(9);
+// myLinkedList.insert(200, 99); // index is higher than the length of the list, insert to the end of list
+// myLinkedList.insert(2, 33);
+// myLinkedList.insert(0, 34);
 console.log("Linkedlist before deletion:", myLinkedList.print());
 
 // myLinkedList.remove(1)

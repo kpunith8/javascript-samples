@@ -19,6 +19,8 @@ console.log(
 
 console.log("check parantheses", algos.checkParentheses("([]{{}){}[]"));
 
+console.log('isValidParentheses("{[()]}"):', algos.isValidParentheses("{[()]}"));
+
 console.log(
   "First recurring number in an array:",
   algos.firstRecurringNumber([2, 1, 1, 4, 2, 3, 4, 3, 2]),
