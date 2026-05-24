@@ -9,8 +9,6 @@
 - **License:** ISC
 - **Repository:** https://github.com/kpunith8/javascript-samples
 - **Type:** ES Modules (Node.js)
-- **Total JavaScript Files:** 69
-- **Total Lines of Code:** ~5,400+
 
 ---
 
@@ -37,7 +35,7 @@ javascript-samples/
 
 ## 📚 Directory Details
 
-### 1. **algorithms/** - Algorithm Implementations (13 files)
+### 1. **algorithms/** - Algorithm Implementations
 
 Learn and implement various algorithms in JavaScript:
 
@@ -67,7 +65,7 @@ Learn and implement various algorithms in JavaScript:
 
 ---
 
-### 2. **data-structure/** - Data Structure Implementations (11 files)
+### 2. **data-structure/** - Data Structure Implementations
 
 Fundamental data structures implemented from scratch:
 
@@ -95,7 +93,7 @@ Fundamental data structures implemented from scratch:
 
 ---
 
-### 3. **javascript/** - Core JavaScript Concepts (14 files)
+### 3. **javascript/** - Core JavaScript Concepts
 
 Essential and advanced JavaScript language features:
 
@@ -129,7 +127,7 @@ Essential and advanced JavaScript language features:
 
 ---
 
-### 4. **node-examples/** - Node.js Features & Patterns (20 files)
+### 4. **node-examples/** - Node.js Features & Patterns
 
 Node.js specific functionality and server-side patterns:
 
@@ -164,7 +162,7 @@ Node.js specific functionality and server-side patterns:
 
 ---
 
-### 5. **promise-async/** - Async Programming (5 files)
+### 5. **promise-async/** - Async Programming
 
 Asynchronous patterns and promise-related concepts:
 
@@ -186,7 +184,7 @@ Asynchronous patterns and promise-related concepts:
 
 ---
 
-### 6. **functional/** - Functional Programming (3 files)
+### 6. **functional/** - Functional Programming
 
 Functional programming paradigms and techniques:
 
@@ -205,7 +203,7 @@ Functional programming paradigms and techniques:
 
 ---
 
-### 7. **testing/** - Testing Practices (5 files)
+### 7. **testing/** - Testing Practices
 
 Testing patterns and Jest framework usage:
 
@@ -450,4 +448,4 @@ For questions or suggestions, please open an issue on the [GitHub repository](ht
 
 ---
 
-**Last Updated:** January 2026
+

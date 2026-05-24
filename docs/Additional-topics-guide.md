@@ -586,4 +586,4 @@ npm start -- functional/index.js
 
 ---
 
-**Last Updated:** January 2026
+
