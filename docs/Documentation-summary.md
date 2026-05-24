@@ -7,25 +7,25 @@
 ```
 javascript-samples/
 │
-├── 📄 README_DOCUMENTATION.md (13K) ⭐ START HERE
+├── 📄 Readme-documentation.md (13K) ⭐ START HERE
 │   └─ Complete index, navigation guide, and learning paths
 │
-├── 📄 PROJECT_OVERVIEW.md (13K)
+├── 📄 Project-overview.md (13K)
 │   └─ Project structure, technologies, and usage guide
 │
-├── 📄 ALGORITHMS_GUIDE.md (7.7K)
+├── 📄 Algorithms-guide.md (7.7K)
 │   └─ 13 algorithm implementations with complexity analysis
 │
-├── 📄 DATA_STRUCTURES_GUIDE.md (10K)
+├── 📄 Data-structures-guide.md (10K)
 │   └─ 11 data structures with detailed explanations
 │
-├── 📄 JAVASCRIPT_CONCEPTS_GUIDE.md (14K)
+├── 📄 Javascript-concepts-guide.md (14K)
 │   └─ 15 core JavaScript topics and ES6+ features
 │
-├── 📄 NODE_EXAMPLES_GUIDE.md (9.7K)
+├── 📄 Node-examples-guide.md (9.7K)
 │   └─ 16 Node.js patterns and backend development
 │
-└── 📄 ADDITIONAL_TOPICS_GUIDE.md (12K)
+└── 📄 Additional-topics-guide.md (12K)
     └─ Advanced topics: async, functional, testing, auth
 ```
 
@@ -50,39 +50,39 @@ javascript-samples/
 
 ### 👶 Beginner
 ```
-Start: README_DOCUMENTATION.md
+Start: Readme-documentation.md
   ↓
-Read: PROJECT_OVERVIEW.md
+Read: Project-overview.md
   ↓
-Learn: JAVASCRIPT_CONCEPTS_GUIDE.md (Basics)
+Learn: Javascript-concepts-guide.md (Basics)
   ↓
-Practice: ALGORITHMS_GUIDE.md (Beginner section)
+Practice: Algorithms-guide.md (Beginner section)
   ↓
 Build: task-list-manager example
 ```
 
 ### 🎯 Intermediate
 ```
-Start: README_DOCUMENTATION.md
+Start: Readme-documentation.md
   ↓
-Review: JAVASCRIPT_CONCEPTS_GUIDE.md (ES6+)
+Review: Javascript-concepts-guide.md (ES6+)
   ↓
-Study: ALGORITHMS_GUIDE.md (Full)
+Study: Algorithms-guide.md (Full)
   ↓
-Master: DATA_STRUCTURES_GUIDE.md (Full)
+Master: Data-structures-guide.md (Full)
   ↓
-Implement: NODE_EXAMPLES_GUIDE.md
+Implement: Node-examples-guide.md
 ```
 
 ### 🔥 Advanced
 ```
-Start: README_DOCUMENTATION.md
+Start: Readme-documentation.md
   ↓
 Deep dive: All algorithm patterns
   ↓
 Focus: System design patterns
   ↓
-Advanced: ADDITIONAL_TOPICS_GUIDE.md (All)
+Advanced: Additional-topics-guide.md (All)
   ↓
 Interview prep complete!
 ```
@@ -91,7 +91,7 @@ Interview prep complete!
 
 ## 📚 What Each Guide Contains
 
-### README_DOCUMENTATION.md
+### Readme-documentation.md
 - 📍 Navigation map
 - 🗺️ Topic roadmap
 - 📊 Project statistics
@@ -99,7 +99,7 @@ Interview prep complete!
 - ✅ Verification checklist
 - 🎯 Getting started guide
 
-### PROJECT_OVERVIEW.md
+### Project-overview.md
 - 📋 Project description
 - 🔧 Technology stack
 - 📦 Dependencies list
@@ -107,7 +107,7 @@ Interview prep complete!
 - 📖 Learning areas
 - 🎓 How to use
 
-### ALGORITHMS_GUIDE.md
+### Algorithms-guide.md
 - **13 algorithms** with detailed explanations
 - ⏱️ Time/space complexity analysis
 - 📝 Code examples
@@ -115,7 +115,7 @@ Interview prep complete!
 - 🎓 Learning paths (Beginner → Advanced)
 - 💻 Running instructions
 
-### DATA_STRUCTURES_GUIDE.md
+### Data-structures-guide.md
 - **11 data structures** fully explained
 - 🏗️ Internal structure details
 - ⏱️ Operation complexities
@@ -123,7 +123,7 @@ Interview prep complete!
 - 📊 Comparison table
 - 🎯 When to use each
 
-### JAVASCRIPT_CONCEPTS_GUIDE.md
+### Javascript-concepts-guide.md
 - **15 JavaScript topic areas** covered
 - 📚 ES6+ features
 - 🔄 Async patterns
@@ -131,7 +131,7 @@ Interview prep complete!
 - 📦 Module systems
 - 🎓 Learning paths (3 levels)
 
-### NODE_EXAMPLES_GUIDE.md
+### Node-examples-guide.md
 - **16 Node.js features** and patterns
 - 💾 File system operations
 - 🌊 Stream processing
@@ -139,7 +139,7 @@ Interview prep complete!
 - 🖥️ Server setup
 - 📊 Module comparison
 
-### ADDITIONAL_TOPICS_GUIDE.md
+### Additional-topics-guide.md
 - 🔗 Promise & async patterns
 - 🎯 Functional programming
 - 🧪 Testing strategies
@@ -177,23 +177,23 @@ Advanced
 
 ## 🔍 Quick Reference Topics
 
-**Algorithms** → ALGORITHMS_GUIDE.md
+**Algorithms** → Algorithms-guide.md
 - Binary search, Dynamic programming, Sorting, LRU Cache
 - Sliding window, Two pointers, Recursive patterns
 
-**Data Structures** → DATA_STRUCTURES_GUIDE.md
+**Data Structures** → Data-structures-guide.md
 - Hash tables, Linked lists, Trees, Graphs
 - Heaps, Queues, Sets
 
-**JavaScript** → JAVASCRIPT_CONCEPTS_GUIDE.md
+**JavaScript** → Javascript-concepts-guide.md
 - Variables & scope, Closures, Prototypes
 - Classes, Async/await, Generators, Symbols
 
-**Backend/Node.js** → NODE_EXAMPLES_GUIDE.md
+**Backend/Node.js** → Node-examples-guide.md
 - HTTP servers, Streams, File operations
 - Processes, Clustering, Event emitters
 
-**Advanced** → ADDITIONAL_TOPICS_GUIDE.md
+**Advanced** → Additional-topics-guide.md
 - Functional programming, Testing, Authentication
 - Refactoring, Real applications
 
@@ -231,17 +231,17 @@ Advanced
 ## 🎯 How to Use
 
 ### Step 1: Orient Yourself
-Read `README_DOCUMENTATION.md` (this file's parent)
+Read `Readme-documentation.md` (this file's parent)
 - Get overview of all guides
 - Choose your learning path
 - Find relevant sections
 
 ### Step 2: Deep Dive
 Pick a guide based on your goals:
-- Interview prep? → ALGORITHMS_GUIDE.md + DATA_STRUCTURES_GUIDE.md
-- Language mastery? → JAVASCRIPT_CONCEPTS_GUIDE.md
-- Backend dev? → NODE_EXAMPLES_GUIDE.md
-- Full stack? → PROJECT_OVERVIEW.md
+- Interview prep? → Algorithms-guide.md + Data-structures-guide.md
+- Language mastery? → Javascript-concepts-guide.md
+- Backend dev? → Node-examples-guide.md
+- Full stack? → Project-overview.md
 
 ### Step 3: Learn & Practice
 For each guide:
@@ -272,7 +272,7 @@ For each guide:
 
 ## 🚀 Next Steps
 
-1. **Start:** Open `README_DOCUMENTATION.md`
+1. **Start:** Open `Readme-documentation.md`
 2. **Choose:** Pick your learning path
 3. **Navigate:** Use guide cross-references
 4. **Code:** Run and experiment with examples
@@ -289,14 +289,14 @@ For each guide:
 - Problem-focused: Find guide → learn topic → implement
 
 ### For Reference
-- Use Quick Navigation in README_DOCUMENTATION.md
+- Use Quick Navigation in Readme-documentation.md
 - Search by keyword in any guide
 - Check Topic Roadmap for related concepts
 
 ### For Interview Prep
-1. Focus on ALGORITHMS_GUIDE.md
-2. Study DATA_STRUCTURES_GUIDE.md
-3. Review JAVASCRIPT_CONCEPTS_GUIDE.md (sections 2 & 9)
+1. Focus on Algorithms-guide.md
+2. Study Data-structures-guide.md
+3. Review Javascript-concepts-guide.md (sections 2 & 9)
 4. Time yourself solving problems
 5. Review complexity analysis
 
@@ -345,13 +345,13 @@ All documentation files are in the javascript-samples root directory:
 
 ```
 ls *.md
-├── README_DOCUMENTATION.md       ⭐ Navigation hub
-├── PROJECT_OVERVIEW.md            📋 Start here
-├── ALGORITHMS_GUIDE.md             📘 Algorithms
-├── DATA_STRUCTURES_GUIDE.md        📗 Data structures
-├── JAVASCRIPT_CONCEPTS_GUIDE.md    📙 JavaScript
-├── NODE_EXAMPLES_GUIDE.md          📕 Node.js
-└── ADDITIONAL_TOPICS_GUIDE.md      📓 Advanced topics
+├── Readme-documentation.md       ⭐ Navigation hub
+├── Project-overview.md            📋 Start here
+├── Algorithms-guide.md             📘 Algorithms
+├── Data-structures-guide.md        📗 Data structures
+├── Javascript-concepts-guide.md    📙 JavaScript
+├── Node-examples-guide.md          📕 Node.js
+└── Additional-topics-guide.md      📓 Advanced topics
 ```
 
 ---
@@ -367,7 +367,7 @@ With these 6 comprehensive guides containing 90+ files and ~79KB of documentatio
 ✅ Prepare for technical interviews
 ✅ Build real-world applications
 
-**Start with README_DOCUMENTATION.md and pick your learning path!**
+**Start with Readme-documentation.md and pick your learning path!**
 
 ---
 

@@ -3,7 +3,7 @@
 ## ✨ All Created Markdown Files
 
 ### 🎯 Start Here
-- **[README_DOCUMENTATION.md](README_DOCUMENTATION.md)** - Complete navigation guide and learning paths
+- **[Readme-documentation.md](Readme-documentation.md)** - Complete navigation guide and learning paths
 
 ---
 
@@ -11,13 +11,13 @@
 
 | File | Size | Purpose | Sections |
 |------|------|---------|----------|
-| [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) | 13K | Project structure & technologies | 10 sections |
-| [ALGORITHMS_GUIDE.md](ALGORITHMS_GUIDE.md) | 7.7K | 13 algorithm implementations | Learning paths |
-| [DATA_STRUCTURES_GUIDE.md](DATA_STRUCTURES_GUIDE.md) | 10K | 11 data structures | Complexity analysis |
-| [JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md) | 14K | 15 JavaScript topics | 3 difficulty levels |
-| [NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md) | 9.7K | 16 Node.js patterns | Module comparison |
-| [ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md) | 12K | Advanced topics | Real applications |
-| [DOCUMENTATION_SUMMARY.md](DOCUMENTATION_SUMMARY.md) | 7K | Quick reference | Visual overview |
+| [Project-overview.md](Project-overview.md) | 13K | Project structure & technologies | 10 sections |
+| [Algorithms-guide.md](Algorithms-guide.md) | 7.7K | 13 algorithm implementations | Learning paths |
+| [Data-structures-guide.md](Data-structures-guide.md) | 10K | 11 data structures | Complexity analysis |
+| [Javascript-concepts-guide.md](Javascript-concepts-guide.md) | 14K | 15 JavaScript topics | 3 difficulty levels |
+| [Node-examples-guide.md](Node-examples-guide.md) | 9.7K | 16 Node.js patterns | Module comparison |
+| [Additional-topics-guide.md](Additional-topics-guide.md) | 12K | Advanced topics | Real applications |
+| [Documentation-summary.md](Documentation-summary.md) | 7K | Quick reference | Visual overview |
 
 ---
 
@@ -32,7 +32,7 @@
 - Simple algorithms
 - Basic Node.js
 
-**Start with:** [JAVASCRIPT_CONCEPTS_GUIDE.md#1-js-basicsjs](JAVASCRIPT_CONCEPTS_GUIDE.md#1-js-basicsjs)
+**Start with:** [Javascript-concepts-guide.md#1-js-basicsjs](Javascript-concepts-guide.md#1-js-basicsjs)
 
 #### 🎯 Intermediate
 - ES6+ features
@@ -41,7 +41,7 @@
 - Interview algorithms
 - Express and servers
 
-**Start with:** [JAVASCRIPT_CONCEPTS_GUIDE.md#3-es6-featuresjs](JAVASCRIPT_CONCEPTS_GUIDE.md#3-es6-featuresjs)
+**Start with:** [Javascript-concepts-guide.md#3-es6-featuresjs](Javascript-concepts-guide.md#3-es6-featuresjs)
 
 #### 🔥 Advanced
 - Design patterns
@@ -50,13 +50,13 @@
 - Advanced async
 - Performance optimization
 
-**Start with:** [ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md)
+**Start with:** [Additional-topics-guide.md](Additional-topics-guide.md)
 
 ---
 
 ## 📚 Content Breakdown
 
-### [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) - 13K
+### [Project-overview.md](Project-overview.md) - 13K
 **Purpose:** Complete project overview and structure
 
 **Contains:**
@@ -72,7 +72,7 @@
 
 ---
 
-### [ALGORITHMS_GUIDE.md](ALGORITHMS_GUIDE.md) - 7.7K
+### [Algorithms-guide.md](Algorithms-guide.md) - 7.7K
 **Purpose:** Deep dive into 13 algorithm implementations
 
 **Covers:**
@@ -100,7 +100,7 @@
 
 ---
 
-### [DATA_STRUCTURES_GUIDE.md](DATA_STRUCTURES_GUIDE.md) - 10K
+### [Data-structures-guide.md](Data-structures-guide.md) - 10K
 **Purpose:** 11 data structures from scratch
 
 **Covers:**
@@ -126,7 +126,7 @@
 
 ---
 
-### [JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md) - 14K
+### [Javascript-concepts-guide.md](Javascript-concepts-guide.md) - 14K
 **Purpose:** 15 core JavaScript topic areas
 
 **Covers:**
@@ -149,7 +149,7 @@
 
 ---
 
-### [NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md) - 9.7K
+### [Node-examples-guide.md](Node-examples-guide.md) - 9.7K
 **Purpose:** 16 Node.js features and patterns
 
 **Covers:**
@@ -177,7 +177,7 @@
 
 ---
 
-### [ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md) - 12K
+### [Additional-topics-guide.md](Additional-topics-guide.md) - 12K
 **Purpose:** Advanced and specialized topics
 
 **Covers:**
@@ -211,7 +211,7 @@
 
 ---
 
-### [DOCUMENTATION_SUMMARY.md](DOCUMENTATION_SUMMARY.md) - 7K
+### [Documentation-summary.md](Documentation-summary.md) - 7K
 **Purpose:** Quick reference and visual overview
 
 **Contains:**
@@ -233,31 +233,31 @@
 ### I want to... → Read this guide
 
 **Learn JavaScript fundamentals**
-→ [JAVASCRIPT_CONCEPTS_GUIDE.md#beginner](JAVASCRIPT_CONCEPTS_GUIDE.md#beginner-path)
+→ [Javascript-concepts-guide.md#beginner](Javascript-concepts-guide.md#beginner-path)
 
 **Prepare for coding interviews**
-→ [ALGORITHMS_GUIDE.md](ALGORITHMS_GUIDE.md) + [DATA_STRUCTURES_GUIDE.md](DATA_STRUCTURES_GUIDE.md)
+→ [Algorithms-guide.md](Algorithms-guide.md) + [Data-structures-guide.md](Data-structures-guide.md)
 
 **Understand system design**
-→ [DATA_STRUCTURES_GUIDE.md#complexity-comparison](DATA_STRUCTURES_GUIDE.md#complexity-comparison) + [NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md)
+→ [Data-structures-guide.md#complexity-comparison](Data-structures-guide.md#complexity-comparison) + [Node-examples-guide.md](Node-examples-guide.md)
 
 **Master async programming**
-→ [JAVASCRIPT_CONCEPTS_GUIDE.md#4-async-javascriptjs](JAVASCRIPT_CONCEPTS_GUIDE.md#4-async-javascriptjs) + [ADDITIONAL_TOPICS_GUIDE.md#1-promise-async](ADDITIONAL_TOPICS_GUIDE.md#1-promise-async---async-programming-patterns)
+→ [Javascript-concepts-guide.md#4-async-javascriptjs](Javascript-concepts-guide.md#4-async-javascriptjs) + [Additional-topics-guide.md#1-promise-async](Additional-topics-guide.md#1-promise-async---async-programming-patterns)
 
 **Learn Node.js backend**
-→ [NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md)
+→ [Node-examples-guide.md](Node-examples-guide.md)
 
 **Understand functional programming**
-→ [JAVASCRIPT_CONCEPTS_GUIDE.md#8-composible-javascriptjs](JAVASCRIPT_CONCEPTS_GUIDE.md#8-composible-javascriptjs) + [ADDITIONAL_TOPICS_GUIDE.md#2-functional](ADDITIONAL_TOPICS_GUIDE.md#2-functional---functional-programming)
+→ [Javascript-concepts-guide.md#8-composible-javascriptjs](Javascript-concepts-guide.md#8-composible-javascriptjs) + [Additional-topics-guide.md#2-functional](Additional-topics-guide.md#2-functional---functional-programming)
 
 **Learn testing practices**
-→ [ADDITIONAL_TOPICS_GUIDE.md#3-testing](ADDITIONAL_TOPICS_GUIDE.md#3-testing---testing-patterns)
+→ [Additional-topics-guide.md#3-testing](Additional-topics-guide.md#3-testing---testing-patterns)
 
 **Understand OOP patterns**
-→ [JAVASCRIPT_CONCEPTS_GUIDE.md#9-js-oopjs](JAVASCRIPT_CONCEPTS_GUIDE.md#9-js-oopjs)
+→ [Javascript-concepts-guide.md#9-js-oopjs](Javascript-concepts-guide.md#9-js-oopjs)
 
 **Get started with the project**
-→ [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)
+→ [Project-overview.md](Project-overview.md)
 
 ---
 
@@ -301,27 +301,27 @@ Quick Tips: 20+
 
 ### Path 1: Complete Beginner
 ```
-1. Read: DOCUMENTATION_SUMMARY.md (5 min)
-2. Read: PROJECT_OVERVIEW.md (10 min)
-3. Learn: JAVASCRIPT_CONCEPTS_GUIDE.md - Basics section (30 min)
+1. Read: Documentation-summary.md (5 min)
+2. Read: Project-overview.md (10 min)
+3. Learn: Javascript-concepts-guide.md - Basics section (30 min)
 4. Run examples and experiment (1-2 hours)
 5. Continue with intermediate topics...
 ```
 
 ### Path 2: Interview Prep
 ```
-1. Read: DOCUMENTATION_SUMMARY.md
-2. Study: ALGORITHMS_GUIDE.md (2-3 hours)
-3. Study: DATA_STRUCTURES_GUIDE.md (2-3 hours)
+1. Read: Documentation-summary.md
+2. Study: Algorithms-guide.md (2-3 hours)
+3. Study: Data-structures-guide.md (2-3 hours)
 4. Practice: Run code, implement from scratch (4+ hours)
 5. Review: Complex algorithms and edge cases
 ```
 
 ### Path 3: Backend Developer
 ```
-1. Read: DOCUMENTATION_SUMMARY.md
-2. Learn: JAVASCRIPT_CONCEPTS_GUIDE.md - Async section
-3. Study: NODE_EXAMPLES_GUIDE.md (full guide)
+1. Read: Documentation-summary.md
+2. Learn: Javascript-concepts-guide.md - Async section
+3. Study: Node-examples-guide.md (full guide)
 4. Learn: EXPRESS servers and PASSPORT auth
 5. Build: Small backend project
 ```
@@ -329,9 +329,9 @@ Quick Tips: 20+
 ### Path 4: Full Stack Developer
 ```
 1. All of Path 3
-2. Master JAVASCRIPT_CONCEPTS_GUIDE.md (full)
-3. Study ALGORITHMS_GUIDE.md
-4. Review ADDITIONAL_TOPICS_GUIDE.md
+2. Master Javascript-concepts-guide.md (full)
+3. Study Algorithms-guide.md
+4. Review Additional-topics-guide.md
 5. Build multiple projects
 ```
 
@@ -374,21 +374,21 @@ After using these guides, you should understand:
 ## 🎓 Recommended Reading Order
 
 ### First Time User
-1. [DOCUMENTATION_SUMMARY.md](DOCUMENTATION_SUMMARY.md) - Get oriented
-2. [README_DOCUMENTATION.md](README_DOCUMENTATION.md) - Choose your path
-3. [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) - Understand structure
+1. [Documentation-summary.md](Documentation-summary.md) - Get oriented
+2. [Readme-documentation.md](Readme-documentation.md) - Choose your path
+3. [Project-overview.md](Project-overview.md) - Understand structure
 4. Your chosen guide based on level
 5. Run examples and code along
 
 ### Experienced Developer
-1. [README_DOCUMENTATION.md](README_DOCUMENTATION.md) - Quick overview
+1. [Readme-documentation.md](Readme-documentation.md) - Quick overview
 2. Topic-specific guides as needed
 3. Advanced sections for mastery
 
 ### Interview Candidate
-1. [ALGORITHMS_GUIDE.md](ALGORITHMS_GUIDE.md)
-2. [DATA_STRUCTURES_GUIDE.md](DATA_STRUCTURES_GUIDE.md)
-3. [JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md) - sections 2 & 9
+1. [Algorithms-guide.md](Algorithms-guide.md)
+2. [Data-structures-guide.md](Data-structures-guide.md)
+3. [Javascript-concepts-guide.md](Javascript-concepts-guide.md) - sections 2 & 9
 4. Practice and time yourself
 
 ---
@@ -398,14 +398,14 @@ After using these guides, you should understand:
 All markdown files are in the root directory:
 ```
 javascript-samples/
-├── ALGORITHMS_GUIDE.md
-├── DATA_STRUCTURES_GUIDE.md
-├── DOCUMENTATION_SUMMARY.md
-├── JAVASCRIPT_CONCEPTS_GUIDE.md
-├── NODE_EXAMPLES_GUIDE.md
-├── PROJECT_OVERVIEW.md
-├── README_DOCUMENTATION.md
-└── ADDITIONAL_TOPICS_GUIDE.md
+├── Algorithms-guide.md
+├── Data-structures-guide.md
+├── Documentation-summary.md
+├── Javascript-concepts-guide.md
+├── Node-examples-guide.md
+├── Project-overview.md
+├── Readme-documentation.md
+└── Additional-topics-guide.md
 ```
 
 ---
@@ -413,18 +413,18 @@ javascript-samples/
 ## 🎯 Quick Links
 
 **Main Navigation**
-- [README_DOCUMENTATION.md](README_DOCUMENTATION.md) - Start here!
+- [Readme-documentation.md](Readme-documentation.md) - Start here!
 
 **Core Guides**
-- [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) - Project structure
-- [ALGORITHMS_GUIDE.md](ALGORITHMS_GUIDE.md) - Algorithms
-- [DATA_STRUCTURES_GUIDE.md](DATA_STRUCTURES_GUIDE.md) - Data structures
-- [JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md) - JavaScript
-- [NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md) - Node.js
-- [ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md) - Advanced topics
+- [Project-overview.md](Project-overview.md) - Project structure
+- [Algorithms-guide.md](Algorithms-guide.md) - Algorithms
+- [Data-structures-guide.md](Data-structures-guide.md) - Data structures
+- [Javascript-concepts-guide.md](Javascript-concepts-guide.md) - JavaScript
+- [Node-examples-guide.md](Node-examples-guide.md) - Node.js
+- [Additional-topics-guide.md](Additional-topics-guide.md) - Advanced topics
 
 **Quick Reference**
-- [DOCUMENTATION_SUMMARY.md](DOCUMENTATION_SUMMARY.md) - Overview
+- [Documentation-summary.md](Documentation-summary.md) - Overview
 
 ---
 
@@ -460,7 +460,7 @@ javascript-samples/
 
 ## 🎓 Ready to Start?
 
-**→ Begin with [README_DOCUMENTATION.md](README_DOCUMENTATION.md)**
+**→ Begin with [Readme-documentation.md](Readme-documentation.md)**
 
 This comprehensive guide contains:
 - Navigation map

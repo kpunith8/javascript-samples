@@ -8,7 +8,7 @@ This project contains comprehensive documentation organized into focused guides.
 
 ## 📄 Available Guides
 
-### 1. **[PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)**
+### 1. **[Project-overview.md](Project-overview.md)**
 **Start here** - Complete project overview and structure
 
 **Contains:**
@@ -24,7 +24,7 @@ This project contains comprehensive documentation organized into focused guides.
 
 ---
 
-### 2. **[ALGORITHMS_GUIDE.md](ALGORITHMS_GUIDE.md)**
+### 2. **[Algorithms-guide.md](Algorithms-guide.md)**
 Deep dive into algorithm implementations
 
 **Covers:**
@@ -49,7 +49,7 @@ Deep dive into algorithm implementations
 
 ---
 
-### 3. **[DATA_STRUCTURES_GUIDE.md](DATA_STRUCTURES_GUIDE.md)**
+### 3. **[Data-structures-guide.md](Data-structures-guide.md)**
 Comprehensive data structures implementations
 
 **Covers:**
@@ -72,7 +72,7 @@ Comprehensive data structures implementations
 
 ---
 
-### 4. **[JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md)**
+### 4. **[Javascript-concepts-guide.md](Javascript-concepts-guide.md)**
 Core and advanced JavaScript language features
 
 **Covers:**
@@ -99,7 +99,7 @@ Core and advanced JavaScript language features
 
 ---
 
-### 5. **[NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md)**
+### 5. **[Node-examples-guide.md](Node-examples-guide.md)**
 Node.js specific features and patterns
 
 **Covers:**
@@ -123,7 +123,7 @@ Node.js specific features and patterns
 
 ---
 
-### 6. **[ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md)**
+### 6. **[Additional-topics-guide.md](Additional-topics-guide.md)**
 Specialized topics and applications
 
 **Covers:**
@@ -147,29 +147,29 @@ Specialized topics and applications
 ## 🗺️ Quick Navigation by Topic
 
 ### Data & Algorithms
-- **Algorithm fundamentals** → [ALGORITHMS_GUIDE.md](ALGORITHMS_GUIDE.md)
-- **Data structure implementations** → [DATA_STRUCTURES_GUIDE.md](DATA_STRUCTURES_GUIDE.md)
-- **Interview preparation** → [ALGORITHMS_GUIDE.md](ALGORITHMS_GUIDE.md#interview-tips)
+- **Algorithm fundamentals** → [Algorithms-guide.md](Algorithms-guide.md)
+- **Data structure implementations** → [Data-structures-guide.md](Data-structures-guide.md)
+- **Interview preparation** → [Algorithms-guide.md](Algorithms-guide.md#interview-tips)
 
 ### JavaScript Language
-- **Language basics** → [JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md#1-js-basicsjs)
-- **ES6+ features** → [JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md#3-es6-featuresjs)
-- **Asynchronous patterns** → [JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md#4-async-javascriptjs)
-- **OOP & Classes** → [JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md#9-js-oopjs)
-- **Functional programming** → [JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md#8-composible-javascriptjs)
+- **Language basics** → [Javascript-concepts-guide.md](Javascript-concepts-guide.md#1-js-basicsjs)
+- **ES6+ features** → [Javascript-concepts-guide.md](Javascript-concepts-guide.md#3-es6-featuresjs)
+- **Asynchronous patterns** → [Javascript-concepts-guide.md](Javascript-concepts-guide.md#4-async-javascriptjs)
+- **OOP & Classes** → [Javascript-concepts-guide.md](Javascript-concepts-guide.md#9-js-oopjs)
+- **Functional programming** → [Javascript-concepts-guide.md](Javascript-concepts-guide.md#8-composible-javascriptjs)
 
 ### Backend & Servers
-- **HTTP servers** → [NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md#1-http-serverjs)
-- **Express setup** → [ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md#4-express-server---expressjs-setup)
-- **File handling** → [NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md#3-file-streamsjs)
-- **Streams** → [NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md#3-file-streamsjs)
-- **Clustering** → [NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md#7-cluster-directory)
+- **HTTP servers** → [Node-examples-guide.md](Node-examples-guide.md#1-http-serverjs)
+- **Express setup** → [Additional-topics-guide.md](Additional-topics-guide.md#4-express-server---expressjs-setup)
+- **File handling** → [Node-examples-guide.md](Node-examples-guide.md#3-file-streamsjs)
+- **Streams** → [Node-examples-guide.md](Node-examples-guide.md#3-file-streamsjs)
+- **Clustering** → [Node-examples-guide.md](Node-examples-guide.md#7-cluster-directory)
 
 ### Advanced Topics
-- **Promises & Async** → [ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md#1-promise-async---async-programming-patterns)
-- **Testing** → [ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md#3-testing---testing-patterns)
-- **Authentication** → [ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md#5-passport---authentication)
-- **Refactoring** → [ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md#7-refactoring---code-refactoring)
+- **Promises & Async** → [Additional-topics-guide.md](Additional-topics-guide.md#1-promise-async---async-programming-patterns)
+- **Testing** → [Additional-topics-guide.md](Additional-topics-guide.md#3-testing---testing-patterns)
+- **Authentication** → [Additional-topics-guide.md](Additional-topics-guide.md#5-passport---authentication)
+- **Refactoring** → [Additional-topics-guide.md](Additional-topics-guide.md#7-refactoring---code-refactoring)
 
 ---
 
@@ -177,52 +177,52 @@ Specialized topics and applications
 
 ### Beginner Path
 ```
-1. Start: PROJECT_OVERVIEW.md
+1. Start: Project-overview.md
    ↓
-2. JavaScript Basics: JAVASCRIPT_CONCEPTS_GUIDE.md#1-js-basicsjs
+2. JavaScript Basics: Javascript-concepts-guide.md#1-js-basicsjs
    ↓
-3. Algorithms: ALGORITHMS_GUIDE.md (Beginner section)
+3. Algorithms: Algorithms-guide.md (Beginner section)
    ↓
-4. Data Structures: DATA_STRUCTURES_GUIDE.md (Beginner section)
+4. Data Structures: Data-structures-guide.md (Beginner section)
    ↓
-5. Simple Async: JAVASCRIPT_CONCEPTS_GUIDE.md#4-async-javascriptjs
+5. Simple Async: Javascript-concepts-guide.md#4-async-javascriptjs
 ```
 
 ### Intermediate Path
 ```
-1. Arrays & Methods: JAVASCRIPT_CONCEPTS_GUIDE.md#5-array-exjs
+1. Arrays & Methods: Javascript-concepts-guide.md#5-array-exjs
    ↓
-2. ES6+ Features: JAVASCRIPT_CONCEPTS_GUIDE.md#3-es6-featuresjs
+2. ES6+ Features: Javascript-concepts-guide.md#3-es6-featuresjs
    ↓
-3. Algorithms: ALGORITHMS_GUIDE.md (Intermediate section)
+3. Algorithms: Algorithms-guide.md (Intermediate section)
    ↓
-4. Node.js: NODE_EXAMPLES_GUIDE.md
+4. Node.js: Node-examples-guide.md
    ↓
-5. Testing: ADDITIONAL_TOPICS_GUIDE.md#3-testing---testing-patterns
+5. Testing: Additional-topics-guide.md#3-testing---testing-patterns
 ```
 
 ### Advanced Path
 ```
-1. Advanced JavaScript: JAVASCRIPT_CONCEPTS_GUIDE.md#2-advanced-jsjs
+1. Advanced JavaScript: Javascript-concepts-guide.md#2-advanced-jsjs
    ↓
-2. Design Patterns: JAVASCRIPT_CONCEPTS_GUIDE.md#9-js-oopjs
+2. Design Patterns: Javascript-concepts-guide.md#9-js-oopjs
    ↓
-3. Functional Programming: ADDITIONAL_TOPICS_GUIDE.md#2-functional---functional-programming
+3. Functional Programming: Additional-topics-guide.md#2-functional---functional-programming
    ↓
-4. Complex Algorithms: ALGORITHMS_GUIDE.md (Advanced section)
+4. Complex Algorithms: Algorithms-guide.md (Advanced section)
    ↓
-5. System Design: DATA_STRUCTURES_GUIDE.md (Complexity comparison)
+5. System Design: Data-structures-guide.md (Complexity comparison)
    ↓
-6. Advanced Async: ADDITIONAL_TOPICS_GUIDE.md#1-promise-async---async-programming-patterns
+6. Advanced Async: Additional-topics-guide.md#1-promise-async---async-programming-patterns
 ```
 
 ### Interview Preparation
 ```
-1. Algorithms: ALGORITHMS_GUIDE.md
-2. Data Structures: DATA_STRUCTURES_GUIDE.md
-3. System Design Patterns: JAVASCRIPT_CONCEPTS_GUIDE.md#9-js-oopjs
-4. JavaScript Internals: JAVASCRIPT_CONCEPTS_GUIDE.md#2-advanced-jsjs
-5. Node.js Patterns: NODE_EXAMPLES_GUIDE.md
+1. Algorithms: Algorithms-guide.md
+2. Data Structures: Data-structures-guide.md
+3. System Design Patterns: Javascript-concepts-guide.md#9-js-oopjs
+4. JavaScript Internals: Javascript-concepts-guide.md#2-advanced-jsjs
+5. Node.js Patterns: Node-examples-guide.md
 ```
 
 ---
@@ -309,81 +309,81 @@ npm test
 
 **Looking for...** → **See guide...**
 
-- Binary search → ALGORITHMS_GUIDE.md
-- Linked lists → DATA_STRUCTURES_GUIDE.md
-- Closures → JAVASCRIPT_CONCEPTS_GUIDE.md
-- Promises → ADDITIONAL_TOPICS_GUIDE.md
-- Streams → NODE_EXAMPLES_GUIDE.md
-- Testing → ADDITIONAL_TOPICS_GUIDE.md
-- Authentication → ADDITIONAL_TOPICS_GUIDE.md
-- Performance → ALGORITHMS_GUIDE.md
-- Design patterns → JAVASCRIPT_CONCEPTS_GUIDE.md
-- Functional programming → ADDITIONAL_TOPICS_GUIDE.md
+- Binary search → Algorithms-guide.md
+- Linked lists → Data-structures-guide.md
+- Closures → Javascript-concepts-guide.md
+- Promises → Additional-topics-guide.md
+- Streams → Node-examples-guide.md
+- Testing → Additional-topics-guide.md
+- Authentication → Additional-topics-guide.md
+- Performance → Algorithms-guide.md
+- Design patterns → Javascript-concepts-guide.md
+- Functional programming → Additional-topics-guide.md
 
 ---
 
 ## 🚀 Getting Started
 
 ### First Time Users
-1. Read [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) - 5 minutes
+1. Read [Project-overview.md](Project-overview.md) - 5 minutes
 2. Choose your level (Beginner/Intermediate/Advanced)
 3. Pick a guide from "Topic Roadmap" above
 4. Run examples: `npm start -- <file-path>`
 5. Modify and experiment
 
 ### Interview Prep
-1. Work through [ALGORITHMS_GUIDE.md](ALGORITHMS_GUIDE.md)
-2. Study [DATA_STRUCTURES_GUIDE.md](DATA_STRUCTURES_GUIDE.md)
-3. Review [JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md) sections 2 & 9
+1. Work through [Algorithms-guide.md](Algorithms-guide.md)
+2. Study [Data-structures-guide.md](Data-structures-guide.md)
+3. Review [Javascript-concepts-guide.md](Javascript-concepts-guide.md) sections 2 & 9
 4. Practice with replit-examples
 5. Time yourself solving problems
 
 ### System Design
-1. [DATA_STRUCTURES_GUIDE.md](DATA_STRUCTURES_GUIDE.md) - Complexity understanding
-2. [NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md) - Backend patterns
-3. [JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md#9-js-oopjs) - Design patterns
-4. [ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md) - Real applications
+1. [Data-structures-guide.md](Data-structures-guide.md) - Complexity understanding
+2. [Node-examples-guide.md](Node-examples-guide.md) - Backend patterns
+3. [Javascript-concepts-guide.md](Javascript-concepts-guide.md#9-js-oopjs) - Design patterns
+4. [Additional-topics-guide.md](Additional-topics-guide.md) - Real applications
 
 ---
 
 ## 📝 Files in Each Guide
 
-### PROJECT_OVERVIEW.md
+### Project-overview.md
 - Project description and stats
 - Directory structure
 - Technologies used
 - How to run code
 - Learning areas
 
-### ALGORITHMS_GUIDE.md
+### Algorithms-guide.md
 - 13 algorithm implementations
 - Complexity analysis
 - Learning paths
 - Interview tips
 - Running examples
 
-### DATA_STRUCTURES_GUIDE.md
+### Data-structures-guide.md
 - 11 data structures
 - Time complexity table
 - Use cases
 - Comparison table
 - Interview tips
 
-### JAVASCRIPT_CONCEPTS_GUIDE.md
+### Javascript-concepts-guide.md
 - 15 concept areas
 - ES6+ features
 - OOP patterns
 - Async patterns
 - Learning paths
 
-### NODE_EXAMPLES_GUIDE.md
+### Node-examples-guide.md
 - 16 file/directory examples
 - Module comparison
 - Common patterns
 - Use cases
 - Learning paths
 
-### ADDITIONAL_TOPICS_GUIDE.md
+### Additional-topics-guide.md
 - Promise/async patterns
 - Functional programming
 - Testing practices
@@ -458,12 +458,12 @@ To extend this documentation:
 
 ## 📞 Quick Links
 
-- [Project Overview](PROJECT_OVERVIEW.md)
-- [Algorithms Guide](ALGORITHMS_GUIDE.md)
-- [Data Structures Guide](DATA_STRUCTURES_GUIDE.md)
-- [JavaScript Concepts Guide](JAVASCRIPT_CONCEPTS_GUIDE.md)
-- [Node.js Examples Guide](NODE_EXAMPLES_GUIDE.md)
-- [Additional Topics Guide](ADDITIONAL_TOPICS_GUIDE.md)
+- [Project Overview](Project-overview.md)
+- [Algorithms Guide](Algorithms-guide.md)
+- [Data Structures Guide](Data-structures-guide.md)
+- [JavaScript Concepts Guide](Javascript-concepts-guide.md)
+- [Node.js Examples Guide](Node-examples-guide.md)
+- [Additional Topics Guide](Additional-topics-guide.md)
 - [GitHub Repository](https://github.com/kpunith8/javascript-samples)
 
 ---
@@ -490,7 +490,7 @@ To extend this documentation:
 
 ---
 
-**Ready to learn? Start with [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)!**
+**Ready to learn? Start with [Project-overview.md](Project-overview.md)!**
 
 ---
 

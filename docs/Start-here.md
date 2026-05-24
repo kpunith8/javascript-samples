@@ -12,20 +12,20 @@ I have successfully analyzed the **javascript-samples** project and created **9 
 
 | # | File | Size | Focus | Status |
 |---|------|------|-------|--------|
-| 1 | **[README_DOCUMENTATION.md](README_DOCUMENTATION.md)** | 13K | 🗺️ Navigation hub & learning paths | ✅ Complete |
-| 2 | **[PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)** | 13K | 📋 Project structure & technologies | ✅ Complete |
-| 3 | **[ALGORITHMS_GUIDE.md](ALGORITHMS_GUIDE.md)** | 7.7K | 📘 13 algorithm implementations | ✅ Complete |
-| 4 | **[DATA_STRUCTURES_GUIDE.md](DATA_STRUCTURES_GUIDE.md)** | 10K | 📗 11 data structure implementations | ✅ Complete |
-| 5 | **[JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md)** | 14K | 📙 15 JavaScript topic areas | ✅ Complete |
-| 6 | **[NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md)** | 9.7K | 📕 16 Node.js patterns | ✅ Complete |
-| 7 | **[ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md)** | 12K | 📓 Advanced topics & applications | ✅ Complete |
+| 1 | **[Readme-documentation.md](Readme-documentation.md)** | 13K | 🗺️ Navigation hub & learning paths | ✅ Complete |
+| 2 | **[Project-overview.md](Project-overview.md)** | 13K | 📋 Project structure & technologies | ✅ Complete |
+| 3 | **[Algorithms-guide.md](Algorithms-guide.md)** | 7.7K | 📘 13 algorithm implementations | ✅ Complete |
+| 4 | **[Data-structures-guide.md](Data-structures-guide.md)** | 10K | 📗 11 data structure implementations | ✅ Complete |
+| 5 | **[Javascript-concepts-guide.md](Javascript-concepts-guide.md)** | 14K | 📙 15 JavaScript topic areas | ✅ Complete |
+| 6 | **[Node-examples-guide.md](Node-examples-guide.md)** | 9.7K | 📕 16 Node.js patterns | ✅ Complete |
+| 7 | **[Additional-topics-guide.md](Additional-topics-guide.md)** | 12K | 📓 Advanced topics & applications | ✅ Complete |
 
 ### Reference Files (2 Indexes)
 
 | # | File | Size | Purpose | Status |
 |---|------|------|---------|--------|
-| 8 | **[DOCUMENTATION_SUMMARY.md](DOCUMENTATION_SUMMARY.md)** | 7K | ⚡ Quick reference & overview | ✅ Complete |
-| 9 | **[FILES_INDEX.md](FILES_INDEX.md)** | 9K | 📑 Complete file index | ✅ Complete |
+| 8 | **[Documentation-summary.md](Documentation-summary.md)** | 7K | ⚡ Quick reference & overview | ✅ Complete |
+| 9 | **[Files-index.md](Files-index.md)** | 9K | 📑 Complete file index | ✅ Complete |
 
 ---
 
@@ -58,7 +58,7 @@ Diagrams/Tables:                  30+
 
 ## 🎯 What Each Guide Contains
 
-### 1. README_DOCUMENTATION.md ⭐ START HERE
+### 1. Readme-documentation.md ⭐ START HERE
 **Purpose:** Main navigation hub and learning roadmap
 
 **Includes:**
@@ -75,7 +75,7 @@ Diagrams/Tables:                  30+
 
 ---
 
-### 2. PROJECT_OVERVIEW.md
+### 2. Project-overview.md
 **Purpose:** Complete project structure and setup
 
 **Covers:**
@@ -92,7 +92,7 @@ Diagrams/Tables:                  30+
 
 ---
 
-### 3. ALGORITHMS_GUIDE.md
+### 3. Algorithms-guide.md
 **Purpose:** 13 algorithm implementations with deep analysis
 
 **Covers:**
@@ -112,7 +112,7 @@ Diagrams/Tables:                  30+
 
 ---
 
-### 4. DATA_STRUCTURES_GUIDE.md
+### 4. Data-structures-guide.md
 **Purpose:** 11 data structure implementations
 
 **Covers:**
@@ -132,7 +132,7 @@ Diagrams/Tables:                  30+
 
 ---
 
-### 5. JAVASCRIPT_CONCEPTS_GUIDE.md
+### 5. Javascript-concepts-guide.md
 **Purpose:** 15 core JavaScript topics
 
 **Covers:**
@@ -154,7 +154,7 @@ Diagrams/Tables:                  30+
 
 ---
 
-### 6. NODE_EXAMPLES_GUIDE.md
+### 6. Node-examples-guide.md
 **Purpose:** 16 Node.js patterns and features
 
 **Covers:**
@@ -174,7 +174,7 @@ Diagrams/Tables:                  30+
 
 ---
 
-### 7. ADDITIONAL_TOPICS_GUIDE.md
+### 7. Additional-topics-guide.md
 **Purpose:** Advanced and specialized topics
 
 **Covers:**
@@ -194,7 +194,7 @@ Diagrams/Tables:                  30+
 
 ---
 
-### 8. DOCUMENTATION_SUMMARY.md
+### 8. Documentation-summary.md
 **Purpose:** Quick reference and visual overview
 
 **Includes:**
@@ -210,7 +210,7 @@ Diagrams/Tables:                  30+
 
 ---
 
-### 9. FILES_INDEX.md
+### 9. Files-index.md
 **Purpose:** Complete file index and navigation
 
 **Includes:**
@@ -232,31 +232,31 @@ Diagrams/Tables:                  30+
 
 **I'm completely new** 👶
 ```
-→ Start: README_DOCUMENTATION.md
-→ Then: PROJECT_OVERVIEW.md
-→ Then: JAVASCRIPT_CONCEPTS_GUIDE.md (Beginner)
+→ Start: Readme-documentation.md
+→ Then: Project-overview.md
+→ Then: Javascript-concepts-guide.md (Beginner)
 → Then: Run examples!
 ```
 
 **I want to prepare for interviews** 🎯
 ```
-→ Start: ALGORITHMS_GUIDE.md
-→ Then: DATA_STRUCTURES_GUIDE.md
-→ Then: JAVASCRIPT_CONCEPTS_GUIDE.md (sections 2 & 9)
+→ Start: Algorithms-guide.md
+→ Then: Data-structures-guide.md
+→ Then: Javascript-concepts-guide.md (sections 2 & 9)
 → Then: Practice and time yourself!
 ```
 
 **I'm a backend developer** 🔧
 ```
-→ Start: NODE_EXAMPLES_GUIDE.md
-→ Then: JAVASCRIPT_CONCEPTS_GUIDE.md (Async)
-→ Then: ADDITIONAL_TOPICS_GUIDE.md (Express, Auth)
+→ Start: Node-examples-guide.md
+→ Then: Javascript-concepts-guide.md (Async)
+→ Then: Additional-topics-guide.md (Express, Auth)
 → Then: Build projects!
 ```
 
 **I want a complete overview** 📚
 ```
-→ Start: README_DOCUMENTATION.md
+→ Start: Readme-documentation.md
 → Pick: Your learning path
 → Read: Relevant guides sequentially
 → Master: The entire project!
@@ -315,16 +315,16 @@ Diagrams/Tables:                  30+
 ## 📍 All Files Located In
 
 ```
-/Users/punithk/web-projects/javascript-samples/
-├── README_DOCUMENTATION.md          (Navigation hub) ⭐
-├── PROJECT_OVERVIEW.md               (Start here)
-├── ALGORITHMS_GUIDE.md               (13 algorithms)
-├── DATA_STRUCTURES_GUIDE.md          (11 structures)
-├── JAVASCRIPT_CONCEPTS_GUIDE.md      (15 topics)
-├── NODE_EXAMPLES_GUIDE.md            (16 patterns)
-├── ADDITIONAL_TOPICS_GUIDE.md        (Advanced)
-├── DOCUMENTATION_SUMMARY.md          (Quick ref)
-└── FILES_INDEX.md                   (Index)
+/Users/punithk/web-projects/javascript-samples/docs/
+├── Readme-documentation.md           (Navigation hub) ⭐
+├── Project-overview.md               (Start here)
+├── Algorithms-guide.md               (13 algorithms)
+├── Data-structures-guide.md          (11 structures)
+├── Javascript-concepts-guide.md      (15 topics)
+├── Node-examples-guide.md            (16 patterns)
+├── Additional-topics-guide.md        (Advanced)
+├── Documentation-summary.md          (Quick ref)
+└── Files-index.md                   (Index)
 ```
 
 ---
@@ -417,7 +417,7 @@ Diagrams/Tables:                  30+
 ## 🎯 Next Steps
 
 1. **Browse:** Explore the files in your text editor
-2. **Read:** Start with README_DOCUMENTATION.md
+2. **Read:** Start with Readme-documentation.md
 3. **Navigate:** Use cross-references between guides
 4. **Learn:** Pick your topic and dive deep
 5. **Practice:** Run code and implement examples
@@ -431,15 +431,15 @@ Diagrams/Tables:                  30+
 Total Size: ~99 KB
 
 Distribution:
-- JAVASCRIPT_CONCEPTS_GUIDE.md    14 KB (largest)
-- ADDITIONAL_TOPICS_GUIDE.md      12 KB
-- PROJECT_OVERVIEW.md             13 KB
-- README_DOCUMENTATION.md         13 KB
-- DATA_STRUCTURES_GUIDE.md        10 KB
-- NODE_EXAMPLES_GUIDE.md          9.7 KB
-- ALGORITHMS_GUIDE.md             7.7 KB
-- FILES_INDEX.md                  9 KB
-- DOCUMENTATION_SUMMARY.md        7 KB
+- Javascript-concepts-guide.md    14 KB (largest)
+- Additional-topics-guide.md      12 KB
+- Project-overview.md             13 KB
+- Readme-documentation.md         13 KB
+- Data-structures-guide.md        10 KB
+- Node-examples-guide.md          9.7 KB
+- Algorithms-guide.md             7.7 KB
+- Files-index.md                  9 KB
+- Documentation-summary.md        7 KB
 ```
 
 ---
@@ -479,24 +479,24 @@ You now have access to a complete, comprehensive documentation suite covering:
 ✅ 16+ Node.js patterns
 ✅ Advanced topics and real applications
 
-**Start with [README_DOCUMENTATION.md](README_DOCUMENTATION.md) and pick your learning path!**
+**Start with [Readme-documentation.md](Readme-documentation.md) and pick your learning path!**
 
 ---
 
 ## 📞 Navigation Hub
 
-**Main Entry Point:** [README_DOCUMENTATION.md](README_DOCUMENTATION.md)
+**Main Entry Point:** [Readme-documentation.md](Readme-documentation.md)
 
 **By Topic:**
-- Algorithms → [ALGORITHMS_GUIDE.md](ALGORITHMS_GUIDE.md)
-- Data Structures → [DATA_STRUCTURES_GUIDE.md](DATA_STRUCTURES_GUIDE.md)
-- JavaScript → [JAVASCRIPT_CONCEPTS_GUIDE.md](JAVASCRIPT_CONCEPTS_GUIDE.md)
-- Node.js → [NODE_EXAMPLES_GUIDE.md](NODE_EXAMPLES_GUIDE.md)
-- Advanced → [ADDITIONAL_TOPICS_GUIDE.md](ADDITIONAL_TOPICS_GUIDE.md)
+- Algorithms → [Algorithms-guide.md](Algorithms-guide.md)
+- Data Structures → [Data-structures-guide.md](Data-structures-guide.md)
+- JavaScript → [Javascript-concepts-guide.md](Javascript-concepts-guide.md)
+- Node.js → [Node-examples-guide.md](Node-examples-guide.md)
+- Advanced → [Additional-topics-guide.md](Additional-topics-guide.md)
 
 **Quick Reference:**
-- Overview → [DOCUMENTATION_SUMMARY.md](DOCUMENTATION_SUMMARY.md)
-- Index → [FILES_INDEX.md](FILES_INDEX.md)
+- Overview → [Documentation-summary.md](Documentation-summary.md)
+- Index → [Files-index.md](Files-index.md)
 
 ---
 
