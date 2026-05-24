@@ -31,7 +31,7 @@ export class WithTime extends EventEmitter {
 const withLog = new WithLog();
 
 withLog.on('begin', () => console.log('About to begin'));
-withLog.on('end', () => console.log('Done with exection'));
+withLog.on('end', () => console.log('Done with execution'));
 
 withLog.execute(() => console.log('*** Executing task ***'));
 

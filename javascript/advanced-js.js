@@ -73,9 +73,9 @@ let block1 = 10;
 
 /* Dynamic scoping - runtime decision */
 
-/* Hoisting: All function declarations are hoisted to top then the variable declations, function expression will not be hoisted */
+/* Hoisting: All function declarations are hoisted to top then the variable declarations, function expression will not be hoisted */
 
-/* Every function, while executing, has a refrence to its current exection context, called 'this' */
+/* Every function, while executing, has a reference to its current execution context, called 'this' */
 
 /* Closures: when a function remembers the lexical scope when the function is executed outside that lexical scope */
 function closureFoo() {
@@ -85,7 +85,7 @@ function closureFoo() {
   }
 
   // baz is passed as reference to outside function, and still remembers the its scope
-  // and accesses bar variable outside the invokiing scope
+  // and accesses bar variable outside the invoking scope
   outsideFunction(baz);
 }
 
@@ -128,8 +128,8 @@ or declare let instead of var inside for loop in the above example*/
 
 // Classic module pattern:
 // 1. there would be outer enclosing function
-// 2. one or more functions get retunned from the function call,
-// one or more innner functions have closure over inner private scope
+// 2. one or more functions get returned from the function call,
+// one or more inner functions have closure over inner private scope
 var closure2 = (function () {
   var o = { bar: "bar" };
 
@@ -174,12 +174,12 @@ var a1 = new OOPExample("Punith");
 var a2 = new OOPExample("Sahana");
 
 a2.speak = function () {
-  console.log(`Hello ${this.identity()}`); // this referes to OOPExample
+  console.log(`Hello ${this.identity()}`); // this refers to OOPExample
 };
 
 a2.speak();
 
-// property has same name as in prototype needs explicit referernce to this
+// property has same name as in prototype needs explicit reference to this
 // a1.identity = function() {
 //   // called shadowing
 //   console.log(`Hello, ${OOPExample.prototype.identity.call(this)}`);
@@ -457,6 +457,153 @@ function multiply(a, b) {
 const multiplyByTwo = multiply.bind(null, 2); // this can be passed as first param
 console.log("multiplyByTwo(11):", multiplyByTwo(11));
 
+// this binding rules (You Don't Know JS: Kyle Simpson)
+
+// Assumption- 'this' refers to the function itself
+function thisTest(num) {
+  console.log('foo1:', num);
+  this.count++;
+}
+
+thisTest.count = 0;
+
+// 'this' does not refer to function's lexical scope
+// it prints 0, since 'this' is not pointing to thisTest
+// console.log(`thisTest was called ${thisTest.count} times`);
+
+// fixed using call()
+for (let i = 0; i <= 10; i++) {
+  if (i > 5) {
+    //thisTest.call(thisTest, i);
+  }
+}
+
+// console.log(`thisTest was called ${thisTest.count} times`);
+
+// call site of function execution decides the context of this
+// there are 4 rules: Default, Implicit, Explicit, new
+
+// 1. Default binding
+defaultValue = 10;
+
+function defaultBinding() {
+  console.log(`default binding ${this.defaultValue}`);
+}
+
+// defaultBinding();
+
+// 2. Implicit binding
+function implicitBinding() {
+  console.log(`implicit binding ${this.a}`);
+}
+
+let obj_2 = {
+  a: 42,
+  foo: implicitBinding
+};
+
+let obj_1 = {
+  a: 2,
+  obj_2: obj_2
+};
+
+// obj_1.obj_2.foo();
+
+// Implicitly lost
+function implicitlyLost() {
+  console.log(this.a);
+}
+
+var objImpl = {
+  a: 2,
+  foo: implicitlyLost
+};
+
+var bar = objImpl.foo;
+a = "oops, global";
+
+// bar();
+
+function runImplicitlyLost(fn) {
+  fn();
+}
+
+// runImplicitlyLost(objImpl.foo);
+
+// 3. Explicit binding
+function explicitBinding() {
+  console.log(`Explicit binding ${this.a}`);
+}
+
+// explicitBinding.call(objImpl);
+
+function explicitHardBinding() {
+  console.log(`Explicit hard binding: ${this.a}`);
+}
+
+let hardBinding = function () {
+  explicitHardBinding.call(objImpl);
+}
+
+hardBinding();
+// setTimeout(hardBinding, 100);
+
+// it cannot be overridden
+hardBinding.call(obj_2);
+
+function explicitBinding1(something) {
+  console.log(`Explicit binding ${this.a}, ${something}`);
+  return this.a + something;
+}
+
+let hardBinding1 = function () {
+  return explicitBinding1.apply(objImpl, arguments);
+};
+
+let sum = hardBinding1(3);
+console.log(`sum is: ${sum}`);
+
+function bindHelper(fn, obj) {
+  return function () {
+    return fn.apply(obj, arguments);
+  };
+}
+
+var sumHelper = bindHelper(hardBinding1, objImpl);
+
+let sum1 = sumHelper(5);
+console.log(`sum is ${sum1}`);
+
+let protoBinding = hardBinding1.bind(objImpl);
+let sum2 = protoBinding(4);
+console.log(`sum is ${sum2}`);
+
+function apiCallContext(element) {
+  console.log(element, this.id);
+}
+
+var obj_api = {
+  id: "awesome"
+};
+
+// [1, 2, 3].forEach(apiCallContext, obj_api);
+
+// 4. 'new' Binding
+function newFoo(a) {
+  this.a = a;
+}
+
+var newBind = new newFoo(4);
+console.log(`new bind ${newBind.a}`);
+
+function newBinding() {
+  this.baz = 'baz';
+}
+
+var bar = 'bar';
+var baz = new newBinding();
+// console.log(`After new, value is ${baz.baz}`);
+
 // type of a Function () and Array [] is an Object
 
 // Pass by reference v/s pass by value
@@ -548,7 +695,7 @@ function getArrayItemAt(index) {
 }
 
 // Creates the array each time function called
-// assume it is needs lot of memory to creat or execute
+// assuming it needs a lot of memory to create or execute
 console.log(getArrayItemAt(600));
 console.log(getArrayItemAt(700));
 console.log(getArrayItemAt(800));

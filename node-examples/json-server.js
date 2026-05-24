@@ -23,8 +23,8 @@ const loadAlbumList = (callback) => {
           iterator(index + 1);
         });
       };
-      /** This will return empty list because of asnyc way of handling it,
-       * this can be solved writing recurrsive function, in this case iterator function above
+      /** This will return empty list because of async way of handling it,
+       * this can be solved writing recursive function, in this case iterator function above
         for (let i = 0; files && i < files.length; i++) {
         fs.stat('albums/' + files[i], (err, stats) => {
           if (stats.isDirectory()) {

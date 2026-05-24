@@ -14,7 +14,7 @@ console.log("Remove mat from array,", delete arr[1], ", After deleting,", arr);
 // use splice() to delete the item and re-arrange the index
 // console.log('Remove 2 items from the array,', arr.splice(1, 2)); // starting from index 1 and removes 2 items
 
-// unshift() adds items at the begining and shift() removes from the begining
+// unshift() adds items at the beginning and shift() removes from the beginning
 // pop() - pops from the end of an array and push() - pushes items at the end
 
 // concat doesn't mutate the array

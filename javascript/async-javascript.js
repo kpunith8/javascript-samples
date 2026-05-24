@@ -8,7 +8,7 @@ babelCore.transform("code", {});
 // console.log("1");
 // console.log("3");
 
-// asynchrnous call with setTimeout
+// asynchronous call with setTimeout
 // setTimeout(() => {
 //   console.log("2");
 // }, 0);
@@ -74,7 +74,7 @@ const getAllData1 = async () => {
 // Promises get into JOB queue (Microtask Queue) (ES-2018) and they have highest priority over setTimeout
 // and will execute first than the one in Callback Queue
 
-// use, race(), all() from promise API to run different way of hadling the async behaviour
+// use, race(), all() from promise API to run different way of handling the async behaviour
 
 // Star wars APIs
 /*
@@ -198,7 +198,7 @@ Promise.all([asyncFunc(19), asyncFunc1(2)])
 // 3. A Promise is settled exactly once and then remains unchanged.
 
 // A Promise is a container for an asynchronously delivered value
-// Promise based funtion is blocking
+// Promise based function is blocking
 // The result of a Promise is cached and passed to event listeners that are registered after the Promise was settled
 function asyncFunc2() {
   const eventEmitter = { success: [] };
@@ -225,7 +225,7 @@ asyncFunc2().success.push((x) => console.log("Result:", x));
 // Examples
 
 // Promisify XMLHttpRequest - node doesn't support XMLHttpRequest need to use node-fetch or axios
-// for the same, just an example to demonstrate how to convert an exiting code to Promise based API
+// for the same, just an example to demonstrate how to convert an existing code to Promise based API
 function httpGet(url) {
   return new Promise(
     function (resolve, reject) {

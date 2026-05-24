@@ -59,7 +59,7 @@ const clone4 = Object.assign(
 );
 
 console.log(
-  "Clones created with prototype using spread and Object.asign():",
+  "Clones created with prototype using spread and Object.assign():",
   clone3,
   clone4
 );
@@ -185,6 +185,56 @@ obj1.timer();
 obj2.timer();
 // console.log(obj3.fullName(), obj3.fullModelName());
 
+/* ES6 CLASSES */
+class Vehicle {
+  constructor(type) {
+    this.type = type;
+    this.km = 0;
+    this._color = 'Orange';
+  }
+
+  drive(distance) {
+    this.km += distance;
+    console.log(`Travelled ${this.km} Kms`);
+  }
+
+  get color() {
+    return this._color;
+  }
+
+  set color(color) {
+    this._color = color;
+  }
+
+  static info() {
+    console.log(`This is a static method in a class`);
+  }
+
+  static get getInfo() {
+    console.log('Static getter method');
+  }
+}
+
+const vehicle = new Vehicle('car');
+vehicle.color = 'Red';
+
+// Class expressions
+const classExp = class ClassExp { };
+
+const ClassFactory = function (...Properties) {
+  return class {
+    constructor(...values) {
+      for (const [index, property] of Properties.entries()) {
+        this[property] = values[index];
+      }
+    }
+  }
+};
+
+const Book = ClassFactory('title', 'pages');
+
+const Music = ClassFactory('title', 'volume');
+
 /* Understanding var scope */
 function varScope(x, y) {
   if (x > y) {
@@ -249,7 +299,7 @@ function truthyTest(x) {
   // to fix this to consider 0 as truthy add the logic as follows,  x = x !== undefined ? x : 22;
 
   //  var x = x !== undefined ? x : 22;
-  // possible falsy values in JS are: 0, "", false, null, undefined, ans NaN
+  // possible falsy values in JS are: 0, "", false, null, undefined, and NaN
   console.log("Value of x when x is 0 for integer:", x);
 }
 
@@ -405,7 +455,7 @@ Month: ${matchObjNames.groups.month}
 Day: ${matchObjNames.groups.day}`);
 
 // Named capture groups also create indexed entries; as if they were numbered capture groups
-// Destructure them for reability
+// Destructure them for readability
 const {
   groups: { day, year },
 } = RE_DATE_NAMES.exec("1999-12-31");

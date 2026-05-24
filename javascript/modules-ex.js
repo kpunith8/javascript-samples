@@ -1,7 +1,7 @@
 let globalSecret = "1234";
 
 // Module pattern (Revealing pattern) - IIFE - return from a IIFE, and access them separately
-// It won'available in global object, doesn't pollute the global object ex: jQuery
+// It won't be available in global object, doesn't pollute the global object ex: jQuery
 // It reduces global scope pollution, but still can be polluted if another script has
 // the variable fightModule
 const fightModule = (function(globalSecret) {
@@ -29,7 +29,7 @@ console.log(
 );
 
 // CommonJS - see greeter.js - Modules are loaded synchronously
-// AMD - Asynchronots Module Definition
+// AMD - Asynchronous Module Definition
 // UMD - Universal Module Definition
 
 // ES-6 Modules

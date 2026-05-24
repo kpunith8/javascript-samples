@@ -55,7 +55,7 @@ const onceAndAfter = (f, g) => {
   };
 };
 
-// above can be re-written using funtion as first order objects
+// above can be re-written using function as first order objects
 const onceAndAfter1 = (f, g) => {
   let nextFunc = f;
   return (...args) => {
@@ -365,7 +365,7 @@ console.log(
   pcSum5(1, 5)(3)(7, 4)
 );
 
-// Pipeline - Functions are applied from left to right, composition - functions are appplied from right to left
+// Pipeline - Functions are applied from left to right, composition - functions are applied from right to left
 const samplePipe =
   (f, g) =>
   (...args) =>
@@ -617,7 +617,7 @@ let new4 = updateObject(["o", "f", "j", "k", "l"], myObj3, "deep");
 
 console.log({ myObj3 }, { new1 }, { new2 }, { new3 }, { new4 });
 
-// Desing patterns - Functional way
+// Design patterns - Functional way
 // Coupling - Interdependance between two modules
 // Cohesiveness - the degree to which all components of a module really belong together
 // Low coupling and high cohesiveness are good goals for software design because they imply that

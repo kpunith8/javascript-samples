@@ -14,7 +14,7 @@ const app = express();
 // morgan middleware is used to log requests (GET, POST, and etc) after the each request
 app.use(require('morgan')('dev'));
 
-// it adds the respone time info to the response headers as X-Response-Time, check it under network tab in chrome tools
+// it adds the response time info to the response headers as X-Response-Time, check it under network tab in chrome tools
 app.use(require('response-time')());
 
 // Serving static files using, express.static middleware
@@ -64,12 +64,12 @@ function isAdmin(req, res, next) {
   if (admin) {
     next();
   } else {
-    res.end('No authrization to access');
+    res.end('No authorization to access');
   }
 }
 
 // Regular expression can be used to match the URLs
-// app.all() can also be used, instaed of all
+// app.all() can also be used, instead of all
 
 // If userId > 10000 call some other route or call Legacy code
 app.get("/user[s]?/:userId", (req, res, next) => {

@@ -1,4 +1,4 @@
-// Demonstartes the creating modules and exporting them
+// Demonstrates creating modules and exporting them
 
 export function Greeter(lang) {
   this.language = lang;

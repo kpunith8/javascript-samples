@@ -86,7 +86,7 @@ const oddCountPromise = () =>
 
 // oddCountPromise();
 
-/* Handling it asnyc way, using async, await feature */
+/* Handling it async way, using async, await feature */
 async function countOddAsync() {
   try {
     const lines = await readFileAsArray("../numbers");

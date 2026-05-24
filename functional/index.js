@@ -55,24 +55,6 @@ const addAndMultiply = es6Compose(mul, sum);
 
 console.log("Using compose utility:", addAndMultiply(5, 6, 7));
 
-/* IMMUTABILITY */
-var x1 = 2;
-x1++; // allowed
-
-const y1 = 10;
-// y1++; // not allowed
-
-const z1 = [10, 12, 13];
-// z1 = 10; // not allowed, here z is reference to the array, reference of an const cannot be changed
-z1[1] = 20; // allowed, value within an array can be modified, immutability doesn't work here
-
-const a = Object.freeze([4, 5, 6, [7, 8]]);
-// a = 10; // not allowed
-// a[1] = 20; // not allowed
-a[3][0] = 10; // allowed, nested array can not be frozen hence can be updated
-
-console.log("Mutating the nested array when Object.freeze() called:", a);
-
 /* CLOSURE */
 // Closure is when a function remembers the variable around that when that function is executed elsewhere.
 

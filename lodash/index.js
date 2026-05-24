@@ -73,7 +73,7 @@ _.dropRightWhile(users, ["isActive", false]);
 _.dropRightWhile(users, "isActive");
 // => objects for ['barney', 'fred', 'pebbles']
 
-// check _.dropWhile() // drop from the begining
+// check _.dropWhile() // drop from the beginning
 
 let obj = {data: '123', name: 'Punith'};
 let obj1 = {place: 'Bangalore', pin: 12233};

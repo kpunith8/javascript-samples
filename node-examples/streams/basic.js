@@ -6,7 +6,7 @@
 
 // stdin.pipe(stdout);
 
-// Run this command in CLI to generate a randon large file, generated 1 billion bytes (1 GB) of random data
+// Run this command in CLI to generate a random large file, generated 1 billion bytes (1 GB) of random data
 // node -e "process.stdout.write(crypto.randomBytes(1e9))" > bigfile.txt
 
 // Create a http server to serve the file

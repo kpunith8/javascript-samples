@@ -91,7 +91,7 @@ const userEnvEmails = createUserEnvWithUrls({
 
 console.log({ userEnv, userEnvEmails, userEnvInlineArgs });
 
-// Referernce: https://github.com/getify/Functional-Light-JS/blob/master/manuscript/ch1.md/#chapter-1-why-functional-programming
+// Reference: https://github.com/getify/Functional-Light-JS/blob/master/manuscript/ch1.md/#chapter-1-why-functional-programming
 // Reference: https://mostly-adequate.gitbook.io/mostly-adequate-guide/
 
 // Pure Function: A pure function is a function that, given the same input, will always return the same output and does not have any observable side effect.
@@ -313,12 +313,12 @@ const composeRL = (...fns) => fns.reduceRight(pipe);
 // Simple compose for 2 params
 
 // g(x) is executed first then the f(g(x)) - compose in maths is applied
-// from right to left, mathametically this version is correct
+// from right to left, mathematically this version is correct
 const compose2 = (f, g) => (x) => f(g(x));
 // f and g are functions and x is the value being "piped" through them.
 
 // Reverse the order to apply from left to right
-const composeRevesre = (f, g) => (x) => g(f(x));
+const composeReverse = (f, g) => (x) => g(f(x));
 
 const toUpperCase = (x) => x.toUpperCase();
 const exclaim = (x) => `${x}!`;

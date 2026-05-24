@@ -104,8 +104,8 @@ const palindromeImperative1 = (str) => {
   return reversedString === str;
 };
 
-console.log("Imperative Palindrone:", palindromeImperative("maam"));
-console.log("Imperative Palindrone:", palindromeImperative1("maddam"));
+console.log("Imperative Palindrome:", palindromeImperative("maam"));
+console.log("Imperative Palindrome:", palindromeImperative1("maddam"));
 
 // Duplicate items in an array
 const numbers = [1, 2, 3, 2, 4, 5, 5, 6];
@@ -143,7 +143,7 @@ const countOccuranceOfNumbersMap = (arr) => {
       recurrenceCount[item] = 1;
     }
   });
-  // Pick the number having highest occurence in the array
+  // Pick the number having highest occurrence in the array
   // [2, 3, 2, 3, 3, 1, 1] => Should return 3, because number 3 repeats 3 times.
   let result = { count: 0 };
 
@@ -164,11 +164,11 @@ const occurrencesOf = (numbers, number) =>
   );
 
 console.log(
-  "Count the occurence of a number(reduce):",
+  "Count the occurrence of a number(reduce):",
   countOccuranceOfNumbers([1, 2, 3, 4, 2, 3, 4])
 );
 console.log(
-  "\nCount the occurence of a number(map):",
+  "\nCount the occurrence of a number(map):",
   countOccuranceOfNumbersMap([1, 2, 3, 4, 2, 3, 4, 1, 3, 1, 3])
 );
 
@@ -192,7 +192,7 @@ const firstRecurringChar = (input) => {
 console.log("First recurring number:", firstRecurringChar([1, 2, 3, 1, 1]));
 console.log("First recurring char:", firstRecurringChar("abcdeffhdd"));
 
-// Sieve of Earosthenes algorithm to print all prime numbers to less than or equal to given integer
+// Sieve of Eratosthenes algorithm to print all prime numbers to less than or equal to given integer
 
 // Prime number: Number which can be divided by 1 and itself
 // 2 is only the even prime number
@@ -217,7 +217,7 @@ function sieveOfEratosthenes(n) {
   }
 }
 
-console.log("\nSieve of Earosthenes algorithm:", sieveOfEratosthenes(60));
+console.log("\nSieve of Eratosthenes algorithm:", sieveOfEratosthenes(60));
 
 // Tar = Rat
 // Arc = Car
@@ -263,9 +263,9 @@ const checkAnagram = (str1, str2) => {
 console.log("\nAnagrams:", checkAnagram("arc", "ara"));
 
 // Function to return gcd of a and b
-function gcdEucledean(a, b) {
+function gcdEuclidean(a, b) {
   if (a === 0) return b;
-  return gcdEucledean(b % a, a);
+  return gcdEuclidean(b % a, a);
 }
 
 // Function to find gcd of array of numbers
@@ -273,7 +273,7 @@ function findGCDOfN(arr) {
   let result = arr[0];
   let length = arr.length;
   for (let i = 1; i < length; i++) {
-    result = gcdEucledean(arr[i], result);
+    result = gcdEuclidean(arr[i], result);
 
     if (result == 1) {
       return 1;
@@ -285,7 +285,7 @@ function findGCDOfN(arr) {
 // Function to return LCM of 2 numbers
 //  a x b = LCM(a, b) * GCD (a, b)
 function lcm(a, b) {
-  return (a * b) / gcdEucledean(a, b);
+  return (a * b) / gcdEuclidean(a, b);
 }
 
 console.log("GCD of N numbers:", findGCDOfN([12, 36, 60]), lcm(12, 15));
@@ -329,7 +329,7 @@ const checkPangram = (str) => {
   return true;
 };
 
-console.log("Check Panagram:", checkPangram(str));
+console.log("Check Pangram:", checkPangram(str));
 
 // Search through Facebook friends, looking for the closest friend that owned a dog.
 // Graph problem - DFS
@@ -381,7 +381,7 @@ function countCurrency(amount) {
   }
 
   // Print notes
-  console.log("Minimum denominations reqiured are:");
+  console.log("Minimum denominations required are:");
   for (let i = 0; i < 9; i++) {
     if (noteCounter[i] !== 0) {
       console.log(`${notes[i]}: ${noteCounter[i]}`);

@@ -1,3 +1,72 @@
+// Prototypal inheritance with constructor functions
+function Shape() {
+  this.x = 0;
+  this.y = 0;
+
+  this.move = function (x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  this.moveFromOriginalPosition = function () {
+    return this.x * this.x + this.y * this.y;
+  }
+}
+
+function Square() {
+}
+
+Square.prototype = new Shape();
+Square.prototype.__proto__ = Shape.prototype;
+Square.prototype.width = 0;
+
+Square.prototype.area = function () {
+  return this.width * this.width;
+}
+
+let square = new Square();
+square.move(15, 15);
+square.width = 15;
+
+// Prototypal inheritance with Object.setPrototypeOf
+const obj1 = { name: 'Punith' };
+
+const use = function (person) {
+  try {
+    person.work();
+  } catch (ex) {
+    console.log('not found!');
+  }
+}
+
+const employment = {
+  work: function () {
+    console.log('working...!');
+  }
+}
+
+const management = {
+  work: function () {
+    console.log('play golf...!');
+  }
+}
+
+Object.setPrototypeOf(obj1, employment);
+Object.setPrototypeOf(obj1, management);
+
+const Animal1 = function () {
+  this.walk = function (dist) {
+    this.km += dist;
+  }
+}
+
+Animal1.prototype.km = 0;
+
+const animal1 = new Animal1();
+const animal2 = new Animal1();
+
+animal1.walk(10);
+
 // Prototype is a 'property on a function' that represents an object
 
 // Constructor function
@@ -15,7 +84,7 @@
 //   this.energy = energy;
 // }
 
-// Construting using arrow functions leads to an error, since it has no reference to 'this', and Arrow functions don't have prototype object
+// Constructing using arrow functions leads to an error, since it has no reference to 'this', and Arrow functions don't have prototype object
 
 // Can also be created using Class
 class Animal {
@@ -25,7 +94,7 @@ class Animal {
   }
 
   // eat(amount) {
-  //   console.log(this.name, 'eats', amout, 'quantity of food');
+  //   console.log(this.name, 'eats', amount, 'quantity of food');
   // }
 
   // sleep(length) {
@@ -34,7 +103,7 @@ class Animal {
 }
 
 Animal.prototype.eat = function(amount) {
-  console.log(this.name, "eats", amout, "quantity of food");
+  console.log(this.name, "eats", amount, "quantity of food");
 };
 
 Animal.prototype.sleep = function(length) {
@@ -126,7 +195,7 @@ const mara = createElf("Mara", "Sword");
 
 console.log("Objects created with factory fn:", peter.attack(), mara.attack());
 
-// Here we can extract attack() function and reduce repetation
+// Here we can extract attack() function and reduce repetition
 const elfFunctions = {
   attack() {
     return `${this.name} attacks with ${this.weapon}`;
@@ -171,11 +240,11 @@ console.log(
 class Elf1 {
   constructor(name, weapon) {
     this.name = name;
-    this.weapom = weapon;
+    this.weapon = weapon;
   }
 
   attack() {
-    return `${this.name} attacks with ${this.weapom}`;
+    return `${this.name} attacks with ${this.weapon}`;
   }
 }
 

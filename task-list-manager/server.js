@@ -1,4 +1,4 @@
-// Makes use of EvetEmitter to communicate with the client
+// Makes use of EventEmitter to communicate with the client
 const EventEmitter = require('events');
 
 class Server extends EventEmitter {
@@ -32,7 +32,7 @@ class Server extends EventEmitter {
   }
 
   help() {
-    const helpText = `Availble commands:
+    const helpText = `Available commands:
 add <task-name> - Adds the task passed as arguments
 ls - Lists all the tasks
 delete <task-id> - deletes the provided task`;

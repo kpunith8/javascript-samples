@@ -487,7 +487,7 @@ const doubleIt = (a) => a * 2;
 
 const doubleArr = myMap([1, 2, 3], doubleIt);
 
-// Count the total number of occurences of a char in a string
+// Count the total number of occurrences of a char in a string
 const charCount = (str, char) => str.split(char).length - 1;
 
 const charCount1 = (str, chr) => {

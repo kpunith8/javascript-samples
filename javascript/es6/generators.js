@@ -10,7 +10,7 @@ const gen = generateNumbers();
 // console.log(gen.next());
 // console.log(gen.next());
 
-// Generatos can be accessed using for..of syntax too
+// Generators can be accessed using for..of syntax too
 for (let value of gen) {
   // console.log(value);
 }

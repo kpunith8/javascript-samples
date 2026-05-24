@@ -15,7 +15,7 @@ console.log(logger.next());
 // Passing value to the generator
 // console.log(logger.next('Hello'))
 
-// use next() method on logger to get the next yield from the genrator function
+// use next() method on logger to get the next yield from the generator function
 
 // throw an error calling throw() method on a generator
 logger.throw("Something went wrong");
