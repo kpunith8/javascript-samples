@@ -189,17 +189,17 @@ export const checkParentheses = (word) => {
 };
 
 export const isValidParentheses = (s) => {
-    const stack = [];
-    const pairs = { '(': ')', '{': '}', '[': ']' };
-    for (let char of s) {
-        if (pairs[char]) {
-            stack.push(char);
-        } else if (char !== pairs[stack.pop()]) {
-            return false;
-        }
+  const stack = [];
+  const pairs = { "(": ")", "{": "}", "[": "]" };
+  for (let char of s) {
+    if (pairs[char]) {
+      stack.push(char);
+    } else if (char !== pairs[stack.pop()]) {
+      return false;
     }
-    return stack.length === 0;
-}
+  }
+  return stack.length === 0;
+};
 
 // Remove duplicates in a string
 
@@ -451,7 +451,7 @@ const sumOfTwoNumbers = (arr1, arr2, target) => {
 
 console.log(
   "sumOfTwoNumbers:",
-  sumOfTwoNumbers([1, 2, 3, 4, 5], [2, 3, 4, 5, 6], 8)
+  sumOfTwoNumbers([1, 2, 3, 4, 5], [2, 3, 4, 5, 6], 8),
 );
 
 // Kadane's algorithm
@@ -470,7 +470,7 @@ const maxSubArray = (arr) => {
 
 console.log(
   "maximum sum of contiguous array:",
-  maxSubArray([-2, 2, 5, -11, 6])
+  maxSubArray([-2, 2, 5, -11, 6]),
 ); // [2, 5] => 7
 
 // Custom JS map
@@ -507,7 +507,7 @@ console.log(
   "\nChar count:",
   charCount("Heolllok", "l"),
   "Heolllok".split("l"),
-  charCount1("my name is namma", "m")
+  charCount1("my name is namma", "m"),
 );
 
 // Check if an object is empty
@@ -520,7 +520,7 @@ const daysBetween = (date1, date2) =>
 
 console.log(
   "\nDays between:",
-  daysBetween(new Date("2019-1-9"), new Date("2021-2-9"))
+  daysBetween(new Date("2019-1-9"), new Date("2021-2-9")),
 );
 
 // Shuffle an array
@@ -554,19 +554,153 @@ const convertToZigZag = (inputString, numRows) => {
 
 console.log("convertToZigZag:", convertToZigZag("PAYPALISHIRING", 3)); // Output: "PAHNAPLSIIGYIR"
 
-
 const deepMergeObjects = (target, source) => {
-	for (const key in source) {
-		if (source[key] instanceof Object && key in target) {
-			Object.assign(source[key], deepMergeObjects(target[key], source[key]));
-		}
-	}
+  for (const key in source) {
+    if (source[key] instanceof Object && key in target) {
+      Object.assign(source[key], deepMergeObjects(target[key], source[key]));
+    }
+  }
 
-	Object.assign(target || {}, source);
-	return target;
+  Object.assign(target || {}, source);
+  return target;
 };
 
 const obj1 = { a: 1, b: { x: 10, y: 20 } };
 const obj2 = { b: { y: 30, z: 40 }, c: 3 };
 
 const mergedObj = deepMergeObjects(obj1, obj2);
+
+/*
+ */
+const board1 = [
+  [0, 0, 6, 0, 0, 4, 0, 0, 0],
+  [5, 0, 0, 1, 0, 0, 0, 0, 8],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 4, 0, 0, 0, 3, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 2, 0, 0, 0, 0, 0, 0],
+  [4, 1, 0, 8, 0, 0, 9, 0, 0],
+  [7, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 6, 0, 0, 1],
+];
+
+const board2 = [
+  [0, 0, 6, 0, 0, 4, 0, 0, 0],
+  [5, 0, 0, 1, 0, 0, 0, 0, 8],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 4, 0, 0, 0, 3, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 2, 0, 0, 0, 0, 0, 0],
+  [4, 1, 0, 8, 0, 0, 9, 0, 0],
+  [7, 0, 0, 0, 0, 0, 0, 0, 0],
+  [5, 0, 0, 0, 0, 6, 0, 0, 1],
+];
+
+const board3 = [
+  [0, 0, 6, 0],
+  [5, 0, 0, 1],
+  [0, 0, 0, 0],
+  [0, 4, 0, 0],
+];
+
+function isValidSudokuBoard(board) {
+  // Exit early if the board does not have a valid shape
+  if (!hasValidShape(board)) {
+    return false;
+  }
+
+  return hasValidCells(board);
+}
+
+// The function to check for a valid shape is all constant time and space O(1)
+function hasValidShape(board) {
+  // We have an empty board, it is automatically invalid
+  if (board.length === 0 || board[0].length === 0) {
+    return false;
+  }
+
+  const rowCount = board.length;
+  const columnCount = board[0].length;
+  const isSquare = rowCount === columnCount;
+
+  // The board is not a square, so we know it is invalid
+  if (!isSquare) {
+    return false;
+  }
+
+  // For a board to be composed of sub-squares,
+  // the square root of `k` must be a whole number
+  const hasSubsquares = Math.sqrt(rowCount) % 1 === 0;
+  if (!hasSubsquares) {
+    return false;
+  }
+
+  // All conditions are met, so it is a valid shape
+  return true;
+}
+
+// Helper function to init our array of objects.
+const arrayOfObjects = (size) =>
+  Array(size)
+    .fill(null)
+    .map(() => ({}));
+
+const nestedArrayOfObjects = (size) =>
+  Array(size)
+    .fill(null)
+    .map(() => arrayOfObjects(size));
+
+function hasValidCells(board) {
+  // Get the dimensions of the board and sub-squares
+  const sizeOfBoard = board.length;
+  const sizeOfSubsquare = Math.sqrt(sizeOfBoard);
+
+  // Create our one-dimensional array of hash tables for rows and columns
+  const rows = arrayOfObjects(sizeOfBoard);
+  const columns = arrayOfObjects(sizeOfBoard);
+
+  // Create a two-dimensional array of hash tables
+  // where there is a separate hash table for each sub-square
+  const subsquares = nestedArrayOfObjects(sizeOfSubsquare);
+
+  for (let row = 0; row < sizeOfBoard; row++) {
+    for (let col = 0; col < sizeOfBoard; col++) {
+      const cellValue = board[row][col];
+
+      // If we have a value, we need to add it to our hash tables
+      // and return false if a value already existed.
+      if (cellValue > 0) {
+        // Since the sub-square tracker is a 2D jxj array,
+        // we need to normalize the coordinates by j
+        const subsquareRow = Math.floor(row / sizeOfSubsquare);
+        const subsquareCol = Math.floor(col / sizeOfSubsquare);
+
+        // Initialize and/or increment the cell value for the corresponding row, column, sub-square
+        //
+        // rows and columns are a 1-D array where we look for the cellValue in a hash table
+        rows[row][cellValue] = (rows[row][cellValue] || 0) + 1;
+        columns[col][cellValue] = (columns[col][cellValue] || 0) + 1;
+        //
+        // subsquares is a 2-D matrix
+        subsquares[subsquareRow][subsquareCol][cellValue] =
+          (subsquares[subsquareRow][subsquareCol][cellValue] || 0) + 1;
+
+        // If the value is greater than 1, we have already seen this in the hash table
+        const hasRowDuplicate = rows[row][cellValue] > 1;
+        const hasColumnDuplicate = columns[col][cellValue] > 1;
+        const hasSubsquareDuplicate =
+          subsquares[subsquareRow][subsquareCol][cellValue] > 1;
+
+        // Return if there are any duplicates
+        if (hasRowDuplicate || hasColumnDuplicate || hasSubsquareDuplicate) {
+          return false;
+        }
+      }
+    }
+  }
+
+  // We iterated to the end and didn't find any duplicates
+  return true;
+}
+
+console.log('isValidSudokuBoard:', isValidSudokuBoard(board1));

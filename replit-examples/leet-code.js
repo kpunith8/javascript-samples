@@ -156,4 +156,99 @@ const longestMountain = (arr) => {
 // [2, 1, 4, 7, 3, 2, 5] => 5
 // [2, 2, 2] => 0
 // [1, 3, 2] => 3
-console.log("Longest Mountain:", longestMountain([1, 3, 2]));
+console.log("Longest Mountain:", longestMountain([2, 1, 4, 7, 3, 2, 5]));
+
+// 303. Range Sum Query - Immutable - Prefix Sum
+// T - O(n) for preprocessing, O(1) for query
+const createRangeSumQuery = (nums) => {
+  const prefixSums = new Array(nums.length + 1).fill(0);
+
+  for (let index = 0; index < nums.length; index++) {
+    prefixSums[index + 1] = prefixSums[index] + nums[index];
+  }
+
+  return function sumRange(left, right) {
+    return prefixSums[right + 1] - prefixSums[left];
+  };
+};
+
+const sumRange = createRangeSumQuery([-2, 0, 3, -5, 2, -1]);
+console.log("Range Sum Query:", sumRange(0, 2)); // Output: 1
+
+// 525. Contiguous Array - Prefix sum and HashMap
+
+// Find the maximum length of a contiguous subarray containing an equal number of 0s and 1s.
+
+// The key observation is that equal counts of zeros and ones can be modeled as a zero-sum problem.
+// By normalizing 0 to -1 and 1 to +1, any subarray containing an equal number of zeros
+// and ones will have a cumulative sum of zero.
+function findMaxLength(nums) {
+  const firstOccurrenceByBalance = new Map();
+
+  firstOccurrenceByBalance.set(0, -1);
+
+  let sum = 0;
+  let maxLength = 0;
+
+  for (let index = 0; index < nums.length; index++) {
+    sum += nums[index] === 1 ? 1 : -1;
+
+    if (firstOccurrenceByBalance.has(sum)) {
+      const previousIndex = firstOccurrenceByBalance.get(sum);
+
+      maxLength = Math.max(maxLength, index - previousIndex);
+    } else {
+      firstOccurrenceByBalance.set(sum, index);
+    }
+  }
+
+  return maxLength;
+}
+
+console.log(
+  "Find Max Length of Contiguous Array:",
+  findMaxLength([0, 1, 0, 1, 1, 0]),
+);
+
+// 560. Subarray Sum Equals K - Prefix sum and HashMap
+
+// The total number of continuous subarrays, whose sum equals k
+// if the array contains a negative number, we cannot use sliding window technique.
+// Instead we can use prefix sum and hashmap to store the count of prefix sums.
+
+/*
+The core insight:
+
+sum(i, j) = prefixSum(j) - prefixSum(i-1)
+
+We want sum(i,j) = k, which means:
+
+prefixSum(j) - prefixSum(i-1) = k
+prefixSum(i-1) = prefixSum(j) - k
+
+So at every index j, if we know how many times the value (prefixSum(j) - k) has
+occurred as a prefix sum before this point,
+we know how many subarrays ending at j sum to k.
+*/
+function subArraySum(nums, k) {
+  const prefixSumCount = new Map();
+  // This handles the case where the subarray starting from index 0 itself sums to k (prefixSum - k = 0).
+  prefixSumCount.set(0, 1); // Initialize with sum 0 having one occurrence
+
+  let prefixSum = 0;
+  let count = 0;
+
+  for (const num of nums) {
+    prefixSum += num;
+
+    if (prefixSumCount.has(prefixSum - k)) {
+      count += prefixSumCount.get(prefixSum - k);
+    }
+    prefixSumCount.set(prefixSum, (prefixSumCount.get(prefixSum) || 0) + 1);
+  }
+
+  return count;
+}
+
+console.log("Subarray Sum Equals K:", subArraySum([1, 2, 1, 2, 1], 3)); // Output: 4
+

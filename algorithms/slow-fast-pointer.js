@@ -93,6 +93,36 @@ function hasCycle(head) {
 }
 
 /*
+142 — Linked List Cycle II - Given the head of a linked list, return the node where the cycle begins.
+
+O(n) time complexity and O(1) space complexity.
+*/
+function detectCycle(head) {
+  let slow = head;
+  let fast = head;
+
+  // Phase 1: detect if a cycle exists
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (slow === fast) {
+      // cycle detected -> move to phase 2
+      slow = head; // reset slow to head; fast stays at meeting point
+
+      while (slow !== fast) {
+        slow = slow.next; // now move slow and fast pointers 1 step at a time
+        fast = fast.next;
+      }
+
+      return slow; // (or fast, they're equal now) -> cycle start
+    }
+  }
+
+  return null; // fast reached the end -> no cycle
+}
+
+/*
 Finding the Middle of a Linked List
 In this problem, when the fast pointer reaches the end, the slow pointer will be in the middle.
 */
