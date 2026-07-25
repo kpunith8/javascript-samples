@@ -29,8 +29,8 @@ module.exports = {
   // An array of regexp pattern strings used to skip coverage collection
   coveragePathIgnorePatterns: [
     "/node_modules/",
-    "./babel.config.js",
-    "./jest.config.js",
+    "./babel.config.cjs",
+    "./jest.config.cjs",
     "./coverage/",
   ],
 

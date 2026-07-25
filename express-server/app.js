@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
@@ -22,8 +21,9 @@ app.use(require('response-time')());
 app.use(express.static(path.join(__dirname, '../albums')));
 
 // To parse data from post requests as JSON
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// [BREAKING CHANGE] Express v5: Use express.json() and express.urlencoded() instead of body-parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // Middleware to handle cookies
 app.use(cookieParser());
@@ -71,26 +71,32 @@ function isAdmin(req, res, next) {
 // Regular expression can be used to match the URLs
 // app.all() can also be used, instead of all
 
+// [BREAKING CHANGE] Express v5: Route string patterns like "/user[s]?/:userId" are no longer supported
+// Use RegExp or named parameters instead. Here we use RegExp to match both /user and /users
+const userRouteRegex = /^\/users?\/(\d+)$/;
+
 // If userId > 10000 call some other route or call Legacy code
-app.get("/user[s]?/:userId", (req, res, next) => {
-  if (parseInt(req.params.userId) < 10000) {
-    // Here next() is called an middleware
+app.get(userRouteRegex, (req, res, next) => {
+  if (parseInt(req.params[0]) < 10000) {
+    // Here next() is called as middleware
     next();
   } else {
-    res.end("You asked for user: " + req.params.userId);
+    res.end("You asked for user: " + req.params[0]);
   }
 });
 
-app.get("/user[s]?/:userId", (req, res) => {
-  res.end("You asked for Legacy User: " + req.params.userId);
+app.get(userRouteRegex, (req, res) => {
+  res.end("You asked for Legacy User: " + req.params[0]);
 });
 
-app.post('*', (req, res) => {
+// [BREAKING CHANGE] Express v5: Wildcard '*' pattern is no longer supported
+// Use '(.*)' or named wildcards like '{*path}' instead
+app.post('(.*)', (req, res) => {
   res.end(JSON.stringify(req.body));
 });
 
 // Setting and using sessions
-app.get('*', (req, res) => {
+app.get('(.*)', (req, res) => {
   // Cookie created for an day
   let lastAccessedDate = req.session.last_access;
   req.session.last_access = new Date();

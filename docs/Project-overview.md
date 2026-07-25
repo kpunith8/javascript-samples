@@ -320,11 +320,13 @@ nodemon -r esm algorithms/binary-search.js
 
 ## ⚙️ Configuration Files
 
-### Babel Configuration (`babel.config.js`)
+### Babel Configuration (`babel.config.cjs`)
+- Renamed from `.js` to `.cjs` for compatibility with `"type": "module"` in package.json
 - Configured with @babel/preset-env for modern JavaScript support
 - Enables transpilation of ES6+ features
 
-### Jest Configuration (`jest.config.js`)
+### Jest Configuration (`jest.config.cjs`)
+- Renamed from `.js` to `.cjs` for compatibility with `"type": "module"` in package.json
 - Test environment setup
 - Test discovery patterns
 - Coverage reporting configuration

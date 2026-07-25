@@ -3,7 +3,6 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const path = require('path');
 
@@ -24,8 +23,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // To accept form data
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// [BREAKING CHANGE] Express v5: Use express.urlencoded() and express.json() instead of body-parser
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 //1. store user-name and passwords
 const users = {
