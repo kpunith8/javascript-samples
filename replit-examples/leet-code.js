@@ -252,3 +252,114 @@ function subArraySum(nums, k) {
 
 console.log("Subarray Sum Equals K:", subArraySum([1, 2, 1, 2, 1], 3)); // Output: 4
 
+class ListNode {
+  constructor(val, next = null) {
+    this.val = val;
+    this.next = next;
+  }
+}
+
+// 206. Reverse Linked List - Iterative
+// S - O(1), T - O(n)
+function reverseListIterative(head) {
+  let prev = null;
+  let curr = head;
+
+  while (curr !== null) {
+    const nextTemp = curr.next; // save forward path before we overwrite it
+    curr.next = prev; // reverse the pointer
+    prev = curr; // move prev forward
+    curr = nextTemp; // move curr forward (using saved reference)
+  }
+
+  return prev; // prev is now the new head (old tail)
+}
+
+// 206. Reverse Linked List - Recursive
+// S - O(n), T - O(n)
+function reverseListRecursive(head) {
+  // base case: empty list or a single node -> already "reversed"
+  if (head === null || head.next === null) {
+    return head;
+  }
+
+  // recursively reverse everything after head; newHead never changes across calls
+  const newHead = reverseListRecursive(head.next);
+
+  // head.next is now the tail of the reversed sublist -> point it back to head
+  head.next.next = head;
+
+  // head becomes the new tail (for now) -> must not point forward anymore
+  head.next = null;
+
+  return newHead;
+}
+
+// 92. Reverse Linked List II
+// S - O(1), T - O(n)
+function reverseBetween(head, left, right) {
+  const dummy = new ListNode(0);
+  dummy.next = head;
+
+  // Step 1: move prev to the node just before position `left`
+  let prev = dummy;
+  for (let i = 0; i < left - 1; i++) {
+    prev = prev.next;
+  }
+
+  // Step 2: curr is the node at position `left` -> will become tail of reversed segment
+  let curr = prev.next;
+
+  // Step 3: perform (right - left) "insert at front" operations
+  for (let i = 0; i < right - left; i++) {
+    const nextTemp = curr.next; // node to pluck forward
+    curr.next = nextTemp.next; // detach it from its current spot
+    nextTemp.next = prev.next; // point it at the current front of the reversed segment
+    prev.next = nextTemp; // prev now points to this newly-inserted front
+  }
+
+  return dummy.next;
+}
+
+// 24. Swap Nodes in Pairs
+// S - O(1), T - O(n)
+function swapPairs(head) {
+  const dummy = new ListNode(0);
+  dummy.next = head;
+  let prev = dummy;
+
+  while (prev.next !== null && prev.next.next !== null) {
+    const first = prev.next;
+    const second = prev.next.next;
+
+    // rewire the pair
+    first.next = second.next;
+    second.next = first;
+    prev.next = second;
+
+    // move prev forward to the end of this just-swapped pair
+    prev = first;
+  }
+
+  return dummy.next;
+}
+
+// S - O(n), T - O(n)
+function swapPairsRecursive(head) {
+  // base case: 0 or 1 nodes left -> nothing to swap
+  if (head === null || head.next === null) {
+    return head;
+  }
+
+  const first = head;
+  const second = head.next;
+
+  // recursively handle everything after this pair, and wire first to that result
+  first.next = swapPairsRecursive(second.next);
+
+  // second becomes the front of this pair
+  second.next = first;
+
+  // return the new head of this pair
+  return second;
+}
